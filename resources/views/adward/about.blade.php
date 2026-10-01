@@ -1,0 +1,36 @@
+@extends('layouts.adward')
+
+@section('title', 'Adward - About')
+
+@section('top_container')
+  @include('adward.partials.navbar')
+@endsection
+
+@section('content')
+
+  <!-- about section -->
+  <section class="about_section layout_padding">
+    <div class="container">
+      <h2 class="main-heading ">
+        About School
+      </h2>
+      <p class="text-center">
+        There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
+        passages of Lorem Ipsum available, but the majority h
+      </p>
+      <div class="about_img-box ">
+        <img src="{{ asset('adward/images/kids.jpg') }}" alt="" class="img-fluid w-100">
+      </div>
+      <div class="d-flex justify-content-center mt-5">
+        <a href="" class="call_to-btn  ">
+          <span>
+            Read More
+          </span>
+          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- about section -->
+
+@endsection
