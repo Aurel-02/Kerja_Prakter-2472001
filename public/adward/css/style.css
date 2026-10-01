@@ -61,7 +61,7 @@ body {
 }
 
 .main-heading {
-  color: #082465;
+  color: #25d366;
   font-weight: bold;
   text-align: center;
 }
@@ -111,7 +111,9 @@ a:focus {
   position: relative;
 }
 
+.text-success { color: #25d366 !important; }
 .top_container::before {
+  filter: saturate(1.4) brightness(1.25);
   content: "";
   position: absolute;
   width: 48%;
@@ -215,6 +217,67 @@ a:focus {
 
 /* end hero section */
 
+/* hero blob photo frame */
+.hero-blob-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.hero-blob-frame {
+  position: relative;
+  width: 580px;
+  height: 550px;
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  border: 8px solid rgba(255, 255, 255, 0.45);
+  animation: blob-morph 8s ease-in-out infinite;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hero-blob-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+.hero-blob-frame:hover .hero-blob-img {
+  transform: scale(1.05);
+}
+
+@keyframes blob-morph {
+  0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  25%  { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; }
+  50%  { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
+  75%  { border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; }
+  100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+}
+
+@media (max-width: 991px) {
+  .hero-blob-frame {
+    width: 400px;
+    height: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-blob-wrapper {
+    margin-top: 30px;
+  }
+  .hero-blob-frame {
+    width: 330px;
+    height: 310px;
+  }
+}
+/* end hero blob photo frame */
+
+
 /* about section */
 .about_img-box {
   width: 65%;
@@ -251,7 +314,7 @@ a:focus {
 .vehicle_section .carousel-control-next-icon {
   width: 50px;
   height: 50px;
-  background-color: #082465;
+  background-color: #25d366;
   border-radius: 100%;
   background-size: 10px;
   background-position: center;
@@ -291,7 +354,7 @@ a:focus {
 }
 
 .client_detail-box h4 {
-  color: #082465;
+  color: #25d366;
 }
 
 .client_detail-box span {
@@ -380,7 +443,7 @@ a:focus {
 
 .admission_detail {
   width: 50%;
-  background-color: #082465;
+  background-color: #25d366;
   padding: 20px;
   color: #fefeff;
   border-radius: 0 25px 25px 0;
@@ -421,7 +484,7 @@ a:focus {
 /* footer section*/
 
 .footer_section {
-  background-color: #082465;
+  background-color: #25d366;
   padding: 20px 0;
   font-family: "Roboto", sans-serif;
 }
@@ -437,3 +500,220 @@ a:focus {
 }
 
 /* end footer section*/
+
+
+/* --- PROTOTYPE HERO SECTION STYLES --- */
+.hero_prototype_container {
+  min-height: 85vh;
+  background: linear-gradient(135deg, #25d366 100%);
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.hero_prototype_container::before {
+  display: none !important;
+}
+
+.hero_prototype_container .custom_nav-container .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.hero_prototype_container .custom_nav-container .nav-item.active .nav-link {
+  color: #fec913 !important;
+  border-bottom: 3px solid #fec913;
+  padding-bottom: 3px;
+}
+
+.nav-enroll-btn {
+  background-color: #fec913 !important;
+  color: #1e293b !important;
+  border-radius: 30px !important;
+  padding: 8px 24px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  border: none !important;
+}
+
+.nav-enroll-btn:hover {
+  background-color: #f59e0b !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* Left White Curved Card */
+.hero-left-white-card {
+  background: #ffffff;
+  border-radius: 40px 90px 40px 40px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+  border: 4px solid rgba(255, 255, 255, 0.9);
+}
+
+.hero-title {
+  color: #1e293b;
+  font-size: 40px;
+  line-height: 1.25;
+}
+
+.highlight-yellow {
+  color: #d97706;
+  background: #fef3c7;
+  padding: 3px 12px;
+  border-radius: 14px;
+}
+
+.hero-desc {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Right Photo Curved Prototype Frame */
+.hero-photo-prototype-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.hero-photo-prototype-frame {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  height: 480px;
+  border-radius: 50px 160px 60px 140px;
+  overflow: hidden;
+  border: 8px solid #ffffff;
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  transition: all 0.5s ease;
+}
+
+.hero-photo-prototype-frame:hover {
+  border-radius: 140px 60px 160px 50px;
+}
+
+.hero-prototype-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (max-width: 991px) {
+  .hero-left-white-card {
+    border-radius: 30px;
+  }
+  .hero-photo-prototype-frame {
+    height: 380px;
+    border-radius: 40px 100px 40px 80px;
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-photo-prototype-frame {
+    height: 300px;
+  }
+}
+
+
+/* --- FULL WALLPAPER HERO SECTION (HARBUN.PNG) --- */
+.top_container.home_wallpaper_hero {
+  position: relative;
+  min-height: 85vh;
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.75), rgba(37, 211, 102, 0.65)), url(../images/harbun.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+
+.top_container.home_wallpaper_hero::before {
+  display: none !important;
+}
+
+.home_wallpaper_hero .custom_nav-container .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.home_wallpaper_hero .custom_nav-container .nav-item.active .nav-link {
+  color: #fec913 !important;
+  border-bottom: 3px solid #fec913;
+}
+
+
+/* ========================================================
+   FLAT BRIGHT GREEN THEME & UNIFIED NAVBAR STYLES
+   ======================================================== */
+
+.top_container {
+  position: relative;
+  background-color: #25d366 !important;
+}
+
+/* Hilangkan shape overlay lama secara total */
+.top_container::before,
+.hero_prototype_container::before {
+  display: none !important;
+}
+
+.top_container.sub_pages {
+  height: auto;
+  min-height: 120px;
+  background: #25d366 !important;
+}
+
+/* Home Wallpaper khusus dengan warna hijau terang rata */
+.top_container.home_wallpaper_hero {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(rgba(37, 211, 102, 0.78), rgba(37, 211, 102, 0.78)), url(../images/harbun.png) !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  color: #ffffff;
+}
+
+/* Penyesuaian Responsif untuk HP */
+@media (max-width: 768px) {
+  .top_container.home_wallpaper_hero {
+    min-height: 60vh !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    padding-bottom: 30px;
+  }
+  
+  .hero-main-title {
+    font-size: 2.1rem !important;
+  }
+  
+  .hero-desc-p {
+    font-size: 1rem !important;
+  }
+  
+  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 8px 12px !important;
+  }
+}
+
+/* Uniform Navbar text links */
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 10px 20px;
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link {
+  color: #fec913 !important;
+  border-bottom: 3px solid #fec913;
+}

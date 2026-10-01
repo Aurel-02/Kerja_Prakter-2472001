@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>@yield('title', 'Adward')</title>
+  <title>@yield('title', 'TK Harapan Bunda')</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{{ asset('adward/css/bootstrap.css') }}" />
@@ -34,8 +34,7 @@
   <!-- footer section -->
   <section class="container-fluid footer_section">
     <p>
-      Copyright &copy; 2019 All Rights Reserved By
-      <a href="https://html.design/">Free Html Templates</a>
+      Copyright &copy; 2026 TK Harapan Bunda. All Rights Reserved.
     </p>
   </section>
   <!-- footer section -->

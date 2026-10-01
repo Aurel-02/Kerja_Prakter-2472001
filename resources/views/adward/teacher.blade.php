@@ -1,6 +1,6 @@
 @extends('layouts.adward')
 
-@section('title', 'Adward - Teacher')
+@section('title', 'TK Harapan Bunda - Pengajar')
 
 @section('top_container')
   @include('adward.partials.navbar')
@@ -12,47 +12,38 @@
   <section class="teacher_section layout_padding-bottom">
     <div class="container">
       <h2 class="main-heading ">
-        Our Teachers
+        Pengajar Kami
       </h2>
       <p class="text-center">
-        Ipsum available, but the majority h
+        Guru-guru berpengalaman dan penuh kasih sayang yang siap membimbing anak-anak.
       </p>
       <div class="teacher_container layout_padding2">
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-1.jpg') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-1.jpg') }}" alt="Foto Pengajar">
             <div class="card-body">
               <h5 class="card-title">Den Mark</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-2.jpg') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-2.jpg') }}" alt="Foto Pengajar">
             <div class="card-body">
-              <h5 class="card-title">Leena jorj</h5>
+              <h5 class="card-title">Leena Jorj</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-3.jpg') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-3.jpg') }}" alt="Foto Pengajar">
             <div class="card-body">
               <h5 class="card-title">Magi Den</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-4.jpg') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-4.jpg') }}" alt="Foto Pengajar">
             <div class="card-body">
-              <h5 class="card-title">jonson mark</h5>
+              <h5 class="card-title">Jonson Mark</h5>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="d-flex justify-content-center mt-3">
-        <a href="" class="call_to-btn  ">
-          <span>
-            See More
-          </span>
-          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
-        </a>
       </div>
     </div>
   </section>

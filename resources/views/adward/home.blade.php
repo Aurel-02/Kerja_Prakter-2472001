@@ -1,80 +1,66 @@
 @extends('layouts.adward')
 
-@section('title', 'Adward - Home')
+@section('title', 'TK Harapan Bunda - Beranda')
 
 @section('top_container')
-  <div class="top_container">
-    <!-- header section strats -->
+  <div class="top_container home_wallpaper_hero">
+    <!-- header section starts -->
     <header class="header_section">
       <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('adward/images/logo.png') }}" alt="">
-            <span>
-              Adward
-            </span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
+              <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{ route('home') }}"> Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('home') }}"> Beranda <span class="sr-only">(saat ini)</span></a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="{{ route('about') }}"> About </a>
-                </li>
-
-                <li class="nav-item ">
-                  <a class="nav-link" href="{{ route('teacher') }}"> Teacher </a>
-                </li>
-
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('vehicle') }}"> Vehicle </a>
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('about') }}"> Tentang Kami </a>
                 </li>
-
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('teacher') }}"> Pengajar </a>
                 </li>
-
+                <li class="nav-item">
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('contact') }}">Hubungi Kami</a>
+                </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-              </form>
             </div>
+          </div>
         </nav>
       </div>
     </header>
-    <section class="hero_section ">
-      <div class="hero-container container">
-        <div class="hero_detail-box">
-          <h3>
-            Welcome to <br>
-            Best educations
-          </h3>
-          <h1>
-            school
-          </h1>
-          <p>
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
-            some form, by injected humour, or randomised
-          </p>
-          <div class="hero_btn-continer">
-            <a href="{{ route('contact') }}" class="call_to-btn btn_white-border">
-              <span>
-                Contact
-              </span>
-              <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
-            </a>
-          </div>
-        </div>
-        <div class="hero_img-container">
-          <div>
-            <img src="{{ asset('adward/images/hero.png') }}" alt="" class="img-fluid">
+    <!-- end header section -->
+
+    <!-- hero section with full wallpaper background -->
+    <section class="hero_section">
+      <div class="container py-4 py-md-5">
+        <div class="row align-items-center" style="min-height: 50vh;">
+          <div class="col-lg-8 col-md-10">
+            <div class="hero_detail-box text-white">
+              <h3 class="text-warning font-weight-bold mb-2 hero-sub-title" style="font-size: 1.5rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">
+                Selamat Datang di
+              </h3>
+              <h1 class="display-4 font-weight-bold text-white mb-3 hero-main-title" style="text-shadow: 0 4px 12px rgba(0,0,0,0.6);">
+                TK Harapan Bunda
+              </h1>
+              <p class="lead text-white mb-4 hero-desc-p" style="font-size: 1.25rem; text-shadow: 0 2px 8px rgba(0,0,0,0.6); max-width: 600px;">
+                Pendidikan anak usia dini yang berkualitas, menyenangkan, dan membangun karakter buah hati Anda.
+              </p>
+              <div class="hero_btn-continer">
+                <a href="{{ route('contact') }}" class="btn btn-warning btn-lg font-weight-bold px-4 py-3 shadow-lg rounded-pill call-btn-style">
+                  <span>Hubungi Kami</span>
+                  <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -88,278 +74,219 @@
   <!-- about section -->
   <section class="about_section layout_padding">
     <div class="container">
-      <h2 class="main-heading ">
-        About School
+      <h2 class="main-heading">
+        Tentang TK Harapan Bunda
       </h2>
       <p class="text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
-        passages of Lorem Ipsum available, but the majority h
+        TK Harapan Bunda adalah lembaga pendidikan anak usia dini yang berfokus pada pengembangan kecerdasan, karakter, dan kreativitas anak.
       </p>
-      <div class="about_img-box ">
+      <div class="about_img-box">
         <img src="{{ asset('adward/images/kids.jpg') }}" alt="" class="img-fluid w-100">
       </div>
-      <div class="d-flex justify-content-center mt-5">
-        <a href="{{ route('about') }}" class="call_to-btn  ">
+      <div class="d-flex justify-content-center">
+        <a href="{{ route('about') }}" class="call_to-btn">
           <span>
-            Read More
+            Selengkapnya
           </span>
           <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
         </a>
       </div>
     </div>
   </section>
-  <!-- about section -->
 
-  <!-- teacher section -->
-  <section class="teacher_section layout_padding-bottom">
+  <!-- visi misi section -->
+  <section class="visi_misi_section layout_padding bg-light">
     <div class="container">
-      <h2 class="main-heading ">
-        Our Teachers
+      <h2 class="main-heading">
+        Visi & Misi
       </h2>
-      <p class="text-center">
-        Ipsum available, but the majority h
+      <p class="text-center mb-5">
+        TK Harapan Bunda bertekad memberikan pendidikan anak usia dini yang berkualitas dan berkarakter.
       </p>
-      <div class="teacher_container layout_padding2">
-        <div class="card-deck">
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-1.jpg') }}" alt="Card image cap">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; border-top: 5px solid #25d366 !important;">
             <div class="card-body">
-              <h5 class="card-title">Den Mark</h5>
+              <h3 class="card-title text-success font-weight-bold mb-3">
+                <i class="fa fa-eye mr-2"></i> Visi
+              </h3>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
             </div>
           </div>
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-2.jpg') }}" alt="Card image cap">
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; border-top: 5px solid #25d366 !important;">
             <div class="card-body">
-              <h5 class="card-title">Leena jorj</h5>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-3.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Magi Den</h5>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-4.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">jonson mark</h5>
+              <h3 class="card-title text-success font-weight-bold mb-3">
+                <i class="fa fa-bullseye mr-2"></i> Misi
+              </h3>
+              <ul class="pl-3" style="line-height: 1.8;">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse.</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="d-flex justify-content-center mt-3">
-        <a href="{{ route('teacher') }}" class="call_to-btn  ">
+  <!-- teacher section -->
+  <section class="teacher_section layout_padding-bottom">
+    <div class="container">
+      <h2 class="main-heading">
+        Pengajar Kami
+      </h2>
+      <p class="text-center">
+        Guru-guru berpengalaman dan penuh kasih sayang yang siap membimbing tumbuh kembang anak Anda.
+      </p>
+      <div class="teacher_container layout_padding2">
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('adward/images/t1.png') }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Denise Hale</h5>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('adward/images/t2.png') }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Nancy Cruz</h5>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('adward/images/t3.png') }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Ina Hayes</h5>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{{ asset('adward/images/t4.png') }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Salley Stone</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="{{ route('teacher') }}" class="call_to-btn">
           <span>
-            See More
+            Lihat Semua Pengajar
           </span>
           <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
         </a>
       </div>
     </div>
   </section>
-  <!-- teacher section -->
 
   <!-- vehicle section -->
   <section class="vehicle_section layout_padding">
     <div class="container">
-      <h2 class="main-heading ">
-        Vehicles Facility
+      <h2 class="main-heading">
+        Fasilitas Kendaraan
       </h2>
       <p class="text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
-        passages of Lorem Ipsum available, but the majority h
+        Layanan antar-jemput siswa yang aman dan nyaman.
       </p>
       <div class="layout_padding-top">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div class="vehicle_img-box ">
+              <div class="vehicle_img-box">
                 <img src="{{ asset('adward/images/bus.png') }}" alt="" class="img-fluid w-100">
               </div>
             </div>
             <div class="carousel-item">
-              <div class="vehicle_img-box ">
+              <div class="vehicle_img-box">
                 <img src="{{ asset('adward/images/bus.png') }}" alt="" class="img-fluid w-100">
               </div>
             </div>
             <div class="carousel-item">
-              <div class="vehicle_img-box ">
+              <div class="vehicle_img-box">
                 <img src="{{ asset('adward/images/bus.png') }}" alt="" class="img-fluid w-100">
               </div>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Sebelumnya</span>
           </a>
           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Berikutnya</span>
           </a>
         </div>
       </div>
+      <div class="d-flex justify-content-center border-top pt-5">
+        <a href="{{ route('vehicle') }}" class="call_to-btn">
+          <span>
+            Selengkapnya
+          </span>
+          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
+        </a>
+      </div>
     </div>
   </section>
-  <!-- vehicle section -->
 
   <!-- client section -->
-  <section class="client_section layout_padding">
+  <section class="client_section layout_padding-bottom">
     <div class="container">
-      <h2 class="main-heading ">
-        Our Students Feedback
+      <h2 class="main-heading">
+        Kata Orang Tua
       </h2>
       <p class="text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
-        passages of Lorem Ipsum available, but the majority h
+        Pengalaman orang tua murid yang telah mempercayakan pendidikan anaknya di TK Harapan Bunda.
       </p>
-      <div class="layout_padding2">
-        <div class="client_container d-flex flex-column">
-          <div class="client_detail d-flex align-items-center">
-            <div class="client_img-box ">
-              <img src="{{ asset('adward/images/student.png') }}" alt="">
+      <div class="layout_padding2-top">
+        <div class="client_container">
+          <div class="client_detail">
+            <p>
+              "TK Harapan Bunda sangat membantu tumbuh kembang anak kami. Lingkungan belajar yang menyenangkan dan guru-guru yang sangat ramah serta sabar."
+            </p>
+          </div>
+          <div class="client_box">
+            <div class="client_img-box">
+              <img src="{{ asset('adward/images/client.png') }}" alt="">
             </div>
             <div class="client_detail-box">
               <h4>
-                Veniam Quis
+                Orang Tua Murid
               </h4>
               <span>
-                (exercitation)
+                Bandung
               </span>
             </div>
           </div>
-          <div class="client_text mt-4">
-            <p>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum."
-            </p>
-          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- client section -->
 
-  <!-- contact section -->
-  <section class="contact_section layout_padding-bottom">
-    <div class="container">
+  <!-- map section (ukuran semula) -->
+  <section class="map_section layout_padding-top">
+    <div class="container text-center mb-4">
       <h2 class="main-heading">
-        Contact Now
+        Lokasi TK Harapan Bunda
       </h2>
       <p class="text-center">
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      </p>
-      <div class="">
-        <div class="contact_section-container">
-          <div class="row">
-            <div class="col-md-6 mx-auto">
-              <div class="contact-form">
-                <form action="{{ route('contact') }}" method="POST">
-                  @csrf
-                  <div>
-                    <input type="text" placeholder="Name" name="name">
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Phone Number" name="phone">
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Email" name="email">
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Message" class="input_message" name="message">
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn_on-hover">
-                      Send
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end contact section -->
-
-  <!-- admission section -->
-  <section class="admission_section ">
-    <div class="container-fluid position-relative">
-      <div class="row h-100">
-        <div id="map" class="h-100 w-100 ">
-        </div>
-        <div class="container">
-          <div class="admission_container position-absolute">
-            <div class="admission_img-box">
-              <img src="{{ asset('adward/images/kidss.jpg') }}" alt="">
-            </div>
-            <div class="admission_detail">
-              <h3>
-                Apply for Admission
-              </h3>
-              <p class="mt-3 mb-4">
-                There are many variations of passages of Lorem Ipsum available, but the majority h
-              </p>
-              <div class="">
-                <a href="{{ route('contact') }}" class="admission_btn btn_on-hover">
-                  Read More
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- admission section -->
-
-  <!-- landing section -->
-  <section class="landing_section layout_padding">
-    <div class="container">
-      <h2 class="main-heading">
-        Free Multipurpose Responsive
-      </h2>
-      <h2 class="main-heading number_heading">
-        Landing Page 2019
-      </h2>
-      <p class="landing_detail text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority There are many variations of
-        passages of Lorem Ipsum available, but the majority h
+        Jl. Babakan Ciparay No.251, Sukahaji, Kec. Babakan Ciparay, Kota Bandung, Jawa Barat 40242
       </p>
     </div>
+    <div class="container-fluid p-0">
+      <iframe
+        src="https://maps.google.com/maps?q=Jl.+Babakan+Ciparay+No.251,+Sukahaji,+Kec.+Babakan+Ciparay,+Kota+Bandung,+Jawa+Barat+40242&output=embed"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </section>
-  <!-- end landing section -->
 
-@endsection
-
-@section('scripts')
-  <script>
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
-        center: {
-          lat: 40.645037,
-          lng: -73.880224
-        },
-      });
-
-      var image = '{{ asset("adward/images/maps-and-flags.png") }}';
-      var beachMarker = new google.maps.Marker({
-        position: {
-          lat: 40.645037,
-          lng: -73.880224
-        },
-        map: map,
-        icon: image
-      });
-    }
-  </script>
-  <!-- google map js -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
-  </script>
 @endsection

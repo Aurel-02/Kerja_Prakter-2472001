@@ -1,6 +1,6 @@
 @extends('layouts.adward')
 
-@section('title', 'Adward - Vehicle')
+@section('title', 'TK Harapan Bunda - Fasilitas Kendaraan')
 
 @section('top_container')
   @include('adward.partials.navbar')
@@ -12,11 +12,10 @@
   <section class="vehicle_section layout_padding">
     <div class="container">
       <h2 class="main-heading ">
-        Vehicles Facility
+        Fasilitas Kendaraan
       </h2>
       <p class="text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
-        passages of Lorem Ipsum available, but the majority h
+        Fasilitas antar jemput anak-anak yang aman, nyaman, dan terpercaya.
       </p>
       <div class="layout_padding-top">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -39,11 +38,11 @@
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Sebelumnya</span>
           </a>
           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Berikutnya</span>
           </a>
         </div>
       </div>
