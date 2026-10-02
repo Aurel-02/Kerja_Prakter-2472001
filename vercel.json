@@ -31,12 +31,19 @@
             "dest": "/public/robots.txt"
         },
         {
+            "src": "/adward/(.*)",
+            "dest": "/adward/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
     "env": {
-        "APP_NAME": "Laravel Vercel",
+        "APP_NAME": "TK Harapan Bunda",
+        "APP_ENV": "production",
+        "APP_URL": "https://tkharapanbunda.vercel.app",
+        "VERCEL": "1",
         "APP_DEBUG": "false",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",

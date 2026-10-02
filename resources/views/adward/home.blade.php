@@ -147,25 +147,25 @@
       <div class="teacher_container layout_padding2">
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/t1.png') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-1.jpg') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Denise Hale</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/t2.png') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-2.jpg') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Nancy Cruz</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/t3.png') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-3.jpg') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Ina Hayes</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/t4.png') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('adward/images/teacher-4.jpg') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Salley Stone</h5>
             </div>
@@ -240,7 +240,7 @@
           </div>
           <div class="client_box">
             <div class="client_img-box">
-              <img src="{{ asset('adward/images/client.png') }}" alt="">
+              <img src="{{ asset('adward/images/student.png') }}" alt="">
             </div>
             <div class="client_detail-box">
               <h4>
