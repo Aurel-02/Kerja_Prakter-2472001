@@ -112,23 +112,6 @@ a:focus {
 }
 
 .text-success { color: #25d366 !important; }
-.top_container::before {
-  filter: saturate(1.4) brightness(1.25);
-  content: "";
-  position: absolute;
-  width: 48%;
-  height: 100%;
-  background: url(../images/hero-bg.png);
-  background-size: cover;
-  background-position: right bottom;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
-
-.top_container.sub_pages::before {
-  background-size: 400px 200px;
-  background-position: top left;
-}
 
 .top_container.sub_pages {
   height: 35vh;
