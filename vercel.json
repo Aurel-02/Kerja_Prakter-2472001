@@ -32,7 +32,7 @@
         },
         {
             "src": "/adward/(.*)",
-            "dest": "/adward/$1"
+            "dest": "/public/adward/$1"
         },
         {
             "src": "/(.*)",

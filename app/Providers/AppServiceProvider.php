@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,9 +20,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if ($this->app->environment('production') || isset($_SERVER['VERCEL']) || isset($_ENV['VERCEL'])) {
-            \Illuminate\Support\Facades\URL::forceScheme('https');
+        if (
+            $this->app->environment('production') ||
+            isset($_SERVER['VERCEL']) ||
+            isset($_ENV['VERCEL']) ||
+            request()->header('x-forwarded-proto') === 'https' ||
+            str_contains(request()->getHost(), 'vercel.app')
+        ) {
+            URL::forceScheme('https');
         }
     }
 }
-
