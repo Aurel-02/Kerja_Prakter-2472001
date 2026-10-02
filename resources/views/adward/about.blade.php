@@ -41,7 +41,7 @@
                 <i class="fa fa-eye mr-2"></i> Visi
               </h3>
               <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
               </p>
             </div>
           </div>
@@ -52,12 +52,12 @@
               <h3 class="card-title text-success font-weight-bold mb-3">
                 <i class="fa fa-bullseye mr-2"></i> Misi
               </h3>
-              <ul class="pl-3" style="line-height: 1.8;">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse.</li>
-              </ul>
+              <ol class="pl-3" style="line-height: 1.8;">
+                <li>Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</li>
+                <li>Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.</li>
+                <li>Membiasakan sikap mandiri pada anak.</li>
+                <li>Membiasakan hidup sehat.</li>
+              </ol>
             </div>
           </div>
         </div>
