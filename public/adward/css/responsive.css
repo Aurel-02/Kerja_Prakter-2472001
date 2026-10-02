@@ -213,13 +213,30 @@
         padding-top: 35px;
     }
 
-    /* Teacher cards */
-    .card-deck {
-        flex-direction: column;
+    /* Teacher cards: 2 kolom kecil rapi di mobile */
+    .teacher_container .card-deck {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        flex-direction: row !important;
     }
 
-    .card-deck .card {
-        margin-bottom: 20px;
+    .teacher_section .card {
+        margin-bottom: 0 !important;
+    }
+
+    .teacher_section .card-img-top {
+        height: 140px !important;
+        object-fit: cover !important;
+    }
+
+    .teacher_section .card-title {
+        font-size: 0.95rem !important;
+        margin-bottom: 0 !important;
+    }
+
+    .teacher_section .card-body {
+        padding: 10px !important;
     }
 }
 

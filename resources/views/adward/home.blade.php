@@ -105,24 +105,24 @@
       </p>
       <div class="row">
         <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; border-top: 5px solid #25d366 !important;">
+          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; border-top: 5px solid #25d366 !important;">
             <div class="card-body">
               <h3 class="card-title text-success font-weight-bold mb-3">
                 <i class="fa fa-eye mr-2"></i> Visi
               </h3>
-              <p class="card-text">
+              <p class="card-text text-dark font-weight-medium">
                 Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
               </p>
             </div>
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; border-top: 5px solid #25d366 !important;">
+          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; border-top: 5px solid #25d366 !important;">
             <div class="card-body">
               <h3 class="card-title text-success font-weight-bold mb-3">
                 <i class="fa fa-bullseye mr-2"></i> Misi
               </h3>
-              <ol class="pl-3" style="line-height: 1.8;">
+              <ol class="pl-3 text-dark font-weight-medium" style="line-height: 1.8;">
                 <li>Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</li>
                 <li>Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.</li>
                 <li>Membiasakan sikap mandiri pada anak.</li>
@@ -217,40 +217,6 @@
         <div class="fasilitas-item">
           <img src="{{ asset('adward/images/harbun.png') }}" alt="Fasilitas Sekolah" class="img-fluid">
           <div class="fasilitas-overlay"><span>Aula Sekolah</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- client section -->
-  <section class="client_section layout_padding-bottom">
-    <div class="container">
-      <h2 class="main-heading">
-        Kata Orang Tua
-      </h2>
-      <p class="text-center">
-        Pengalaman orang tua murid yang telah mempercayakan pendidikan anaknya di TK Harapan Bunda.
-      </p>
-      <div class="layout_padding2-top">
-        <div class="client_container">
-          <div class="client_detail">
-            <p>
-              "TK Harapan Bunda sangat membantu tumbuh kembang anak kami. Lingkungan belajar yang menyenangkan dan guru-guru yang sangat ramah serta sabar."
-            </p>
-          </div>
-          <div class="client_box">
-            <div class="client_img-box">
-              <img src="{{ asset('adward/images/student.png') }}" alt="">
-            </div>
-            <div class="client_detail-box">
-              <h4>
-                Orang Tua Murid
-              </h4>
-              <span>
-                Bandung
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>

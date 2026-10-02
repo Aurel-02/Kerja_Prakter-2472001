@@ -31,7 +31,7 @@ body {
   border-radius: 10px;
   font-size: 15px;
   text-transform: uppercase;
-  background-color: #fec913;
+  background-color: #25d366;
   border: 1px solid transparent;
   color: #fff;
   transition: all 0.3s ease 0s;
@@ -289,12 +289,29 @@ a:focus {
 /* teacher container */
 .teacher_section .card {
   border: none;
-  background-color: transparent;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.teacher_section .card:hover {
+  transform: translateY(-5px);
+}
+
+.teacher_section .card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
 }
 
 .teacher_section .card-title {
   text-align: center;
-  color: #48494a;
+  color: #25d366;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 /* end teacher container */
@@ -361,12 +378,7 @@ a:focus {
 
 /* client section */
 .client_section {
-  background-image: url(../images/shape-1.png);
-  background-repeat: no-repeat;
-
-  background-position: right;
-
-  background-size: 18%;
+  background-image: none;
 }
 
 .client_container {
@@ -406,10 +418,7 @@ a:focus {
 
 /* contact section */
 .contact_section {
-  background-image: url(../images/shape-2.png);
-  background-repeat: no-repeat;
-  background-size: 14%;
-  background-position: left center;
+  background-image: none;
 }
 
 .contact-form {
@@ -437,11 +446,13 @@ a:focus {
 .contact-form button {
   border: none;
   outline: none;
-  padding: 7px 50px;
+  padding: 10px 50px;
+  border-radius: 25px;
   text-transform: uppercase;
   margin-top: 25px;
-  background-color: #fec913;
+  background-color: #25d366;
   color: #fff;
+  font-weight: 700;
 }
 
 /* end contact section */
