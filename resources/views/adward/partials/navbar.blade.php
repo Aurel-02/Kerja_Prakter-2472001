@@ -24,6 +24,12 @@
               <li class="nav-item {{ request()->routeIs('vehicle') ? 'active' : '' }}">
                 <a class="nav-link text-white font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>
               </li>
+              <li class="nav-item {{ request()->routeIs('kalender') ? 'active' : '' }}">
+                <a class="nav-link text-white font-weight-bold" href="{{ route('kalender') }}"> Kalender </a>
+              </li>
+              <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
+                <a class="nav-link text-white font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
+              </li>
               <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
                 <a class="nav-link text-white font-weight-bold" href="{{ route('contact') }}"> Hubungi Kami </a>
               </li>

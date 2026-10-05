@@ -29,6 +29,12 @@
                   <a class="nav-link text-white font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('kalender') }}"> Kalender </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link text-white font-weight-bold" href="{{ route('contact') }}">Hubungi Kami</a>
                 </li>
               </ul>
