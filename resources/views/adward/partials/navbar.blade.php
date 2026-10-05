@@ -4,14 +4,22 @@
   <header class="header_section">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container">
+
+        <!-- Nama Sekolah di Tampilan Mobile -->
+        <a class="navbar-brand text-white font-weight-bold d-lg-none" href="{{ route('home') }}">
+          TK Harapan Bunda
+        </a>
+
+        <!-- Tombol Toggler Hamburger -->
         <button class="navbar-toggler text-white ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Menu Navbar -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
-            <ul class="navbar-nav">
+          <div class="d-flex mx-auto flex-column flex-lg-row align-items-center w-100">
+            <ul class="navbar-nav w-100 justify-content-center">
               <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
                 <a class="nav-link text-white font-weight-bold" href="{{ route('home') }}"> Beranda </a>
               </li>

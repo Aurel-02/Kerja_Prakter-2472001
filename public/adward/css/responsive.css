@@ -15,8 +15,76 @@
         height: auto;
     }
 
-    .top_container.sub_pages::before {
-        background-size: cover;
+    .custom_nav-container {
+        position: relative !important;
+        padding: 10px 0 !important;
+    }
+
+    /* Tombol Toggler Hamburger di HP */
+    .custom_nav-container .navbar-toggler {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        padding: 6px 12px !important;
+        border-radius: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .custom_nav-container .navbar-toggler:focus {
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8) !important;
+    }
+
+    /* Floating White Menu Container untuk Mobile (Pinggir Persegi / Tidak Melengkung) */
+    .custom_nav-container .navbar-collapse {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999999 !important;
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+        border-radius: 0 !important;
+        padding: 8px 0 !important;
+        margin-top: 0 !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+
+    .custom_nav-container .navbar-nav {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .custom_nav-container .navbar-nav .nav-item {
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0 !important;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .custom_nav-container .navbar-nav .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+        display: block !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: #2d2c2c !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important;
+        border-bottom: none !important;
+        text-transform: uppercase;
+    }
+
+    .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
+    .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link:hover {
+        background-color: #25d366 !important;
+        color: #ffffff !important;
+        border-radius: 0 !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
     }
 
     .client_box-container {
@@ -38,20 +106,6 @@
 
     .hero_img-container {
         width: 100%;
-    }
-
-    .top_container::before {
-        width: 200%;
-    }
-
-    .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
-    .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-        color: #fff;
-    }
-
-    .custom_nav-container .nav_search-btn {
-        background-image: url(../images/search-icon-mobile.png);
-        background-position: center;
     }
 
     /* Fasilitas grid: 2 kolom di tablet */
