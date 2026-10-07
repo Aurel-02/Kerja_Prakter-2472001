@@ -1,6 +1,6 @@
 @extends('layouts.adward')
 
-@section('title', 'TK Harapan Bunda - Kalender Kegiatan')
+@section('title', 'TK Harapan Bunda - Kalender Akademik')
 
 @section('top_container')
   @include('adward.partials.navbar')
@@ -8,229 +8,187 @@
 
 @section('content')
 
-  <!-- Section Kalender Akademik TK -->
   <section class="kalender_section layout_padding">
     <div class="container">
 
-      <!-- Judul Halaman -->
-      <h2 class="main-heading">
-        Kalender Kegiatan Sekolah
-      </h2>
+      <h2 class="main-heading">Kalender Akademik</h2>
       <p class="text-center mb-5">
-        Jadwal kegiatan belajar dan agenda seru anak-anak TK Harapan Bunda Tahun Ajaran 2025/2026.
+        Jadwal kegiatan TK Harapan Bunda Tahun Ajaran 2025/2026.
       </p>
 
-      <!-- Semester 1 (Ganjil) -->
-      <div class="kalender-semester-header semester-1-header">
-        <i class="fa fa-sun-o mr-2"></i> Semester 1 &mdash; Juli s/d Desember
-      </div>
+      <div class="kal-year-grid">
 
-      <div class="kalender-cards-grid mb-5">
-
-        <!-- Juli -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-juli">
-            <div class="month-badge">
-              <i class="fa fa-smile-o"></i>
-            </div>
-            <h4 class="month-name">Juli</h4>
+        {{-- Juli --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">07</span>
+            <span class="kal-box-name">Juli</span>
+            <span class="kal-box-year">2025</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-star mr-1"></i> MPLS Siswa Baru
-            </span>
-            <p class="kalender-activity-desc">Masa Pengenalan Lingkungan Sekolah agar anak-anak ceria dan nyaman bersekolah.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-star kal-icon"></i>
+            <strong>MPLS Siswa Baru</strong>
+            <p>Masa Pengenalan Lingkungan Sekolah bagi siswa baru.</p>
           </div>
         </div>
 
-        <!-- Agustus -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-agustus">
-            <div class="month-badge">
-              <i class="fa fa-flag"></i>
-            </div>
-            <h4 class="month-name">Agustus</h4>
+        {{-- Agustus --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">08</span>
+            <span class="kal-box-name">Agustus</span>
+            <span class="kal-box-year">2025</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-trophy mr-1"></i> Lomba Agustusan
-            </span>
-            <p class="kalender-activity-desc">Lomba ketangkasan seru dan gembira menyambut HUT Kemerdekaan RI.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-trophy kal-icon"></i>
+            <strong>Lomba Agustusan</strong>
+            <p>Lomba seru menyambut HUT Kemerdekaan RI.</p>
           </div>
         </div>
 
-        <!-- September -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-september">
-            <div class="month-badge">
-              <i class="fa fa-heart"></i>
-            </div>
-            <h4 class="month-name">September</h4>
+        {{-- September --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">09</span>
+            <span class="kal-box-name">September</span>
+            <span class="kal-box-year">2025</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-users mr-1"></i> Parenting Class
-            </span>
-            <p class="kalender-activity-desc">Pertemuan konsultasi & kerja sama orang tua dan guru dalam mendampingi anak.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-users kal-icon"></i>
+            <strong>Parenting Class</strong>
+            <p>Pertemuan kerja sama orang tua dan guru.</p>
           </div>
         </div>
 
-        <!-- Oktober -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-oktober">
-            <div class="month-badge">
-              <i class="fa fa-moon-o"></i>
-            </div>
-            <h4 class="month-name">Oktober</h4>
+        {{-- Oktober --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">10</span>
+            <span class="kal-box-name">Oktober</span>
+            <span class="kal-box-year">2025</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-book mr-1"></i> Manasik Haji Kecil
-            </span>
-            <p class="kalender-activity-desc">Praktik peragaan ibadah haji anak untuk mengenalkan nilai agama sejak dini.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-book kal-icon"></i>
+            <strong>Manasik Haji Kecil</strong>
+            <p>Peragaan ibadah haji untuk mengenalkan nilai agama.</p>
           </div>
         </div>
 
-        <!-- November -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-november">
-            <div class="month-badge">
-              <i class="fa fa-shopping-cart"></i>
-            </div>
-            <h4 class="month-name">November</h4>
+        {{-- November --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">11</span>
+            <span class="kal-box-name">November</span>
+            <span class="kal-box-year">2025</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-briefcase mr-1"></i> Market Day & Profesi
-            </span>
-            <p class="kalender-activity-desc">Bazaar cilik dan memperagakan kostum cita-cita anak dengan penuh percaya diri.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-briefcase kal-icon"></i>
+            <strong>Market Day &amp; Profesi</strong>
+            <p>Bazaar cilik dan peragaan kostum cita-cita anak.</p>
           </div>
         </div>
 
-        <!-- Desember -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-desember">
-            <div class="month-badge">
-              <i class="fa fa-music"></i>
-            </div>
-            <h4 class="month-name">Desember</h4>
+        {{-- Desember --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">12</span>
+            <span class="kal-box-name">Desember</span>
+            <span class="kal-box-year">2025</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-graduation-cap mr-1"></i> Pentas Seni & Rapot
-            </span>
-            <p class="kalender-activity-desc">Panggung apresiasi bakat anak-anak dan penerimaan laporan perkembangan belajar.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-music kal-icon"></i>
+            <strong>Pentas Seni &amp; Rapot</strong>
+            <p>Panggung bakat anak dan penerimaan rapot semester 1.</p>
           </div>
         </div>
 
-      </div>
-
-      <!-- Semester 2 (Genap) -->
-      <div class="kalender-semester-header semester-2-header">
-        <i class="fa fa-leaf mr-2"></i> Semester 2 &mdash; Januari s/d Juni
-      </div>
-
-      <div class="kalender-cards-grid mb-4">
-
-        <!-- Januari -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-januari">
-            <div class="month-badge">
-              <i class="fa fa-television"></i>
-            </div>
-            <h4 class="month-name">Januari</h4>
+        {{-- Januari --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">01</span>
+            <span class="kal-box-name">Januari</span>
+            <span class="kal-box-year">2026</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-camera mr-1"></i> Pentas Seni TVRI
-            </span>
-            <p class="kalender-activity-desc">Kunjungan dan penampilan kreatif anak-anak yang diliput oleh media televisi TVRI.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-television kal-icon"></i>
+            <strong>Pentas Seni TVRI</strong>
+            <p>Penampilan kreatif anak yang diliput oleh TVRI.</p>
           </div>
         </div>
 
-        <!-- Februari -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-februari">
-            <div class="month-badge">
-              <i class="fa fa-user-md"></i>
-            </div>
-            <h4 class="month-name">Februari</h4>
+        {{-- Februari --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">02</span>
+            <span class="kal-box-name">Februari</span>
+            <span class="kal-box-year">2026</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-medkit mr-1"></i> Cek Kesehatan Anak
-            </span>
-            <p class="kalender-activity-desc">Pemeriksaan fisik, mata, gigi, dan tumbuh kembang anak oleh tenaga medis Puskesmas.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-user-md kal-icon"></i>
+            <strong>Cek Kesehatan Anak</strong>
+            <p>Pemeriksaan kesehatan oleh tenaga medis Puskesmas.</p>
           </div>
         </div>
 
-        <!-- Maret -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-maret">
-            <div class="month-badge">
-              <i class="fa fa-cutlery"></i>
-            </div>
-            <h4 class="month-name">Maret</h4>
+        {{-- Maret --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">03</span>
+            <span class="kal-box-name">Maret</span>
+            <span class="kal-box-year">2026</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-smile-o mr-1"></i> Cooking Class
-            </span>
-            <p class="kalender-activity-desc">Belajar membuat camilan sehat sederhana untuk melatih kemandirian dan motorik halus.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-cutlery kal-icon"></i>
+            <strong>Cooking Class</strong>
+            <p>Belajar membuat camilan sehat untuk melatih kemandirian.</p>
           </div>
         </div>
 
-        <!-- April -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-april">
-            <div class="month-badge">
-              <i class="fa fa-female"></i>
-            </div>
-            <h4 class="month-name">April</h4>
+        {{-- April --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">04</span>
+            <span class="kal-box-name">April</span>
+            <span class="kal-box-year">2026</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-paint-brush mr-1"></i> Peringatan Hari Kartini
-            </span>
-            <p class="kalender-activity-desc">Pawai pakaian adat Nusantara untuk menumbuhkan rasa cinta budaya Indonesia.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-female kal-icon"></i>
+            <strong>Peringatan Hari Kartini</strong>
+            <p>Pawai pakaian adat Nusantara.</p>
           </div>
         </div>
 
-        <!-- Mei -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-mei">
-            <div class="month-badge">
-              <i class="fa fa-building-o"></i>
-            </div>
-            <h4 class="month-name">Mei</h4>
+        {{-- Mei --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">05</span>
+            <span class="kal-box-name">Mei</span>
+            <span class="kal-box-year">2026</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-bus mr-1"></i> Kunjungan Edukasi
-            </span>
-            <p class="kalender-activity-desc">Outing class dan belajar langsung mengenal tugas profesi di luar ruangan kelas.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-bus kal-icon"></i>
+            <strong>Kunjungan Edukasi</strong>
+            <p>Outing class belajar mengenal profesi di luar kelas.</p>
           </div>
         </div>
 
-        <!-- Juni -->
-        <div class="kalender-card">
-          <div class="kalender-card-header kal-juni">
-            <div class="month-badge">
-              <i class="fa fa-graduation-cap"></i>
-            </div>
-            <h4 class="month-name">Juni</h4>
+        {{-- Juni --}}
+        <div class="kal-month-box">
+          <div class="kal-box-top">
+            <span class="kal-box-num">06</span>
+            <span class="kal-box-name">Juni</span>
+            <span class="kal-box-year">2026</span>
           </div>
-          <div class="kalender-card-body">
-            <span class="kalender-activity-tag">
-              <i class="fa fa-certificate mr-1"></i> Wisuda & Rapot Sem 2
-            </span>
-            <p class="kalender-activity-desc">Pelepasan siswa kelompok B dan penerimaan rapot kelulusan tahun ajaran.</p>
+          <div class="kal-box-content">
+            <i class="fa fa-graduation-cap kal-icon"></i>
+            <strong>Wisuda &amp; Rapot Sem 2</strong>
+            <p>Pelepasan siswa kelompok B dan penerimaan rapot.</p>
           </div>
         </div>
 
-      </div>
+      </div>{{-- end year grid --}}
 
-      <!-- Tombol Hubungi Kami -->
+      {{-- CTA --}}
       <div class="d-flex justify-content-center mt-5">
         <a href="{{ route('contact') }}" class="call_to-btn">
           <span>Hubungi Kami</span>
