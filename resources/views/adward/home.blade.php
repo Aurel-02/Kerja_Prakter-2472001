@@ -93,10 +93,7 @@
       <p class="text-center">
         TK Harapan Bunda adalah lembaga pendidikan anak usia dini yang berfokus pada pengembangan kecerdasan, karakter, dan kreativitas anak.
       </p>
-      <div class="about_img-box">
-        <img src="{{ asset('adward/images/kids.jpg') }}" alt="" class="img-fluid w-100">
-      </div>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center mt-4">
         <a href="{{ route('about') }}" class="call_to-btn">
           <span>
             Selengkapnya
@@ -160,25 +157,25 @@
       <div class="teacher_container layout_padding2">
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-1.jpg') }}" alt="Card image cap">
+            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
             <div class="card-body">
               <h5 class="card-title">Denise Hale</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-2.jpg') }}" alt="Card image cap">
+            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
             <div class="card-body">
               <h5 class="card-title">Nancy Cruz</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-3.jpg') }}" alt="Card image cap">
+            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
             <div class="card-body">
               <h5 class="card-title">Ina Hayes</h5>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="{{ asset('adward/images/teacher-4.jpg') }}" alt="Card image cap">
+            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
             <div class="card-body">
               <h5 class="card-title">Salley Stone</h5>
             </div>
@@ -208,27 +205,27 @@
       </p>
       <div class="fasilitas-grid">
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/kids.jpg') }}" alt="Fasilitas Sekolah" class="img-fluid">
+          <img src="" alt="Ruang Kelas" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Ruang Kelas</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/kidss.jpg') }}" alt="Fasilitas Sekolah" class="img-fluid">
+          <img src="" alt="Area Bermain" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Area Bermain</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/harbun.png') }}" alt="Fasilitas Sekolah" class="img-fluid">
+          <img src="" alt="Halaman Sekolah" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Halaman Sekolah</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/kids.jpg') }}" alt="Fasilitas Sekolah" class="img-fluid">
+          <img src="" alt="Ruang Seni" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Ruang Seni</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/kidss.jpg') }}" alt="Fasilitas Sekolah" class="img-fluid">
+          <img src="" alt="Perpustakaan" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Perpustakaan</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/harbun.png') }}" alt="Fasilitas Sekolah" class="img-fluid">
+          <img src="" alt="Aula Sekolah" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Aula Sekolah</span></div>
         </div>
       </div>

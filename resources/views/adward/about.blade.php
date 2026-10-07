@@ -15,11 +15,8 @@
         Tentang TK Harapan Bunda
       </h2>
       <p class="text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+        TK Harapan Bunda adalah lembaga pendidikan anak usia dini yang berfokus pada pengembangan kecerdasan, karakter, dan kreativitas anak.
       </p>
-      <div class="about_img-box">
-        <img src="{{ asset('adward/images/kids.jpg') }}" alt="" class="img-fluid w-100">
-      </div>
     </div>
   </section>
   <!-- about section -->

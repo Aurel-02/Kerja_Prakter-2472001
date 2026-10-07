@@ -724,161 +724,398 @@ a:focus {
 
 
 /* ========================================================
-   KALENDER KEGIATAN PAGE
+   KALENDER AKADEMIK PAGE — Yearly Month Box Grid
    ======================================================== */
 
-/* Semester header bar — selaras dengan gaya card template */
-.kalender-semester-header {
-  font-size: 1rem;
+/* 4-column grid: 4 bulan per baris = 3 baris = 12 bulan */
+.kal-year-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Setiap kotak bulan */
+.kal-month-box {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e0f4ea;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kal-month-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.18);
+}
+
+/* Header kotak: nomor + nama bulan + tahun */
+.kal-box-top {
+  background-color: #25d366;
+  padding: 14px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.kal-box-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1;
+}
+
+.kal-box-name {
+  font-size: 14px;
   font-weight: 700;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-bottom: 24px;
-  display: inline-block;
 }
 
-.semester-1-header {
-  background-color: #25d366;
-  color: #ffffff;
+.kal-box-year {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
 }
 
-.semester-2-header {
-  background-color: #fec913;
-  color: #48494a;
+/* Konten kegiatan */
+.kal-box-content {
+  padding: 14px 14px 16px;
+  text-align: center;
 }
 
-/* Kalender Cards Grid — mengikuti 3 kolom seperti fasilitas-grid */
-.kalender-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-/* Kartu bulan — mengikuti style .teacher_section .card */
-.kalender-card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.kalender-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-
-/* Header warna tiap bulan */
-.kalender-card-header {
-  padding: 18px 20px 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.kal-juli      { background: linear-gradient(135deg, #4CAF50, #2e7d32); }
-.kal-agustus   { background: linear-gradient(135deg, #e53935, #b71c1c); }
-.kal-september { background: linear-gradient(135deg, #8e24aa, #4a148c); }
-.kal-oktober   { background: linear-gradient(135deg, #f57c00, #e65100); }
-.kal-november  { background: linear-gradient(135deg, #00897b, #004d40); }
-.kal-desember  { background: linear-gradient(135deg, #5e35b1, #311b92); }
-.kal-januari   { background: linear-gradient(135deg, #e91e63, #880e4f); }
-.kal-februari  { background: linear-gradient(135deg, #039be5, #01579b); }
-.kal-maret     { background: linear-gradient(135deg, #25d366, #1a9948); }
-.kal-april     { background: linear-gradient(135deg, #f06292, #ad1457); }
-.kal-mei       { background: linear-gradient(135deg, #1565c0, #0d47a1); }
-.kal-juni      { background: linear-gradient(135deg, #fbc02d, #f57f17); }
-
-.month-badge {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #ffffff;
+.kal-icon {
+  display: block;
+  font-size: 1.4rem;
   color: #25d366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  flex-shrink: 0;
-}
-
-.month-name {
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0;
-  text-transform: uppercase;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-}
-
-.kalender-card-body {
-  padding: 16px 18px 18px;
-}
-
-/* Tag kegiatan — selaras dengan .call_to-btn tapi lebih kecil */
-.kalender-activity-tag {
-  display: inline-block;
-  background-color: #25d366;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
   margin-bottom: 8px;
 }
 
-.kalender-activity-desc {
+.kal-box-content strong {
+  display: block;
+  font-size: 12.5px;
+  color: #2d2d2d;
+  font-weight: 700;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.kal-box-content p {
+  font-size: 11.5px;
+  color: #6b6b6b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .kal-year-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .kal-year-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .kal-box-num { font-size: 1.5rem; }
+  .kal-box-name { font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+  .kal-year-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+  display: flex;
+
+
+
+/* 3-column grid of month cards */
+.kal-months-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+/* Individual month card */
+.kal-month-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e8f5e9;
+}
+
+/* Month title bar */
+.kal-month-header {
+  background-color: #25d366;
+  color: #ffffff;
+  text-align: center;
   font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+}
+
+/* Day label row (Min Sen Sel…) */
+.kal-day-labels {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #e8f9f1;
+  padding: 4px 4px 2px;
+}
+
+.kal-day-labels span {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #1a9948;
+  text-transform: uppercase;
+  padding: 2px 0;
+}
+
+/* Date cells grid */
+.kal-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 4px 4px 6px;
+  gap: 1px;
+}
+
+.kal-date,
+.kal-empty {
+  text-align: center;
+  font-size: 11px;
+  color: #48494a;
+  padding: 4px 2px;
+  border-radius: 50%;
+  line-height: 1.4;
+  min-width: 0;
+}
+
+.kal-empty {
+  color: transparent;
+}
+
+/* Highlighted event date */
+.kal-event-day {
+  background-color: #25d366;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 50%;
+  cursor: default;
+}
+
+/* Event label below calendar */
+.kal-event-label {
+  font-size: 11px;
+  color: #1a9948;
+  font-weight: 600;
+  padding: 5px 10px 8px;
+  border-top: 1px solid #e8f5e9;
+  text-align: center;
+}
+
+.kal-dot-sm {
+  font-size: 7px;
+  color: #25d366;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .kal-months-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .kal-months-grid {
+    grid-template-columns: 1fr;
+  }
+  .kal-date, .kal-empty {
+    font-size: 10px;
+    padding: 3px 1px;
+  }
+}
+
+
+
+
+/* Semester title bar */
+.kal-semester-title {
+  display: inline-block;
+  background-color: #25d366;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 9px 24px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* List wrapper — vertical line on left */
+.kal-list {
+  border-left: 3px solid #d4f5e3;
+  padding-left: 0;
+  margin-left: 120px;
+}
+
+/* Each row */
+.kal-row {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding: 14px 0 14px 28px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kal-row:last-child {
+  border-bottom: none;
+}
+
+/* Month label on the left (outside the line) */
+.kal-month {
+  position: absolute;
+  left: -128px;
+  top: 14px;
+  width: 100px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 700;
+  color: #25d366;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Dot on the line */
+.kal-dot {
+  position: absolute;
+  left: -8px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #25d366;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px #25d366;
+  flex-shrink: 0;
+}
+
+/* Detail: badge + description */
+.kal-detail {
+  flex: 1;
+}
+
+.kal-badge {
+  display: inline-block;
+  background-color: #e8f9f1;
+  color: #1a9948;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 50px;
+  border: 1px solid #c3efd8;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.kal-detail p {
+  font-size: 13.5px;
   color: #48494a;
   line-height: 1.6;
   margin: 0;
 }
 
-/* Responsive Kalender */
-@media (max-width: 991px) {
-  .kalender-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* Responsive */
+@media (max-width: 640px) {
+  .kal-list {
+    margin-left: 80px;
+  }
+  .kal-month {
+    left: -88px;
+    width: 76px;
+    font-size: 11px;
   }
 }
 
-@media (max-width: 576px) {
-  .kalender-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+@media (max-width: 420px) {
+  .kal-list {
+    margin-left: 0;
+    border-left: none;
+    padding-left: 0;
   }
-
-  .kalender-semester-header {
-    font-size: 0.85rem;
-    padding: 8px 14px;
+  .kal-month {
+    position: static;
+    width: auto;
+    text-align: left;
+    margin-bottom: 4px;
+    display: block;
   }
-
-  .month-name {
-    font-size: 0.95rem;
-  }
-
-  .kalender-card-header {
-    padding: 14px 14px 10px;
-    gap: 8px;
-  }
-
-  .month-badge {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
+  .kal-dot { display: none; }
+  .kal-row {
+    flex-direction: column;
+    padding-left: 0;
+    border-bottom: 1px solid #f0f0f0;
   }
 }
 
-@media (max-width: 400px) {
-  .kalender-cards-grid {
-    grid-template-columns: 1fr;
-  }
+
+
+
+
+
+/* ========================================================
+   PLACEHOLDER IMAGE (guru & fasilitas — belum ada foto)
+   ======================================================== */
+
+.teacher-img-placeholder {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background-color: #e8f5e9;
+  display: block;
+  /* isi src="" akan ditampilkan sebagai kotak kosong hijau muda */
 }
 
+/* Jika src kosong, tampilkan box abu-abu dengan ikon */
+.teacher-img-placeholder[src=""],
+.teacher-img-placeholder:not([src]) {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  min-height: 220px;
+  color: transparent;
+}
+
+.fasilitas-img-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fasilitas-img-placeholder[src=""],
+.fasilitas-img-placeholder:not([src]) {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  min-height: 200px;
+}
+
+/* Overlay tetap terlihat saat foto kosong */
+.fasilitas-item:has(.fasilitas-img-placeholder[src=""]) .fasilitas-overlay {
+  opacity: 1;
+  background: linear-gradient(to top, rgba(37, 211, 102, 0.85) 0%, transparent 70%);
+}
 
 /* ========================================================
    GALERI FOTO KEGIATAN PAGE
