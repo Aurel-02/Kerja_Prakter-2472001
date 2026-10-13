@@ -36,7 +36,7 @@
                   <a class="nav-link text-white font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>
                 </li>
                 <li class="nav-item {{ request()->routeIs('kalender') ? 'active' : '' }}">
-                  <a class="nav-link text-white font-weight-bold" href="{{ route('kalender') }}"> Kalender </a>
+                  <a class="nav-link text-white font-weight-bold" href="{{ route('kalender') }}"> Kalender Akademik </a>
                 </li>
                 <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
                   <a class="nav-link text-white font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
@@ -90,8 +90,8 @@
       <h2 class="main-heading">
         Tentang TK Harapan Bunda
       </h2>
-      <p class="text-center">
-        TK Harapan Bunda adalah lembaga pendidikan anak usia dini yang berfokus pada pengembangan kecerdasan, karakter, dan kreativitas anak.
+      <p class="text-center mx-auto" style="max-width: 850px; font-size: 1.05rem;">
+        TK Harapan Bunda melayani pendidikan anak usia dini (4–6 tahun) di kota Bandung dengan pembelajaran kontekstual, menyenangkan, dan berbasis bermain, serta berkomitmen membangun 6 pondasi perkembangan anak secara holistik.
       </p>
       <div class="d-flex justify-content-center mt-4">
         <a href="{{ route('about') }}" class="call_to-btn">
@@ -118,7 +118,7 @@
           <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; border-top: 5px solid #25d366 !important;">
             <div class="card-body">
               <h3 class="card-title text-success font-weight-bold mb-3">
-                <i class="fa fa-eye mr-2"></i> Visi
+                Visi
               </h3>
               <p class="card-text text-dark font-weight-medium">
                 Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
@@ -130,7 +130,7 @@
           <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; border-top: 5px solid #25d366 !important;">
             <div class="card-body">
               <h3 class="card-title text-success font-weight-bold mb-3">
-                <i class="fa fa-bullseye mr-2"></i> Misi
+                Misi
               </h3>
               <ol class="pl-3 text-dark font-weight-medium" style="line-height: 1.8;">
                 <li>Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</li>

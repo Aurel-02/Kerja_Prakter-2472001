@@ -69,12 +69,20 @@ body {
 /*header section*/
 
 .header_section {
-  padding-top: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1030;
+  background-color: #25d366;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 nav.navbar.navbar-expand-lg {
 
-  padding: 10px 0;
+  padding: 6px 0;
 }
 
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
@@ -154,13 +162,27 @@ a:focus {
   padding: 15px 0;
 }
 
-.custom_nav-container .navbar-toggler {
-  outline: none;
+.custom_nav-container .navbar-toggler,
+.navbar-toggler {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 4px !important;
+  background: transparent !important;
+}
+
+.custom_nav-container .navbar-toggler:focus,
+.custom_nav-container .navbar-toggler:active,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .custom_nav-container .navbar-toggler .navbar-toggler-icon {
   background-image: url(../images/menu.png);
-  background-size: 40px;
+  background-size: 32px;
 }
 
 /*end header section*/
@@ -660,7 +682,7 @@ a:focus {
 
 /* Sub pages navbar: lebih pendek, hijau rata */
 .top_container.sub_pages {
-  height: auto;
+  height: 60px;
   min-height: 60px;
   padding: 0 !important;
   background: #25d366 !important;
@@ -679,6 +701,7 @@ a:focus {
 .top_container.home_wallpaper_hero {
   position: relative;
   min-height: 80vh;
+  padding-top: 70px;
   background: linear-gradient(rgba(37, 211, 102, 0.55), rgba(37, 211, 102, 0.55)), url(../images/harbun.png) !important;
   background-size: cover !important;
   background-position: center center !important;
@@ -693,6 +716,7 @@ a:focus {
     background-size: cover !important;
     background-position: center top !important;
     padding-bottom: 30px;
+    padding-top: 65px;
   }
   
   .hero-main-title {
@@ -727,11 +751,30 @@ a:focus {
    KALENDER AKADEMIK PAGE — Yearly Month Box Grid
    ======================================================== */
 
+/* Semester Badge Styles */
+.semester-badge-title {
+  display: flex;
+  align-items: center;
+}
+
+.semester-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25d366;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 9px 22px;
+  border-radius: 30px;
+  box-shadow: 0 3px 12px rgba(37, 211, 102, 0.25);
+  letter-spacing: 0.3px;
+}
+
 /* 4-column grid: 4 bulan per baris = 3 baris = 12 bulan */
 .kal-year-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
 /* Setiap kotak bulan */
@@ -749,35 +792,23 @@ a:focus {
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.18);
 }
 
-/* Header kotak: nomor + nama bulan + tahun */
+/* Header kotak: CUMA ADA NAMA BULANNYA AJA */
 .kal-box-top {
   background-color: #25d366;
-  padding: 14px 12px 10px;
+  padding: 14px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   line-height: 1.2;
 }
 
-.kal-box-num {
-  font-size: 2rem;
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.35);
-  line-height: 1;
-}
-
 .kal-box-name {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.kal-box-year {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
+  letter-spacing: 0.8px;
 }
 
 /* Konten kegiatan */
