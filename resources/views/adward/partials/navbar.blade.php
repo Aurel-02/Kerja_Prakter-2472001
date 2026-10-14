@@ -26,6 +26,9 @@
               <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
                 <a class="nav-link text-white font-weight-bold" href="{{ route('about') }}"> Tentang Kami </a>
               </li>
+              <li class="nav-item {{ request()->routeIs('kurikulum') ? 'active' : '' }}">
+                <a class="nav-link text-white font-weight-bold" href="{{ route('kurikulum') }}"> Kurikulum </a>
+              </li>
               <li class="nav-item {{ request()->routeIs('teacher') ? 'active' : '' }}">
                 <a class="nav-link text-white font-weight-bold" href="{{ route('teacher') }}"> Pengajar </a>
               </li>

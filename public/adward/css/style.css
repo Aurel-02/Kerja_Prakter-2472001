@@ -119,7 +119,9 @@ a:focus {
   position: relative;
 }
 
-.text-success { color: #25d366 !important; }
+.text-success {
+  color: #25d366 !important;
+}
 
 .top_container.sub_pages {
   height: 35vh;
@@ -257,11 +259,25 @@ a:focus {
 }
 
 @keyframes blob-morph {
-  0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
-  25%  { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; }
-  50%  { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
-  75%  { border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; }
-  100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  0% {
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  }
+
+  25% {
+    border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%;
+  }
+
+  50% {
+    border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%;
+  }
+
+  75% {
+    border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%;
+  }
+
+  100% {
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  }
 }
 
 @media (max-width: 991px) {
@@ -275,11 +291,13 @@ a:focus {
   .hero-blob-wrapper {
     margin-top: 30px;
   }
+
   .hero-blob-frame {
     width: 330px;
     height: 310px;
   }
 }
+
 /* end hero blob photo frame */
 
 
@@ -377,7 +395,7 @@ a:focus {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -649,10 +667,12 @@ a:focus {
   .hero-left-white-card {
     border-radius: 30px;
   }
+
   .hero-photo-prototype-frame {
     height: 380px;
     border-radius: 40px 100px 40px 80px;
   }
+
   .hero-title {
     font-size: 32px;
   }
@@ -718,15 +738,15 @@ a:focus {
     padding-bottom: 30px;
     padding-top: 65px;
   }
-  
+
   .hero-main-title {
     font-size: 2.1rem !important;
   }
-  
+
   .hero-desc-p {
     font-size: 1rem !important;
   }
-  
+
   .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
     padding: 8px 12px !important;
   }
@@ -734,11 +754,12 @@ a:focus {
 
 /* Uniform Navbar text links */
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-  padding: 10px 20px;
+  padding: 10px 14px;
   color: #ffffff !important;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link {
@@ -852,8 +873,14 @@ a:focus {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-  .kal-box-num { font-size: 1.5rem; }
-  .kal-box-name { font-size: 12px; }
+
+  .kal-box-num {
+    font-size: 1.5rem;
+  }
+
+  .kal-box-name {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -863,7 +890,7 @@ a:focus {
 }
 
 
-  display: flex;
+display: flex;
 
 
 
@@ -973,7 +1000,9 @@ a:focus {
   .kal-months-grid {
     grid-template-columns: 1fr;
   }
-  .kal-date, .kal-empty {
+
+  .kal-date,
+  .kal-empty {
     font-size: 10px;
     padding: 3px 1px;
   }
@@ -1075,6 +1104,7 @@ a:focus {
   .kal-list {
     margin-left: 80px;
   }
+
   .kal-month {
     left: -88px;
     width: 76px;
@@ -1088,6 +1118,7 @@ a:focus {
     border-left: none;
     padding-left: 0;
   }
+
   .kal-month {
     position: static;
     width: auto;
@@ -1095,7 +1126,11 @@ a:focus {
     margin-bottom: 4px;
     display: block;
   }
-  .kal-dot { display: none; }
+
+  .kal-dot {
+    display: none;
+  }
+
   .kal-row {
     flex-direction: column;
     padding-left: 0;
@@ -1196,8 +1231,13 @@ a:focus {
   gap: 16px;
 }
 
-.galeri-item-wide { grid-column: span 2; }
-.galeri-item-tall { grid-row: span 2; }
+.galeri-item-wide {
+  grid-column: span 2;
+}
+
+.galeri-item-tall {
+  grid-row: span 2;
+}
 
 /* Galeri item — selaras dengan .fasilitas-item */
 .galeri-item {
@@ -1395,4 +1435,107 @@ a:focus {
   .galeri-overlay {
     opacity: 1;
   }
+}
+
+/* ========================================================
+   Kurikulum Page Styles - TK Harapan Bunda
+   ======================================================== */
+.kurikulum-hero-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  background-color: #dcfce7;
+  color: #16a34a;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.kurikulum-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.kurikulum-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.15);
+}
+
+.aspek-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.aspek-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.09);
+}
+
+.aspek-icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.capaian-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.capaian-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.18);
+}
+
+.capaian-card-header {
+  padding: 18px 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.integrasi-banner {
+  background: linear-gradient(135deg, #15803d 0%, #25d366 100%);
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 34px 30px;
+  box-shadow: 0 10px 28px rgba(22, 163, 74, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.integrasi-banner::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
 }
