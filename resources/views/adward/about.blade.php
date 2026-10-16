@@ -32,37 +32,43 @@
   <section class="visi_misi_section layout_padding bg-light">
     <div class="container">
       <h2 class="main-heading mb-3">
-        Visi & Misi
+        Visi &amp; Misi
       </h2>
       <p class="text-center mb-5">
         TK Harapan Bunda bertekad memberikan pendidikan anak usia dini yang berkualitas dan berkarakter.
       </p>
       <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; border-top: 5px solid #25d366 !important;">
-            <div class="card-body">
-              <h3 class="card-title text-success font-weight-bold mb-3">
-                Visi
-              </h3>
-              <p class="card-text text-dark font-weight-medium">
-                Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
-              </p>
-            </div>
+        <!-- Visi -->
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="vm-card">
+            <h3 class="vm-card-title">Visi</h3>
+            <p class="vm-visi-text">
+              Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
+            </p>
           </div>
         </div>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 15px; background-color: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; border-top: 5px solid #25d366 !important;">
-            <div class="card-body">
-              <h3 class="card-title text-success font-weight-bold mb-3">
-                Misi
-              </h3>
-              <ol class="pl-3 text-dark font-weight-medium" style="line-height: 1.8;">
-                <li>Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</li>
-                <li>Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.</li>
-                <li>Membiasakan sikap mandiri pada anak.</li>
-                <li>Membiasakan hidup sehat.</li>
-              </ol>
-            </div>
+        <!-- Misi -->
+        <div class="col-md-6">
+          <div class="vm-card">
+            <h3 class="vm-card-title">Misi</h3>
+            <ul class="vm-misi-list">
+              <li class="vm-misi-item">
+                <span class="vm-misi-num">1.</span>
+                <p class="vm-misi-text">Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</p>
+              </li>
+              <li class="vm-misi-item">
+                <span class="vm-misi-num">2.</span>
+                <p class="vm-misi-text">Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.</p>
+              </li>
+              <li class="vm-misi-item">
+                <span class="vm-misi-num">3.</span>
+                <p class="vm-misi-text">Membiasakan sikap mandiri pada anak.</p>
+              </li>
+              <li class="vm-misi-item">
+                <span class="vm-misi-num">4.</span>
+                <p class="vm-misi-text">Membiasakan hidup sehat.</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -70,71 +76,17 @@
   </section>
   <!-- end visi misi section -->
 
-  <!-- 3. 6 Pondasi Perkembangan Anak Section -->
-  <section class="pondasi_section layout_padding bg-white">
-    <div class="container">
-      <h2 class="main-heading mb-3">
-        6 Pondasi Perkembangan Anak
-      </h2>
-      <p class="text-center text-muted mb-5" style="max-width: 750px; margin: 0 auto;">
-        Penguatan 6 kemampuan pondasi penting untuk membangun karakter dan kesiapan tumbuh kembang anak usia dini secara seimbang.
-      </p>
-
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #25d366; background: #f0fdf4; border-radius: 10px;">
-            <h6 class="font-weight-bold text-success mb-1" style="font-size: 1.05rem;">1. Nilai Agama & Budi Pekerti</h6>
-            <p class="mb-0 text-dark small" style="font-size: 0.95rem;">Melalui pembiasaan berdoa, menghargai sesama, dan bersikap sopan.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #25d366; background: #f0fdf4; border-radius: 10px;">
-            <h6 class="font-weight-bold text-success mb-1" style="font-size: 1.05rem;">2. Fisik Motorik</h6>
-            <p class="mb-0 text-dark small" style="font-size: 0.95rem;">Variasi kemampuan gerak kasar dan halus yang dipengaruhi oleh aktivitas sehari-hari.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #25d366; background: #f0fdf4; border-radius: 10px;">
-            <h6 class="font-weight-bold text-success mb-1" style="font-size: 1.05rem;">3. Kognitif</h6>
-            <p class="mb-0 text-dark small" style="font-size: 0.95rem;">Melalui stimulasi berpikir logis, pemecahan masalah, dan penalaran awal.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #25d366; background: #f0fdf4; border-radius: 10px;">
-            <h6 class="font-weight-bold text-success mb-1" style="font-size: 1.05rem;">4. Bahasa</h6>
-            <p class="mb-0 text-dark small" style="font-size: 0.95rem;">Penguatan pada bahasa reseptif dan ekspresif, terutama dalam merespons dan menyampaikan ide.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #25d366; background: #f0fdf4; border-radius: 10px;">
-            <h6 class="font-weight-bold text-success mb-1" style="font-size: 1.05rem;">5. Sosial Emosional</h6>
-            <p class="mb-0 text-dark small" style="font-size: 0.95rem;">Pembentukan kemandirian, kerja sama, dan kepercayaan diri dalam interaksi kelompok.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #25d366; background: #f0fdf4; border-radius: 10px;">
-            <h6 class="font-weight-bold text-success mb-1" style="font-size: 1.05rem;">6. Seni</h6>
-            <p class="mb-0 text-dark small" style="font-size: 0.95rem;">Melalui ekspresi diri lewat menggambar, menyanyi, menari, dan bermain peran.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end pondasi section -->
-
   <!-- CTA ke Halaman Kurikulum -->
   <section class="layout_padding-bottom text-center bg-white">
     <div class="container">
-      <div class="p-4 p-md-5 rounded-lg shadow-sm" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; border-radius: 16px;">
-        <h3 class="font-weight-bold text-success mb-3">Ingin Mengenal Lebih Dekat Kurikulum Kami?</h3>
-        <p class="text-muted mx-auto mb-4" style="max-width: 680px; font-size: 1.05rem;">
-          Pelajari bagaimana struktur kurikulum, kegiatan intrakurikuler, dan capaian pembelajaran di TK Harapan Bunda dirancang secara integratif untuk menumbuhkan potensi setiap anak.
-        </p>
-        <a href="{{ route('kurikulum') }}" class="call_to-btn">
-          <span>Lihat Kurikulum & Pembelajaran</span>
-          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="Panah">
-        </a>
-      </div>
+      <h3 style="font-weight: 700; color: #1e293b; margin-bottom: 12px;">Ingin Mengenal Lebih Dekat Kurikulum Kami?</h3>
+      <p class="text-muted mx-auto mb-4" style="max-width: 600px; font-size: 1rem;">
+        Pelajari bagaimana struktur kurikulum, kegiatan intrakurikuler, dan capaian pembelajaran di TK Harapan Bunda dirancang secara integratif untuk menumbuhkan potensi setiap anak.
+      </p>
+      <a href="{{ route('kurikulum') }}" class="call_to-btn">
+        <span>Lihat Kurikulum &amp; Pembelajaran</span>
+        <img src="{{ asset('adward/images/right-arrow.png') }}" alt="Panah">
+      </a>
     </div>
   </section>
 
