@@ -30,7 +30,7 @@
                 <a class="nav-link text-white font-weight-bold" href="{{ route('kurikulum') }}"> Kurikulum </a>
               </li>
               <li class="nav-item {{ request()->routeIs('teacher') ? 'active' : '' }}">
-                <a class="nav-link text-white font-weight-bold" href="{{ route('teacher') }}"> Pengajar </a>
+                <a class="nav-link text-white font-weight-bold" href="{{ route('teacher') }}"> Struktur </a>
               </li>
               <li class="nav-item {{ request()->routeIs('vehicle') ? 'active' : '' }}">
                 <a class="nav-link text-white font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>

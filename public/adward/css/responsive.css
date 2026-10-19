@@ -185,13 +185,32 @@
         width: 100%;
     }
 
-    /* Sections padding */
-    .layout_padding {
-        padding: 45px 0;
+    /* Teacher cards: 1 card per baris (seorang-seorang) di HP & Mobile */
+    .teacher_container .card-deck,
+    .teacher-card-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 24px !important;
     }
 
-    .layout_padding2 {
-        padding: 25px 0;
+    .teacher_section .card,
+    .teacher_section .teacher-card,
+    .teacher_section .teacher-card-single {
+        width: 100% !important;
+        max-width: 220px !important;
+        flex: none !important;
+        margin: 0 auto !important;
+    }
+
+    .teacher_section .card-img-top,
+    .teacher-img-placeholder,
+    .teacher-img-placeholder[src=""],
+    .teacher-img-placeholder:not([src]) {
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
+        object-fit: cover !important;
     }
 }
 
@@ -267,30 +286,48 @@
         padding-top: 35px;
     }
 
-    /* Teacher cards: 2 kolom kecil rapi di mobile */
-    .teacher_container .card-deck {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        flex-direction: row !important;
+    /* Teacher cards: 1 card per baris (seorang-seorang) di HP */
+    .teacher_container .card-deck,
+    .teacher-card-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 24px !important;
     }
 
-    .teacher_section .card {
-        margin-bottom: 0 !important;
+    .teacher_section .card,
+    .teacher_section .teacher-card,
+    .teacher_section .teacher-card-single {
+        width: 100% !important;
+        max-width: 220px !important;
+        flex: none !important;
+        margin: 0 auto !important;
     }
 
-    .teacher_section .card-img-top {
-        height: 140px !important;
+    .teacher_section .card-img-top,
+    .teacher-img-placeholder,
+    .teacher-img-placeholder[src=""],
+    .teacher-img-placeholder:not([src]) {
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
         object-fit: cover !important;
     }
 
     .teacher_section .card-title {
         font-size: 0.95rem !important;
-        margin-bottom: 0 !important;
+        margin-bottom: 2px !important;
+        line-height: 1.2 !important;
+        min-height: 22px !important;
     }
 
     .teacher_section .card-body {
-        padding: 10px !important;
+        padding: 12px !important;
+    }
+
+    .teacher_section .card-body p {
+        font-size: 13px !important;
+        margin-bottom: 0 !important;
     }
 }
 

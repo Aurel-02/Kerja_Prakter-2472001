@@ -1,6 +1,6 @@
 @extends('layouts.adward')
 
-@section('title', 'TK Harapan Bunda - Pengajar')
+@section('title', 'TK Harapan Bunda - Struktur')
 
 @section('top_container')
   @include('adward.partials.navbar')
@@ -12,39 +12,50 @@
   <section class="teacher_section layout_padding">
     <div class="container">
       <h2 class="main-heading">
-        Pengajar Kami
+        Struktur Sekolah TK Harapan Bunda
       </h2>
       <p class="text-center">
         Guru-guru berpengalaman dan penuh kasih sayang yang siap membimbing anak-anak.
       </p>
+
+      {{-- Kepala Sekolah --}}
       <div class="teacher_container layout_padding2">
-        <div class="card-deck">
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Den Mark</h5>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Leena Jorj</h5>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Magi Den</h5>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Jonson Mark</h5>
+        <h4 class="text-center mb-3" style="color: #555; font-weight: 600; letter-spacing: 1px;">Kepala Sekolah</h4>
+        <div class="d-flex justify-content-center">
+          <div class="card teacher-card teacher-card-single">
+            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Kepala Sekolah">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">Neneng Nurmayanti,S.Pd</h5>
             </div>
           </div>
         </div>
       </div>
+
+      {{-- Guru Kelas --}}
+      <div class="teacher_container mt-4">
+        <h4 class="text-center mb-3" style="color: #555; font-weight: 600; letter-spacing: 1px;">Guru Kelas</h4>
+        <div class="teacher-card-grid">
+          <div class="card teacher-card">
+            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-1.jpeg') }}" alt="Foto Guru Kelas" style="object-position: top;">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1"></h5>
+            </div>
+          </div>
+          <div class="card teacher-card">
+            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-2.jpeg') }}" alt="Foto Guru Kelas" style="object-position: top;">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1"></h5>
+            </div>
+          </div>
+          <div class="card teacher-card">
+            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Guru Kelas">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
   <!-- teacher section -->
