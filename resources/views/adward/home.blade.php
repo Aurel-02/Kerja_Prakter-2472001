@@ -164,29 +164,23 @@
         Guru-guru berpengalaman dan penuh kasih sayang yang siap membimbing tumbuh kembang anak Anda.
       </p>
       <div class="teacher_container layout_padding2">
-        <div class="card-deck">
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Denise Hale</h5>
+        <div class="teacher-card-grid">
+          <div class="card teacher-card">
+            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-1.jpeg') }}" alt="Foto Pengajar" style="object-position: top;">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">Guru Kelas</h5>
             </div>
           </div>
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Nancy Cruz</h5>
+          <div class="card teacher-card">
+            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-2.jpeg') }}" alt="Foto Pengajar" style="object-position: top;">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">Guru Kelas</h5>
             </div>
           </div>
-          <div class="card">
+          <div class="card teacher-card">
             <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Ina Hayes</h5>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body">
-              <h5 class="card-title">Salley Stone</h5>
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">Guru Kelas</h5>
             </div>
           </div>
         </div>
@@ -214,28 +208,28 @@
       </p>
       <div class="fasilitas-grid">
         <div class="fasilitas-item">
-          <img src="" alt="Ruang Kelas" class="img-fluid fasilitas-img-placeholder">
+          <img src="{{ asset('adward/images/ruang kepala sekolah.jpeg') }}" alt="Ruang Kelas" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Ruang Kelas</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="" alt="Area Bermain" class="img-fluid fasilitas-img-placeholder">
+          <img src="{{ asset('adward/images/area bermain - 1.jpeg') }}" alt="Area Bermain" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Area Bermain</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="" alt="Halaman Sekolah" class="img-fluid fasilitas-img-placeholder">
+          <img src="{{ asset('adward/images/area bermain - 3.jpeg') }}" alt="Halaman Sekolah" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Halaman Sekolah</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="" alt="Ruang Seni" class="img-fluid fasilitas-img-placeholder">
+          <img src="{{ asset('adward/images/media pembelajaran.jpeg') }}" alt="Ruang Seni" class="img-fluid fasilitas-img-placeholder">
           <div class="fasilitas-overlay"><span>Ruang Seni</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="" alt="Perpustakaan" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Perpustakaan</span></div>
+          <img src="{{ asset('adward/images/loker murid.jpeg') }}" alt="Loker Murid" class="img-fluid fasilitas-img-placeholder">
+          <div class="fasilitas-overlay"><span>Loker Murid</span></div>
         </div>
         <div class="fasilitas-item">
-          <img src="" alt="Aula Sekolah" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Aula Sekolah</span></div>
+          <img src="{{ asset('adward/images/area bermain -2.jpeg') }}" alt="Area Bermain" class="img-fluid fasilitas-img-placeholder">
+          <div class="fasilitas-overlay"><span>Area Bermain</span></div>
         </div>
       </div>
     </div>
