@@ -654,7 +654,7 @@
       <!-- Search Bar -->
       <div class="topbar-search-wrap">
         <i class="fa-solid fa-magnifying-glass topbar-search-icon"></i>
-        <input type="text" class="topbar-search-input" placeholder="What do you want to find?" />
+        <input type="text" class="topbar-search-input" placeholder="Cari data..." />
       </div>
     </div>
 

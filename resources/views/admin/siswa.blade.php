@@ -25,7 +25,6 @@
             <th style="width: 50px;">No</th>
             <th>Nama Siswa</th>
             <th>NIS</th>
-            <th>Kelas</th>
             <th>Jenis Kelamin</th>
             <th>Usia</th>
             <th>Status</th>
@@ -39,7 +38,6 @@
               <div style="font-size: 11px; color: #94a3b8;">Wali: Bpk. Hendra</div>
             </td>
             <td class="text-muted">TK-2401</td>
-            <td><span class="badge-pill badge-blue">Kelompok A</span></td>
             <td>Perempuan</td>
             <td>4 tahun</td>
             <td><span class="badge-pill badge-green"><i class="fa-solid fa-circle-check"></i> Aktif</span></td>
@@ -51,7 +49,6 @@
               <div style="font-size: 11px; color: #94a3b8;">Wali: Ibu Dewi</div>
             </td>
             <td class="text-muted">TK-2402</td>
-            <td><span class="badge-pill badge-blue">Kelompok A</span></td>
             <td>Laki-laki</td>
             <td>4 tahun</td>
             <td><span class="badge-pill badge-green"><i class="fa-solid fa-circle-check"></i> Aktif</span></td>
@@ -63,7 +60,6 @@
               <div style="font-size: 11px; color: #94a3b8;">Wali: Bpk. Fajar</div>
             </td>
             <td class="text-muted">TK-2403</td>
-            <td><span class="badge-pill badge-green">Kelompok B</span></td>
             <td>Laki-laki</td>
             <td>5 tahun</td>
             <td><span class="badge-pill badge-green"><i class="fa-solid fa-circle-check"></i> Aktif</span></td>
@@ -75,7 +71,6 @@
               <div style="font-size: 11px; color: #94a3b8;">Wali: Ibu Fitri</div>
             </td>
             <td class="text-muted">TK-2404</td>
-            <td><span class="badge-pill badge-green">Kelompok B</span></td>
             <td>Perempuan</td>
             <td>5 tahun</td>
             <td><span class="badge-pill badge-green"><i class="fa-solid fa-circle-check"></i> Aktif</span></td>
@@ -87,7 +82,6 @@
               <div style="font-size: 11px; color: #94a3b8;">Wali: Bpk. Danu</div>
             </td>
             <td class="text-muted">TK-2405</td>
-            <td><span class="badge-pill badge-green">Kelompok B</span></td>
             <td>Laki-laki</td>
             <td>6 tahun</td>
             <td><span class="badge-pill badge-green"><i class="fa-solid fa-circle-check"></i> Aktif</span></td>
