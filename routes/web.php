@@ -12,3 +12,12 @@ Route::get('/contact', fn () => view('adward.contact'))->name('contact');
 Route::post('/contact', fn () => redirect()->route('contact')->with('success', 'Pesan berhasil dikirim!'))->name('contact.send');
 Route::get('/kalender', fn () => view('adward.kalender'))->name('kalender');
 Route::get('/galeri', fn () => view('adward.galeri'))->name('galeri');
+
+// Admin Routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', fn () => view('admin.dashboard'))->name('dashboard');
+    Route::get('/guru', fn () => view('admin.guru'))->name('guru');
+    Route::get('/siswa', fn () => view('admin.siswa'))->name('siswa');
+    Route::get('/galeri', fn () => view('admin.galeri'))->name('galeri');
+    Route::get('/kalender', fn () => view('admin.kalender'))->name('kalender');
+});

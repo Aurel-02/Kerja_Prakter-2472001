@@ -168,19 +168,13 @@
           <div class="card teacher-card">
             <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-1.jpeg') }}" alt="Foto Pengajar" style="object-position: top;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1">Guru Kelas</h5>
+              <h5 class="card-title mb-1">Nita Yulianti</h5>
             </div>
           </div>
           <div class="card teacher-card">
             <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-2.jpeg') }}" alt="Foto Pengajar" style="object-position: top;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1">Guru Kelas</h5>
-            </div>
-          </div>
-          <div class="card teacher-card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Pengajar">
-            <div class="card-body text-center">
-              <h5 class="card-title mb-1">Guru Kelas</h5>
+              <h5 class="card-title mb-1">Nia herlina</h5>
             </div>
           </div>
         </div>

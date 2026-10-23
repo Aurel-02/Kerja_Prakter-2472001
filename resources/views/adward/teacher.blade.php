@@ -23,9 +23,9 @@
         <h4 class="text-center mb-3" style="color: #555; font-weight: 600; letter-spacing: 1px;">Kepala Sekolah</h4>
         <div class="d-flex justify-content-center">
           <div class="card teacher-card teacher-card-single">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Kepala Sekolah">
+            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/kepala sekolah.jpeg') }}" alt="Foto Kepala Sekolah" style="object-position: top;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1">Neneng Nurmayanti,S.Pd</h5>
+              <h5 class="card-title mb-1">Neneng Nurmayanti, S.Pd</h5>
             </div>
           </div>
         </div>
@@ -38,19 +38,13 @@
           <div class="card teacher-card">
             <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-1.jpeg') }}" alt="Foto Guru Kelas" style="object-position: top;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1"></h5>
+              <h5 class="card-title mb-1">Nita Yulianti</h5>
             </div>
           </div>
           <div class="card teacher-card">
             <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-2.jpeg') }}" alt="Foto Guru Kelas" style="object-position: top;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1"></h5>
-            </div>
-          </div>
-          <div class="card teacher-card">
-            <img class="card-img-top teacher-img-placeholder" src="" alt="Foto Guru Kelas">
-            <div class="card-body text-center">
-              <h5 class="card-title mb-1"></h5>
+              <h5 class="card-title mb-1">Nia Herlina</h5>
             </div>
           </div>
         </div>
