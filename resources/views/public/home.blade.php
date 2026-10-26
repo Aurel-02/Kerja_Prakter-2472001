@@ -1,4 +1,4 @@
-@extends('layouts.adward')
+﻿@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Beranda')
 

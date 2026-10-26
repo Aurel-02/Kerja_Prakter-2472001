@@ -1,9 +1,9 @@
-@extends('layouts.adward')
+﻿@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Fasilitas Sekolah')
 
 @section('top_container')
-  @include('adward.partials.navbar')
+  @include('public.navbar.navbar')
 @endsection
 
 @section('content')

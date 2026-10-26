@@ -1,4 +1,4 @@
-{{-- Partial: Navbar untuk sub pages --}}
+﻿{{-- Partial: Navbar untuk sub pages --}}
 <div class="top_container sub_pages">
   <!-- header section starts -->
   <header class="header_section">

@@ -2,16 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Adward Template Routes
-Route::get('/', fn () => view('adward.home'))->name('home');
-Route::get('/about', fn () => view('adward.about'))->name('about');
-Route::get('/kurikulum', fn () => view('adward.kurikulum'))->name('kurikulum');
-Route::get('/teacher', fn () => view('adward.teacher'))->name('teacher');
-Route::get('/vehicle', fn () => view('adward.vehicle'))->name('vehicle');
-Route::get('/contact', fn () => view('adward.contact'))->name('contact');
+// Public Page Routes
+Route::get('/', fn () => view('public.home'))->name('home');
+Route::get('/about', fn () => view('public.about'))->name('about');
+Route::get('/kurikulum', fn () => view('public.kurikulum'))->name('kurikulum');
+Route::get('/teacher', fn () => view('public.teacher'))->name('teacher');
+Route::get('/vehicle', fn () => view('public.vehicle'))->name('vehicle');
+Route::get('/contact', fn () => view('public.contact'))->name('contact');
 Route::post('/contact', fn () => redirect()->route('contact')->with('success', 'Pesan berhasil dikirim!'))->name('contact.send');
-Route::get('/kalender', fn () => view('adward.kalender'))->name('kalender');
-Route::get('/galeri', fn () => view('adward.galeri'))->name('galeri');
+Route::get('/kalender', fn () => view('public.kalender'))->name('kalender');
+Route::get('/galeri', fn () => view('public.galeri'))->name('galeri');
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
