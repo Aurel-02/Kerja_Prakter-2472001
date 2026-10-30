@@ -1,4 +1,4 @@
-﻿@extends('layouts.public')
+@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Galeri Foto Kegiatan')
 
@@ -12,9 +12,14 @@
   <section class="galeri_section layout_padding">
     <div class="container">
 
-      <h2 class="main-heading">
-        Foto Kegiatan Sekolah
-      </h2>
+      <div class="d-flex justify-content-center align-items-center mb-2">
+        <h2 class="main-heading mb-0">
+          Foto Kegiatan Sekolah
+        </h2>
+        <a href="{{ route('admin.galeri') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Kelola Galeri di Admin">
+          <i class="fa fa-pencil"></i> Kelola Galeri
+        </a>
+      </div>
       <p class="text-center mb-4">
         Momen-momen berharga dan kenangan indah bersama anak-anak TK Harapan Bunda.
       </p>
@@ -25,137 +30,36 @@
         <button class="galeri-filter-btn" data-filter="pentas" id="filter-pentas">Pentas Seni</button>
         <button class="galeri-filter-btn" data-filter="lomba" id="filter-lomba">Lomba</button>
         <button class="galeri-filter-btn" data-filter="kegiatan" id="filter-kegiatan">Kegiatan Belajar</button>
-        <button class="galeri-filter-btn" data-filter="wisuda" id="filter-wisuda">Wisuda</button>
+        <button class="galeri-filter-btn" data-filter="fasilitas" id="filter-fasilitas">Fasilitas</button>
       </div>
 
       {{-- Gallery Grid --}}
       <div class="galeri-masonry-grid" id="galeriGrid">
 
-        {{-- Item 1 --}}
-        <div class="galeri-item" data-category="pentas">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/kids.jpg') }}" alt="Pentas Seni Anak" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Pentas Seni</h5>
-                <span class="galeri-img-tag">Desember 2025</span>
+        @forelse($galeriList as $item)
+          @php
+            $cat = strtolower($item->kategori ?? 'kegiatan');
+            $filterCat = 'kegiatan';
+            if (str_contains($cat, 'fasilitas')) $filterCat = 'fasilitas';
+            elseif (str_contains($cat, 'lomba')) $filterCat = 'lomba';
+            elseif (str_contains($cat, 'pentas')) $filterCat = 'pentas';
+            elseif (str_contains($cat, 'wisuda')) $filterCat = 'wisuda';
+          @endphp
+          <div class="galeri-item" data-category="{{ $filterCat }}">
+            <div class="galeri-img-wrap">
+              <img src="{{ asset($item->link_foto) }}" alt="{{ $item->judul }}" class="galeri-img">
+              <div class="galeri-overlay">
+                <div class="galeri-overlay-content">
+                  <i class="fa fa-search-plus galeri-zoom-icon"></i>
+                  <h5 class="galeri-img-title">{{ $item->judul }}</h5>
+                  <span class="galeri-img-tag">{{ $item->kategori ?? 'Dokumentasi' }}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {{-- Item 2 --}}
-        <div class="galeri-item" data-category="lomba">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/kidss.jpg') }}" alt="Lomba Agustusan" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Lomba Agustusan</h5>
-                <span class="galeri-img-tag">Agustus 2025</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 3 --}}
-        <div class="galeri-item" data-category="kegiatan">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/harbun.png') }}" alt="Kegiatan Belajar" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Kegiatan Belajar</h5>
-                <span class="galeri-img-tag">2025/2026</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 4 - Wide --}}
-        <div class="galeri-item galeri-item-wide" data-category="wisuda">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/kids.jpg') }}" alt="Wisuda Kelulusan" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Wisuda Kelulusan</h5>
-                <span class="galeri-img-tag">Juni 2026</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 5 --}}
-        <div class="galeri-item" data-category="kegiatan">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/kidss.jpg') }}" alt="Cooking Class" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Cooking Class</h5>
-                <span class="galeri-img-tag">Maret 2026</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 6 --}}
-        <div class="galeri-item" data-category="lomba">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/harbun.png') }}" alt="Market Day" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Market Day</h5>
-                <span class="galeri-img-tag">November 2025</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 7 --}}
-        <div class="galeri-item" data-category="pentas">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/kids.jpg') }}" alt="Pentas Seni TVRI" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Pentas Seni TVRI</h5>
-                <span class="galeri-img-tag">Januari 2026</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 8 - Tall --}}
-        <div class="galeri-item galeri-item-tall" data-category="kegiatan">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/kidss.jpg') }}" alt="Manasik Haji" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Manasik Haji</h5>
-                <span class="galeri-img-tag">Oktober 2025</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{-- Item 9 --}}
-        <div class="galeri-item" data-category="kegiatan">
-          <div class="galeri-img-wrap">
-            <img src="{{ asset('adward/images/harbun.png') }}" alt="Kartinian" class="galeri-img">
-            <div class="galeri-overlay">
-              <div class="galeri-overlay-content">
-                <i class="fa fa-search-plus galeri-zoom-icon"></i>
-                <h5 class="galeri-img-title">Kartinian</h5>
-                <span class="galeri-img-tag">April 2026</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        @empty
+          <div class="col-12 text-center text-muted py-5">Belum ada foto galeri terpasang.</div>
+        @endforelse
 
       </div>
 

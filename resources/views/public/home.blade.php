@@ -1,4 +1,4 @@
-﻿@extends('layouts.public')
+@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Beranda')
 
@@ -111,7 +111,7 @@
   <section class="visi_misi_section layout_padding bg-light">
     <div class="container">
       <h2 class="main-heading">
-        Visi & Misi
+        Visi &amp; Misi
       </h2>
       <p class="text-center mb-5">
         TK Harapan Bunda bertekad memberikan pendidikan anak usia dini yang berkualitas dan berkarakter.
@@ -122,7 +122,7 @@
           <div class="vm-card">
             <h3 class="vm-card-title">Visi</h3>
             <p class="vm-visi-text">
-              Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
+              {{ $sekolah->visi ?? 'Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.' }}
             </p>
           </div>
         </div>
@@ -131,22 +131,18 @@
           <div class="vm-card">
             <h3 class="vm-card-title">Misi</h3>
             <ul class="vm-misi-list">
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">1.</span>
-                <p class="vm-misi-text">Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</p>
-              </li>
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">2.</span>
-                <p class="vm-misi-text">Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.</p>
-              </li>
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">3.</span>
-                <p class="vm-misi-text">Membiasakan sikap mandiri pada anak.</p>
-              </li>
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">4.</span>
-                <p class="vm-misi-text">Membiasakan hidup sehat.</p>
-              </li>
+              @php
+                $misiText = $sekolah->misi ?? "1. Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.\n2. Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.\n3. Membiasakan sikap mandiri pada anak.\n4. Membiasakan hidup sehat.";
+                $misiLines = preg_split('/\r\n|\r|\n/', trim($misiText));
+              @endphp
+              @foreach($misiLines as $index => $line)
+                @if(!empty(trim($line)))
+                  <li class="vm-misi-item">
+                    <span class="vm-misi-num">{{ preg_match('/^\d+\.?\s*/', $line) ? '' : ($index + 1).'.' }}</span>
+                    <p class="vm-misi-text">{{ preg_replace('/^\d+\.?\s*/', '', $line) }}</p>
+                  </li>
+                @endif
+              @endforeach
             </ul>
           </div>
         </div>
@@ -165,18 +161,15 @@
       </p>
       <div class="teacher_container layout_padding2">
         <div class="teacher-card-grid">
+          @foreach($guruList as $guru)
           <div class="card teacher-card">
-            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-1.jpeg') }}" alt="Foto Pengajar" style="object-position: top;">
+            <img class="card-img-top teacher-img-placeholder" src="{{ asset($guru->foto ?? 'adward/images/guru-1.jpeg') }}" alt="Foto {{ $guru->nama }}" style="object-position: top;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1">Nita Yulianti</h5>
+              <h5 class="card-title mb-1">{{ $guru->nama }}</h5>
+              <small class="text-muted">{{ $guru->jabatan }}</small>
             </div>
           </div>
-          <div class="card teacher-card">
-            <img class="card-img-top teacher-img-placeholder" src="{{ asset('adward/images/guru-2.jpeg') }}" alt="Foto Pengajar" style="object-position: top;">
-            <div class="card-body text-center">
-              <h5 class="card-title mb-1">Nia herlina</h5>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
       <div class="d-flex justify-content-center">
@@ -201,30 +194,12 @@
         Berbagai fasilitas lengkap untuk mendukung tumbuh kembang dan kenyamanan belajar anak.
       </p>
       <div class="fasilitas-grid">
+        @foreach($fasilitas as $item)
         <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/ruang kepala sekolah.jpeg') }}" alt="Ruang Kelas" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Ruang Kelas</span></div>
+          <img src="{{ asset($item->link_foto) }}" alt="{{ $item->judul }}" class="img-fluid fasilitas-img-placeholder">
+          <div class="fasilitas-overlay"><span>{{ $item->judul }}</span></div>
         </div>
-        <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/area bermain - 1.jpeg') }}" alt="Area Bermain" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Area Bermain</span></div>
-        </div>
-        <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/area bermain - 3.jpeg') }}" alt="Halaman Sekolah" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Halaman Sekolah</span></div>
-        </div>
-        <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/media pembelajaran.jpeg') }}" alt="Ruang Seni" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Ruang Seni</span></div>
-        </div>
-        <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/loker murid.jpeg') }}" alt="Loker Murid" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Loker Murid</span></div>
-        </div>
-        <div class="fasilitas-item">
-          <img src="{{ asset('adward/images/area bermain -2.jpeg') }}" alt="Area Bermain" class="img-fluid fasilitas-img-placeholder">
-          <div class="fasilitas-overlay"><span>Area Bermain</span></div>
-        </div>
+        @endforeach
       </div>
     </div>
   </section>

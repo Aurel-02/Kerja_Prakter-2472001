@@ -1,4 +1,4 @@
-﻿@extends('layouts.public')
+@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Kalender Akademik')
 
@@ -11,12 +11,17 @@
   <section class="kalender_section layout_padding">
     <div class="container">
 
-      <h2 class="main-heading">Kalender Akademik</h2>
+      <div class="d-flex justify-content-center align-items-center mb-2">
+        <h2 class="main-heading mb-0">Kalender Akademik</h2>
+        <a href="{{ route('admin.kalender') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Kelola Kalender di Admin">
+          <i class="fa fa-pencil"></i> Kelola Agenda
+        </a>
+      </div>
       <p class="text-center mb-5">
-        Jadwal kegiatan TK Harapan Bunda Tahun Ajaran 2025/2026.
+        Jadwal kegiatan belajar dan agenda tahunan TK Harapan Bunda.
       </p>
 
-      {{-- Semester 1 --}}
+      {{-- Semester 1 (Ganjil) --}}
       <div class="semester-section mb-5">
         <div class="semester-badge-title mb-4">
           <span class="semester-badge">
@@ -24,83 +29,24 @@
           </span>
         </div>
         <div class="kal-year-grid">
-
-          {{-- Juli --}}
+          @forelse($kalenderSem1 as $item)
           <div class="kal-month-box">
             <div class="kal-box-top">
-              <span class="kal-box-name">Juli</span>
+              <span class="kal-box-name">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->translatedFormat('F') }}</span>
             </div>
             <div class="kal-box-content">
-              <i class="fa fa-star kal-icon"></i>
-              <strong>MPLS Siswa Baru</strong>
-              <p>Masa Pengenalan Lingkungan Sekolah bagi siswa baru.</p>
+              <i class="fa {{ $item->icon ?? 'fa-calendar-check-o' }} kal-icon"></i>
+              <strong>{{ $item->judul_kegiatan }}</strong>
+              <p>{{ $item->keterangan ?? '-' }}</p>
             </div>
           </div>
-
-          {{-- Agustus --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Agustus</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-trophy kal-icon"></i>
-              <strong>Lomba Agustusan</strong>
-              <p>Lomba seru menyambut HUT Kemerdekaan RI.</p>
-            </div>
-          </div>
-
-          {{-- September --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">September</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-users kal-icon"></i>
-              <strong>Parenting Class</strong>
-              <p>Pertemuan kerja sama orang tua dan guru.</p>
-            </div>
-          </div>
-
-          {{-- Oktober --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Oktober</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-book kal-icon"></i>
-              <strong>Manasik Haji Kecil</strong>
-              <p>Peragaan ibadah haji untuk mengenalkan nilai agama.</p>
-            </div>
-          </div>
-
-          {{-- November --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">November</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-briefcase kal-icon"></i>
-              <strong>Market Day &amp; Profesi</strong>
-              <p>Bazaar cilik dan peragaan kostum cita-cita anak.</p>
-            </div>
-          </div>
-
-          {{-- Desember --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Desember</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-music kal-icon"></i>
-              <strong>Pentas Seni &amp; Rapot</strong>
-              <p>Panggung bakat anak dan penerimaan rapot semester 1.</p>
-            </div>
-          </div>
-
+          @empty
+          <div class="col-12 text-center text-muted py-3">Belum ada agenda terdaftar untuk Semester 1.</div>
+          @endforelse
         </div>
       </div>
 
-      {{-- Semester 2 --}}
+      {{-- Semester 2 (Genap) --}}
       <div class="semester-section mb-5">
         <div class="semester-badge-title mb-4">
           <span class="semester-badge">
@@ -108,79 +54,20 @@
           </span>
         </div>
         <div class="kal-year-grid">
-
-          {{-- Januari --}}
+          @forelse($kalenderSem2 as $item)
           <div class="kal-month-box">
             <div class="kal-box-top">
-              <span class="kal-box-name">Januari</span>
+              <span class="kal-box-name">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->translatedFormat('F') }}</span>
             </div>
             <div class="kal-box-content">
-              <i class="fa fa-television kal-icon"></i>
-              <strong>Pentas Seni TVRI</strong>
-              <p>Penampilan kreatif anak yang diliput oleh TVRI.</p>
+              <i class="fa {{ $item->icon ?? 'fa-calendar-check-o' }} kal-icon"></i>
+              <strong>{{ $item->judul_kegiatan }}</strong>
+              <p>{{ $item->keterangan ?? '-' }}</p>
             </div>
           </div>
-
-          {{-- Februari --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Februari</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-user-md kal-icon"></i>
-              <strong>Cek Kesehatan Anak</strong>
-              <p>Pemeriksaan kesehatan oleh tenaga medis Puskesmas.</p>
-            </div>
-          </div>
-
-          {{-- Maret --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Maret</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-cutlery kal-icon"></i>
-              <strong>Cooking Class</strong>
-              <p>Belajar membuat camilan sehat untuk melatih kemandirian.</p>
-            </div>
-          </div>
-
-          {{-- April --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">April</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-female kal-icon"></i>
-              <strong>Peringatan Hari Kartini</strong>
-              <p>Pawai pakaian adat Nusantara.</p>
-            </div>
-          </div>
-
-          {{-- Mei --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Mei</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-bus kal-icon"></i>
-              <strong>Kunjungan Edukasi</strong>
-              <p>Outing class belajar mengenal profesi di luar kelas.</p>
-            </div>
-          </div>
-
-          {{-- Juni --}}
-          <div class="kal-month-box">
-            <div class="kal-box-top">
-              <span class="kal-box-name">Juni</span>
-            </div>
-            <div class="kal-box-content">
-              <i class="fa fa-graduation-cap kal-icon"></i>
-              <strong>Wisuda &amp; Rapot Sem 2</strong>
-              <p>Pelepasan siswa kelompok B dan penerimaan rapot.</p>
-            </div>
-          </div>
-
+          @empty
+          <div class="col-12 text-center text-muted py-3">Belum ada agenda terdaftar untuk Semester 2.</div>
+          @endforelse
         </div>
       </div>
 

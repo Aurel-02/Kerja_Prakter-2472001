@@ -1,4 +1,4 @@
-﻿@extends('layouts.public')
+@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Kurikulum')
 
@@ -30,9 +30,14 @@
   <section style="padding: 55px 0 60px; background: #f8faf9;">
     <div class="container">
       <div class="text-center" style="margin-bottom: 35px;">
-        <h3 style="font-weight: 800; color: #1e293b; font-size: 1.65rem; margin-bottom: 8px;">
-          Nilai Pembelajaran <span style="color: #25d366;">CERDAS</span>
-        </h3>
+        <div class="d-flex justify-content-center align-items-center mb-2">
+          <h3 style="font-weight: 800; color: #1e293b; font-size: 1.65rem; margin-bottom: 0;">
+            Nilai Pembelajaran <span style="color: #25d366;">CERDAS</span>
+          </h3>
+          <a href="{{ route('admin.kurikulum') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Kelola Kurikulum di Admin">
+            <i class="fa fa-pencil"></i> Kelola Kurikulum
+          </a>
+        </div>
         <p style="color: #777; max-width: 550px; margin: 0 auto; font-size: 0.93rem;">
           Enam karakter unggulan yang menjadi jiwa dalam setiap kegiatan belajar dan bermain anak.
         </p>

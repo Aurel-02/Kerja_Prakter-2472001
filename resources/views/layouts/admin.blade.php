@@ -626,6 +626,12 @@
         <span>Galeri Foto</span>
       </a>
 
+      <!-- Kurikulum -->
+      <a href="{{ route('admin.kurikulum') }}" class="nav-item-link {{ request()->routeIs('admin.kurikulum') ? 'active' : '' }}">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Kurikulum</span>
+      </a>
+
       <div class="nav-group-label" style="margin-top: 10px;">Sistem</div>
 
       <!-- Website Utama -->
@@ -680,12 +686,37 @@
   <!-- ================= MAIN CONTENT ================= -->
   <main class="app-main">
     <div class="content-container">
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+          <i class="fa-solid fa-circle-check"></i>
+          <div>{{ session('success') }}</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: auto; background: none; border: none; font-size: 20px; line-height: 1; cursor: pointer;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+
+      @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px; font-weight: 500; margin-bottom: 20px;">
+          <div style="font-weight: 700; margin-bottom: 4px;"><i class="fa-solid fa-triangle-exclamation"></i> Terdapat kesalahan:</div>
+          <ul class="mb-0 pl-3">
+            @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: auto; float: right; background: none; border: none; font-size: 20px; line-height: 1; cursor: pointer;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+
       @yield('content')
     </div>
   </main>
 
   <!-- Scripts -->
   <script src="{{ asset('adward/js/jquery-3.4.1.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('adward/js/bootstrap.js') }}"></script>
   <!-- Chart.js for beautiful charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

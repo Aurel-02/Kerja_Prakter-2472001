@@ -1,4 +1,4 @@
-﻿@extends('layouts.public')
+@extends('layouts.public')
 
 @section('title', 'TK Harapan Bunda - Tentang Kami')
 
@@ -11,18 +11,26 @@
   <!-- 1. Profil Singkat TK Harapan Bunda -->
   <section class="about_section layout_padding bg-white">
     <div class="container">
-      <h2 class="main-heading mb-4">
-        Tentang TK Harapan Bunda
-      </h2>
+      <div class="d-flex justify-content-center align-items-center mb-4">
+        <h2 class="main-heading mb-0">
+          Tentang TK Harapan Bunda
+        </h2>
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Ubah Profil di Admin">
+          <i class="fa fa-pencil"></i> Ubah
+        </a>
+      </div>
 
       <div class="about-content text-dark mx-auto" style="font-size: 1.05rem; line-height: 1.8; max-width: 900px;">
-        <p>
-          <strong>TK Harapan Bunda</strong> melayani pendidikan anak usia dini dalam rentang usia 4–6 tahun. Jumlah peserta didik pada tahun ajaran ini sebanyak 34 anak. Anak-anak berasal dari latar belakang keluarga dengan kondisi sosial ekonomi dan budaya yang beragam, mencerminkan karakter masyarakat kota Bandung.
-        </p>
-
-        <p class="mb-0">
-          Sebagian besar orang tua peserta didik bekerja di sektor formal dan informal, sehingga waktu pendampingan di rumah tidak merata. Hal ini menyebabkan variasi dalam kemampuan awal peserta didik saat memasuki sekolah, baik dari aspek kognitif, sosial emosional, maupun kesiapan literasi dan motorik.
-        </p>
+        @if(isset($sekolah->deskripsi_profil) && !empty($sekolah->deskripsi_profil))
+          {!! nl2br(e($sekolah->deskripsi_profil)) !!}
+        @else
+          <p>
+            <strong>TK Harapan Bunda</strong> melayani pendidikan anak usia dini dalam rentang usia 4–6 tahun. Jumlah peserta didik pada tahun ajaran ini sebanyak 34 anak. Anak-anak berasal dari latar belakang keluarga dengan kondisi sosial ekonomi dan budaya yang beragam, mencerminkan karakter masyarakat kota Bandung.
+          </p>
+          <p class="mb-0">
+            Sebagian besar orang tua peserta didik bekerja di sektor formal dan informal, sehingga waktu pendampingan di rumah tidak merata. Hal ini menyebabkan variasi dalam kemampuan awal peserta didik saat memasuki sekolah, baik dari aspek kognitif, sosial emosional, maupun kesiapan literasi dan motorik.
+          </p>
+        @endif
       </div>
     </div>
   </section>
@@ -31,9 +39,14 @@
   <!-- 2. Visi & Misi Section -->
   <section class="visi_misi_section layout_padding bg-light">
     <div class="container">
-      <h2 class="main-heading mb-3">
-        Visi &amp; Misi
-      </h2>
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <h2 class="main-heading mb-0">
+          Visi &amp; Misi
+        </h2>
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Ubah Visi & Misi di Admin">
+          <i class="fa fa-pencil"></i> Ubah Visi &amp; Misi
+        </a>
+      </div>
       <p class="text-center mb-5">
         TK Harapan Bunda bertekad memberikan pendidikan anak usia dini yang berkualitas dan berkarakter.
       </p>
@@ -43,7 +56,7 @@
           <div class="vm-card">
             <h3 class="vm-card-title">Visi</h3>
             <p class="vm-visi-text">
-              Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.
+              {{ $sekolah->visi ?? 'Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.' }}
             </p>
           </div>
         </div>
@@ -52,22 +65,18 @@
           <div class="vm-card">
             <h3 class="vm-card-title">Misi</h3>
             <ul class="vm-misi-list">
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">1.</span>
-                <p class="vm-misi-text">Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.</p>
-              </li>
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">2.</span>
-                <p class="vm-misi-text">Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.</p>
-              </li>
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">3.</span>
-                <p class="vm-misi-text">Membiasakan sikap mandiri pada anak.</p>
-              </li>
-              <li class="vm-misi-item">
-                <span class="vm-misi-num">4.</span>
-                <p class="vm-misi-text">Membiasakan hidup sehat.</p>
-              </li>
+              @php
+                $misiText = $sekolah->misi ?? "1. Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.\n2. Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.\n3. Membiasakan sikap mandiri pada anak.\n4. Membiasakan hidup sehat.";
+                $misiLines = preg_split('/\r\n|\r|\n/', trim($misiText));
+              @endphp
+              @foreach($misiLines as $index => $line)
+                @if(!empty(trim($line)))
+                  <li class="vm-misi-item">
+                    <span class="vm-misi-num">{{ preg_match('/^\d+\.?\s*/', $line) ? '' : ($index + 1).'.' }}</span>
+                    <p class="vm-misi-text">{{ preg_replace('/^\d+\.?\s*/', '', $line) }}</p>
+                  </li>
+                @endif
+              @endforeach
             </ul>
           </div>
         </div>
