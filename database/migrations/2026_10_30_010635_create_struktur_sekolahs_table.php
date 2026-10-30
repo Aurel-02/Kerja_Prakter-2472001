@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedInteger('id_galeri')->nullable();
             $table->string('nama');
             $table->string('jabatan');
+            $table->string('pendidikan')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
 
             $table->foreign('id_profil')

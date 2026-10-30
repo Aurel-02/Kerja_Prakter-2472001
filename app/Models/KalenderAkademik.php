@@ -18,6 +18,8 @@ class KalenderAkademik extends Model
         'id_profil',
         'judul_kegiatan',
         'tahun_ajaran',
+        'kategori',
+        'icon',
         'tanggal_mulai',
         'tanggal_selesai',
         'keterangan',

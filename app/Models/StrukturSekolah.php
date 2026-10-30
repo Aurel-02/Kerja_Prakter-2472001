@@ -24,6 +24,8 @@ class StrukturSekolah extends Model
         'id_galeri',
         'nama',
         'jabatan',
+        'pendidikan',
+        'foto',
     ];
 
     public function sekolah(): BelongsTo

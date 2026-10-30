@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedInteger('id_profil');
             $table->string('judul_kegiatan');
             $table->string('tahun_ajaran', 50);
+            $table->string('kategori', 100)->nullable();
+            $table->string('icon', 50)->nullable()->default('fa-calendar-check-o');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->text('keterangan')->nullable();

@@ -1,6 +1,6 @@
 -- ========================================================
 -- Database: tkharapanbunda
--- Berdasarkan Diagram Relasi Entitas (ERD)
+-- Berdasarkan Diagram Relasi Entitas (ERD) & Penyesuaian Website
 -- ========================================================
 
 CREATE DATABASE IF NOT EXISTS tkharapanbunda 
@@ -9,9 +9,10 @@ COLLATE utf8mb4_unicode_ci;
 
 USE tkharapanbunda;
 
--- 1. Tabel Sekolah (Pusat Relasi)
+-- 1. Tabel Sekolah (Pusat Relasi Profil, Visi, Misi)
 CREATE TABLE IF NOT EXISTS sekolah (
     id_profil INT AUTO_INCREMENT PRIMARY KEY,
+    deskripsi_profil TEXT NULL,
     visi TEXT NOT NULL,
     misi TEXT NOT NULL,
     link_maps TEXT NULL,
@@ -43,6 +44,8 @@ CREATE TABLE IF NOT EXISTS struktur_sekolah (
     id_galeri INT NULL,
     nama VARCHAR(255) NOT NULL,
     jabatan VARCHAR(100) NOT NULL,
+    pendidikan VARCHAR(100) NULL,
+    foto VARCHAR(255) NULL,
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_struktur_sekolah FOREIGN KEY (id_profil) 
@@ -61,6 +64,8 @@ CREATE TABLE IF NOT EXISTS kalender_akademik (
     id_profil INT NOT NULL,
     judul_kegiatan VARCHAR(255) NOT NULL,
     tahun_ajaran VARCHAR(50) NOT NULL,
+    kategori VARCHAR(100) NULL,
+    icon VARCHAR(50) NULL DEFAULT 'fa-calendar-check-o',
     tanggal_mulai DATE NOT NULL,
     tanggal_selesai DATE NOT NULL,
     keterangan TEXT NULL,
@@ -86,4 +91,3 @@ CREATE TABLE IF NOT EXISTS kurikulum (
         ON DELETE CASCADE 
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
-

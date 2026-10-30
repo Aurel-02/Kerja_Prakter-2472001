@@ -15,6 +15,7 @@ class Sekolah extends Model
     protected $primaryKey = 'id_profil';
 
     protected $fillable = [
+        'deskripsi_profil',
         'visi',
         'misi',
         'link_maps',
