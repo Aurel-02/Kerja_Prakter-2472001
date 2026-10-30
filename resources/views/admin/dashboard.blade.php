@@ -17,7 +17,7 @@
     <div class="stat-banner-card stat-card-green">
       <div class="stat-text-side">
         <span class="stat-label-title">Siswa</span>
-        <span class="stat-value-big">42</span>
+        <span class="stat-value-big">34</span>
         <span class="stat-sub-text">Total Siswa Aktif</span>
       </div>
       <div class="stat-icon-wrap stat-icon-green">
@@ -29,7 +29,7 @@
     <div class="stat-banner-card stat-card-green">
       <div class="stat-text-side">
         <span class="stat-label-title">Guru</span>
-        <span class="stat-value-big">3</span>
+        <span class="stat-value-big">{{ $totalGuru }}</span>
         <span class="stat-sub-text">Tenaga Pendidik</span>
       </div>
       <div class="stat-icon-wrap stat-icon-green">
@@ -37,18 +37,115 @@
       </div>
     </div>
 
-    <!-- Kartu 3: Orang Tua -->
+    <!-- Kartu 3: Galeri & Kegiatan -->
     <div class="stat-banner-card stat-card-green">
       <div class="stat-text-side">
-        <span class="stat-label-title">Orang Tua</span>
-        <span class="stat-value-big">18</span>
-        <span class="stat-sub-text">Perwakilan Wali Murid</span>
+        <span class="stat-label-title">Galeri</span>
+        <span class="stat-value-big">{{ $totalGaleri }}</span>
+        <span class="stat-sub-text">Dokumentasi Terpasang</span>
       </div>
       <div class="stat-icon-wrap stat-icon-green">
-        <i class="fa-solid fa-users"></i>
+        <i class="fa-solid fa-images"></i>
       </div>
     </div>
 
+  </div>
+
+  <!-- ================= KELOLA PROFIL, VISI & MISI SEKOLAH ================= -->
+  <div class="admin-card" style="margin-bottom: 24px; border-left: 4px solid var(--primary);">
+    <div class="card-header-flex">
+      <div>
+        <h2 class="card-title-main"><i class="fa-solid fa-school text-success mr-2"></i> Profil, Visi &amp; Misi Sekolah</h2>
+        <div class="card-subtitle-small">Kelola teks visi, misi, pengantar profil, dan kontak yang tampil di website utama</div>
+      </div>
+      <button type="button" class="btn-brand-primary" data-toggle="modal" data-target="#modalEditVisiMisi">
+        <i class="fa-solid fa-pencil"></i> Ubah Visi &amp; Misi
+      </button>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; height: 100%;">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <h5 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0;">
+              <i class="fa-solid fa-eye text-primary mr-1"></i> Visi Sekolah
+            </h5>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalEditVisiMisi" style="font-size: 11px; padding: 2px 8px; border-radius: 6px;">
+              <i class="fa-solid fa-pencil"></i> Edit
+            </button>
+          </div>
+          <p style="font-size: 13px; color: #475569; line-height: 1.6; margin: 0; font-style: italic;">
+            "{{ $sekolah->visi ?? 'Belum ada visi yang ditetapkan.' }}"
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; height: 100%;">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <h5 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0;">
+              <i class="fa-solid fa-bullseye text-success mr-1"></i> Misi Sekolah
+            </h5>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalEditVisiMisi" style="font-size: 11px; padding: 2px 8px; border-radius: 6px;">
+              <i class="fa-solid fa-pencil"></i> Edit
+            </button>
+          </div>
+          <div style="font-size: 13px; color: #475569; line-height: 1.6; white-space: pre-line;">{{ $sekolah->misi ?? 'Belum ada misi yang ditetapkan.' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit Visi Misi & Profil -->
+  <div class="modal fade" id="modalEditVisiMisi" tabindex="-1" role="dialog" aria-labelledby="modalEditVisiMisiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" style="border-radius: 16px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <form action="{{ route('admin.sekolah.update') }}" method="POST">
+          @csrf
+          @method('PUT')
+          <div class="modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 18px 24px;">
+            <h5 class="modal-title" id="modalEditVisiMisiLabel" style="font-weight: 700; color: #1e293b;">
+              <i class="fa-solid fa-pencil text-primary mr-2"></i> Ubah Visi, Misi &amp; Profil Sekolah
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none; border: none; font-size: 20px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding: 20px 24px;">
+            <div class="form-group mb-3">
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Visi Sekolah <span class="text-danger">*</span></label>
+              <textarea name="visi" class="form-control" rows="3" required style="border-radius: 8px;">{{ $sekolah->visi ?? '' }}</textarea>
+            </div>
+
+            <div class="form-group mb-3">
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Misi Sekolah <span class="text-danger">*</span></label>
+              <textarea name="misi" class="form-control" rows="5" required style="border-radius: 8px;">{{ $sekolah->misi ?? '' }}</textarea>
+              <small class="text-muted">Gunakan baris baru / angka (1, 2, 3...) untuk memisahkan setiap poin misi.</small>
+            </div>
+
+            <div class="form-group mb-3">
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Deskripsi Profil (Tentang Sekolah di Web Utama)</label>
+              <textarea name="deskripsi_profil" class="form-control" rows="4" style="border-radius: 8px;">{{ $sekolah->deskripsi_profil ?? '' }}</textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 form-group mb-0">
+                <label style="font-weight: 600; color: #475569; font-size: 13px;">Kontak Telepon / Email</label>
+                <input type="text" name="kontak" class="form-control" value="{{ $sekolah->kontak ?? '' }}" style="border-radius: 8px;">
+              </div>
+              <div class="col-md-6 form-group mb-0">
+                <label style="font-weight: 600; color: #475569; font-size: 13px;">Link Google Maps</label>
+                <input type="text" name="link_maps" class="form-control" value="{{ $sekolah->link_maps ?? '' }}" style="border-radius: 8px;">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-top: 1px solid #f1f5f9; padding: 14px 24px;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 8px; font-weight: 600;">Batal</button>
+            <button type="submit" class="btn btn-primary" style="border-radius: 8px; font-weight: 600;">Simpan Perubahan</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- ================= BARIS 2: AGENDA & DISTRIBUSI SISWA ================= -->
