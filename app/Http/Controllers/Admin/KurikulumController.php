@@ -11,7 +11,11 @@ class KurikulumController extends Controller
 {
     public function index()
     {
-        $kurikulumList = Kurikulum::all();
+        try {
+            $kurikulumList = Kurikulum::all();
+        } catch (\Throwable $e) {
+            $kurikulumList = collect();
+        }
 
         return view('admin.kurikulum', compact('kurikulumList'));
     }

@@ -11,7 +11,11 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $guruList = StrukturSekolah::orderBy('nama', 'asc')->get();
+        try {
+            $guruList = StrukturSekolah::orderBy('nama', 'asc')->get();
+        } catch (\Throwable $e) {
+            $guruList = collect();
+        }
 
         return view('admin.guru', compact('guruList'));
     }

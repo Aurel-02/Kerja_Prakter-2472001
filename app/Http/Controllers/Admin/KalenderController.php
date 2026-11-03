@@ -11,7 +11,11 @@ class KalenderController extends Controller
 {
     public function index()
     {
-        $kalenderList = KalenderAkademik::orderBy('tanggal_mulai', 'asc')->get();
+        try {
+            $kalenderList = KalenderAkademik::orderBy('tanggal_mulai', 'asc')->get();
+        } catch (\Throwable $e) {
+            $kalenderList = collect();
+        }
 
         return view('admin.kalender', compact('kalenderList'));
     }

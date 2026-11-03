@@ -11,7 +11,11 @@ class GaleriController extends Controller
 {
     public function index()
     {
-        $galeriList = Galeri::latest()->get();
+        try {
+            $galeriList = Galeri::latest()->get();
+        } catch (\Throwable $e) {
+            $galeriList = collect();
+        }
 
         return view('admin.galeri', compact('galeriList'));
     }
