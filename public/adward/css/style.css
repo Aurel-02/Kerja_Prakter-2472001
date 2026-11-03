@@ -109,7 +109,7 @@ a:focus {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-nav.navbar.navbar-expand-lg {
+nav.navbar {
   padding: 6px 0;
 }
 
@@ -135,7 +135,12 @@ nav.navbar.navbar-expand-lg {
 
 .navbar-toggler .navbar-toggler-icon {
   background-image: url(../images/menu.png);
-  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
 }
 
 .custom_nav-container .nav_search-btn {
@@ -223,7 +228,7 @@ nav.navbar.navbar-expand-lg {
   padding-top: 0;
 }
 
-.top_container.sub_pages nav.navbar.navbar-expand-lg,
+.top_container.sub_pages nav.navbar,
 .top_container.sub_pages .custom_nav-container {
   padding: 6px 0 !important;
 }

@@ -11,14 +11,9 @@
   <!-- fasilitas section -->
   <section class="fasilitas_section layout_padding">
     <div class="container">
-      <div class="d-flex justify-content-center align-items-center mb-2">
-        <h2 class="main-heading mb-0">
-          Fasilitas Sekolah
-        </h2>
-        <a href="{{ route('admin.galeri') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Kelola Fasilitas di Admin">
-          <i class="fa fa-pencil"></i> Kelola Fasilitas
-        </a>
-      </div>
+      <h2 class="main-heading text-center mb-2">
+        Fasilitas Sekolah
+      </h2>
       <p class="text-center mb-4">
         Berbagai fasilitas lengkap untuk mendukung tumbuh kembang dan kenyamanan belajar anak.
       </p>

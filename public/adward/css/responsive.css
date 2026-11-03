@@ -2,82 +2,113 @@
    RESPONSIVE CSS - TK Harapan Bunda
    ============================================================ */
 
+/* ============================================================
+   GLOBAL HAMBURGER NAVBAR (Mobile & Desktop)
+   ============================================================ */
+
+.custom_nav-container {
+  position: relative !important;
+  padding: 10px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Hamburger toggler button (garis 3) */
+.custom_nav-container .navbar-toggler {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom_nav-container .navbar-toggler:hover,
+.custom_nav-container .navbar-toggler:focus {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Floating White Menu Container */
+.custom_nav-container .navbar-collapse {
+  position: absolute !important;
+  top: 100% !important;
+  z-index: 999999 !important;
+  background-color: #ffffff !important;
+  padding: 8px 0 !important;
+  margin-top: 6px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Tampilan Menu HP: Lebar Penuh */
+@media (max-width: 767.98px) {
+  .custom_nav-container .navbar-collapse {
+    left: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    border-radius: 6px !important;
+  }
+}
+
+/* Tampilan Menu Desktop & Tablet: Kotak Dropdown Elegan di Kanan */
+@media (min-width: 768px) {
+  .custom_nav-container .navbar-collapse {
+    right: 0 !important;
+    left: auto !important;
+    width: 270px !important;
+    border-radius: 8px !important;
+  }
+}
+
+.custom_nav-container .navbar-nav {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom_nav-container .navbar-nav .nav-item {
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 !important;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.custom_nav-container .navbar-nav .nav-item:last-child {
+  border-bottom: none;
+}
+
+.custom_nav-container .navbar-nav .nav-link {
+  display: block !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #2d2c2c !important;
+  border-radius: 0 !important;
+  transition: all 0.2s ease !important;
+  border-bottom: none !important;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+.custom_nav-container .navbar-nav .nav-item.active .nav-link,
+.custom_nav-container .navbar-nav .nav-link:hover {
+  background-color: #25d366 !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
 /* Tablet Landscape */
 @media (max-width: 992px) {
   .top_container,
   .top_container.sub_pages {
     height: auto;
-  }
-
-  .custom_nav-container {
-    position: relative !important;
-    padding: 10px 0 !important;
-  }
-
-  /* Hamburger toggler button on mobile/tablet */
-  .custom_nav-container .navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    padding: 6px 12px !important;
-    border-radius: 0 !important;
-    outline: none !important;
-    cursor: pointer;
-  }
-
-  .custom_nav-container .navbar-toggler:focus {
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8) !important;
-  }
-
-  /* Floating White Menu Container */
-  .custom_nav-container .navbar-collapse {
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 999999 !important;
-    background-color: #ffffff !important;
-    border-radius: 0 !important;
-    padding: 8px 0 !important;
-    margin-top: 0 !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
-    border: 1px solid #e2e8f0 !important;
-  }
-
-  .custom_nav-container .navbar-nav {
-    width: 100% !important;
-    margin: 0 !important;
-  }
-
-  .custom_nav-container .navbar-nav .nav-item {
-    width: 100% !important;
-    text-align: center !important;
-    margin: 0 !important;
-    border-bottom: 1px solid #f1f5f9;
-  }
-
-  .custom_nav-container .navbar-nav .nav-item:last-child {
-    border-bottom: none;
-  }
-
-  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-    display: block !important;
-    padding: 12px 16px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: #2d2c2c !important;
-    border-radius: 0 !important;
-    transition: all 0.2s ease !important;
-    border-bottom: none !important;
-    text-transform: uppercase;
-  }
-
-  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
-  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link:hover {
-    background-color: #25d366 !important;
-    color: #ffffff !important;
-    border-radius: 0 !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
   }
 
   .hero_detail-box {
@@ -95,7 +126,7 @@
 /* Mobile Landscape & Large Mobile */
 @media (max-width: 768px) {
   /* Navbar */
-  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+  .custom_nav-container .navbar-nav .nav-link {
     padding: 8px 12px !important;
     font-size: 14px !important;
   }
@@ -165,7 +196,7 @@
 /* Mobile Portrait */
 @media (max-width: 576px) {
   /* Navbar */
-  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+  .custom_nav-container .navbar-nav .nav-link {
     padding: 7px 10px !important;
     font-size: 13px !important;
   }

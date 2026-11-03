@@ -11,12 +11,7 @@
   <section class="kalender_section layout_padding">
     <div class="container">
 
-      <div class="d-flex justify-content-center align-items-center mb-2">
-        <h2 class="main-heading mb-0">Kalender Akademik</h2>
-        <a href="{{ route('admin.kalender') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Kelola Kalender di Admin">
-          <i class="fa fa-pencil"></i> Kelola Agenda
-        </a>
-      </div>
+      <h2 class="main-heading text-center mb-2">Kalender Akademik</h2>
       <p class="text-center mb-5">
         Jadwal kegiatan belajar dan agenda tahunan TK Harapan Bunda.
       </p>

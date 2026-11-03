@@ -11,14 +11,9 @@
   <!-- 1. Profil Singkat TK Harapan Bunda -->
   <section class="about_section layout_padding bg-white">
     <div class="container">
-      <div class="d-flex justify-content-center align-items-center mb-4">
-        <h2 class="main-heading mb-0">
-          Tentang TK Harapan Bunda
-        </h2>
-        <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Ubah Profil di Admin">
-          <i class="fa fa-pencil"></i> Ubah
-        </a>
-      </div>
+      <h2 class="main-heading text-center mb-4">
+        Tentang TK Harapan Bunda
+      </h2>
 
       <div class="about-content text-dark mx-auto" style="font-size: 1.05rem; line-height: 1.8; max-width: 900px;">
         @if(isset($sekolah->deskripsi_profil) && !empty($sekolah->deskripsi_profil))
@@ -39,14 +34,9 @@
   <!-- 2. Visi & Misi Section -->
   <section class="visi_misi_section layout_padding bg-light">
     <div class="container">
-      <div class="d-flex justify-content-center align-items-center mb-3">
-        <h2 class="main-heading mb-0">
-          Visi &amp; Misi
-        </h2>
-        <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-success ml-3" style="border-radius: 20px; font-size: 12px; font-weight: 600;" title="Ubah Visi & Misi di Admin">
-          <i class="fa fa-pencil"></i> Ubah Visi &amp; Misi
-        </a>
-      </div>
+      <h2 class="main-heading text-center mb-3">
+        Visi &amp; Misi
+      </h2>
       <p class="text-center mb-5">
         TK Harapan Bunda bertekad memberikan pendidikan anak usia dini yang berkualitas dan berkarakter.
       </p>
