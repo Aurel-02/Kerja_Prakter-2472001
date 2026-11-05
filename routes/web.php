@@ -6,8 +6,14 @@ use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\KalenderController;
 use App\Http\Controllers\Admin\KurikulumController;
 use App\Http\Controllers\Admin\SekolahController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
+
+// Auth Routes (Login & Logout)
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Public Page Routes
 Route::get('/', [PublicController::class, 'home'])->name('home');

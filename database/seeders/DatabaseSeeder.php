@@ -7,6 +7,7 @@ use App\Models\KalenderAkademik;
 use App\Models\Kurikulum;
 use App\Models\Sekolah;
 use App\Models\StrukturSekolah;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // 0. Akun Pengguna (User Admin)
+        User::create([
+            'username' => 'admin',
+            'password' => bcrypt('admin123'),
+            'nama' => 'Administrator TK Harapan Bunda',
+            'role' => 'admin',
+            'status' => 'aktif',
+        ]);
+
         // 1. Profil Sekolah (Visi & Misi)
         $sekolah = Sekolah::create([
             'deskripsi_profil' => "TK Harapan Bunda melayani pendidikan anak usia dini dalam rentang usia 4–6 tahun. Jumlah peserta didik pada tahun ajaran ini sebanyak 34 anak. Anak-anak berasal dari latar belakang keluarga dengan kondisi sosial ekonomi dan budaya yang beragam, mencerminkan karakter masyarakat kota Bandung.\n\nSebagian besar orang tua peserta didik bekerja di sektor formal dan informal, sehingga waktu pendampingan di rumah tidak merata. Hal ini menyebabkan variasi dalam kemampuan awal peserta didik saat memasuki sekolah, baik dari aspek kognitif, sosial emosional, maupun kesiapan literasi dan motorik.",

@@ -9,6 +9,19 @@ COLLATE utf8mb4_unicode_ci;
 
 USE tkharapanbunda;
 
+-- 0. Tabel User (Pengguna / Administrator)
+CREATE TABLE IF NOT EXISTS `user` (
+    id_user INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nama VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'admin',
+    status VARCHAR(50) NOT NULL DEFAULT 'aktif',
+    remember_token VARCHAR(100) NULL,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- 1. Tabel Sekolah (Pusat Relasi Profil, Visi, Misi)
 CREATE TABLE IF NOT EXISTS sekolah (
     id_profil INT AUTO_INCREMENT PRIMARY KEY,
