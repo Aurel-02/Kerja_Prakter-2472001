@@ -39,7 +39,7 @@ class AuthController extends Controller
         if (Auth::attempt(array_merge($credentials, ['status' => 'aktif']), $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.dashboard'))
+            return redirect()->route('admin.dashboard')
                 ->with('success', 'Selamat datang kembali, '.Auth::user()->nama.'!');
         }
 

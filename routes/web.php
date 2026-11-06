@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 // Auth Routes (Login & Logout)
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Public Page Routes
 Route::get('/', [PublicController::class, 'home'])->name('home');
@@ -26,8 +26,8 @@ Route::post('/contact', [PublicController::class, 'sendContact'])->name('contact
 Route::get('/kalender', [PublicController::class, 'kalender'])->name('kalender');
 Route::get('/galeri', [PublicController::class, 'galeri'])->name('galeri');
 
-// Admin Routes (Tanpa Auth/Login dulu sesuai permintaan)
-Route::prefix('admin')->name('admin.')->group(function () {
+// Admin Routes (Dilindungi Auth Middleware)
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Dashboard & Profil Sekolah
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('/sekolah', [SekolahController::class, 'update'])->name('sekolah.update');

@@ -18,13 +18,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 0. Akun Pengguna (User Admin)
-        User::create([
-            'username' => 'admin',
-            'password' => bcrypt('admin123'),
-            'nama' => 'Administrator TK Harapan Bunda',
-            'role' => 'admin',
-            'status' => 'aktif',
-        ]);
+        User::updateOrCreate(
+            ['username' => 'admin1'],
+            [
+                'password' => bcrypt('adminadmin'),
+                'nama' => 'Administrator',
+                'role' => 'admin',
+                'status' => 'aktif',
+            ]
+        );
 
         // 1. Profil Sekolah (Visi & Misi)
         $sekolah = Sekolah::create([

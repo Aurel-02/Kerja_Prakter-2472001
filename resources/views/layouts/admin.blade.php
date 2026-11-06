@@ -643,7 +643,10 @@
 
     <!-- Bottom Footer Sign Out -->
     <div class="sidebar-footer">
-      <a href="{{ route('home') }}" class="sidebar-footer-link">
+      <form action="{{ route('logout') }}" method="POST" id="logoutFormSidebar" style="display: none;">
+        @csrf
+      </form>
+      <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutFormSidebar').submit();" class="sidebar-footer-link text-danger">
         <i class="fa-solid fa-right-from-bracket"></i>
         <span>Keluar Sistem</span>
       </a>
@@ -673,12 +676,26 @@
       </a>
 
       <!-- User Profile Pill -->
-      <div class="topbar-user-pill">
-        <div class="user-info-text">
-          <span class="user-name"></span>
-          <span class="user-role">Admin</span>
+      <div class="dropdown">
+        <div class="topbar-user-pill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+          <div class="user-info-text">
+            <span class="user-name">{{ Auth::user()->nama ?? 'Administrator' }}</span>
+            <span class="user-role">{{ ucfirst(Auth::user()->role ?? 'Admin') }} ({{ Auth::user()->username ?? 'admin1' }})</span>
+          </div>
+          <i class="fa-solid fa-chevron-down user-chevron"></i>
         </div>
-        <i class="fa-solid fa-chevron-down user-chevron"></i>
+        <div class="dropdown-menu dropdown-menu-right shadow-sm mt-2" style="border-radius: 12px; border: 1px solid var(--border-color); min-width: 180px; padding: 6px;">
+          <a class="dropdown-item" href="{{ route('home') }}" target="_blank" style="font-size: 13px; padding: 8px 12px; border-radius: 8px;">
+            <i class="fa-solid fa-globe mr-2 text-success"></i> Lihat Website
+          </a>
+          <div class="dropdown-divider"></div>
+          <form action="{{ route('logout') }}" method="POST" class="m-0">
+            @csrf
+            <button type="submit" class="dropdown-item text-danger" style="font-size: 13px; padding: 8px 12px; border-radius: 8px; cursor: pointer; border: none; background: none;">
+              <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </header>

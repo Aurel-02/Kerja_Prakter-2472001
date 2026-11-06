@@ -13,11 +13,24 @@
             TK Harapan Bunda
           </a>
 
-          <!-- Tombol Toggler Hamburger -->
-          <button class="navbar-toggler text-white ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <!-- Tombol Aksi Kanan & Hamburger -->
+          <div class="ml-auto d-flex align-items-center">
+            @auth
+              <a href="{{ route('admin.dashboard') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
+                <i class="fa fa-tachometer mr-1"></i> Dashboard
+              </a>
+            @else
+              <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
+                <i class="fa fa-sign-in mr-1"></i> Login
+              </a>
+            @endauth
+
+            <!-- Tombol Toggler Hamburger -->
+            <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
 
           <!-- Menu Navbar (Dropdown Vertikal) -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -46,6 +59,17 @@
                 </li>
                 <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
                   <a class="nav-link font-weight-bold" href="{{ route('contact') }}"> Hubungi Kami </a>
+                </li>
+                <li class="nav-item d-md-none mt-2">
+                  @auth
+                    <a class="nav-link font-weight-bold text-warning" href="{{ route('admin.dashboard') }}">
+                      <i class="fa fa-tachometer mr-1"></i> Dashboard Admin
+                    </a>
+                  @else
+                    <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
+                      <i class="fa fa-sign-in mr-1"></i> Login
+                    </a>
+                  @endauth
                 </li>
               </ul>
             </div>
