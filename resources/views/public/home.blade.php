@@ -13,17 +13,11 @@
             TK Harapan Bunda
           </a>
 
-          <!-- Tombol Aksi Kanan & Hamburger -->
+          <!-- Tombol Login & Hamburger -->
           <div class="ml-auto d-flex align-items-center">
-            @auth
-              <a href="{{ route('admin.dashboard') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
-                <i class="fa fa-tachometer mr-1"></i> Dashboard
-              </a>
-            @else
-              <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
-                <i class="fa fa-sign-in mr-1"></i> Login
-              </a>
-            @endauth
+            <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
+              <i class="fa fa-sign-in mr-1"></i> Login
+            </a>
 
             <!-- Tombol Toggler Hamburger -->
             <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -61,15 +55,9 @@
                   <a class="nav-link font-weight-bold" href="{{ route('contact') }}"> Hubungi Kami </a>
                 </li>
                 <li class="nav-item d-md-none mt-2">
-                  @auth
-                    <a class="nav-link font-weight-bold text-warning" href="{{ route('admin.dashboard') }}">
-                      <i class="fa fa-tachometer mr-1"></i> Dashboard Admin
-                    </a>
-                  @else
-                    <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
-                      <i class="fa fa-sign-in mr-1"></i> Login
-                    </a>
-                  @endauth
+                  <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
+                    <i class="fa fa-sign-in mr-1"></i> Login
+                  </a>
                 </li>
               </ul>
             </div>

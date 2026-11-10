@@ -42,6 +42,7 @@
     "env": {
         "APP_NAME": "TK Harapan Bunda",
         "APP_ENV": "production",
+        "APP_KEY": "base64:GL+jWYc0A2mLifvpUttZoTYjybB8boCgB+bkKLUQXHg=",
         "APP_URL": "https://tkharapanbunda.vercel.app",
         "VERCEL": "1",
         "APP_DEBUG": "false",
