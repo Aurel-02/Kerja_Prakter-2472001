@@ -12,8 +12,11 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        // Jika sudah login, langsung arahkan ke dashboard admin
+        // Jika sudah login, arahkan ke dashboard sesuai role
         if (Auth::check()) {
+            if (Auth::user()->role === 'guru') {
+                return redirect()->route('guru.dashboard');
+            }
             return redirect()->route('admin.dashboard');
         }
 
@@ -38,6 +41,12 @@ class AuthController extends Controller
         // Cek login dengan status aktif
         if (Auth::attempt(array_merge($credentials, ['status' => 'aktif']), $remember)) {
             $request->session()->regenerate();
+
+            // Arahkan ke dashboard sesuai role pengguna
+            if (Auth::user()->role === 'guru') {
+                return redirect()->route('guru.dashboard')
+                    ->with('success', 'Selamat datang kembali, '.Auth::user()->nama.'!');
+            }
 
             return redirect()->route('admin.dashboard')
                 ->with('success', 'Selamat datang kembali, '.Auth::user()->nama.'!');

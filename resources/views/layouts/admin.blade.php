@@ -580,12 +580,9 @@
 
   <!-- ================= SIDEBAR ================= -->
   <aside class="app-sidebar" id="appSidebar">
-    <!-- Brand Logo -->
+    <!-- Brand Title -->
     <div class="sidebar-brand">
-      <div class="sidebar-brand-text">
-        <span class="sidebar-brand-title">TK Harapan Bunda</span>
-        <span class="sidebar-brand-sub">Admin</span>
-      </div>
+      <span class="sidebar-brand-title" style="font-size: 17px; font-weight: 800; color: #16a34a; letter-spacing: -0.3px;">Portal Admin</span>
     </div>
 
     <!-- Navigation Menu (Menyesuaikan warna dan isi navbar yang ada) -->

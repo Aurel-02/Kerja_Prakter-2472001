@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\KalenderController;
 use App\Http\Controllers\Admin\KurikulumController;
 use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Guru\PenjemputanController as GuruPenjemputanController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +60,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/kurikulum', [KurikulumController::class, 'store'])->name('kurikulum.store');
     Route::put('/kurikulum/{id}', [KurikulumController::class, 'update'])->name('kurikulum.update');
     Route::delete('/kurikulum/{id}', [KurikulumController::class, 'destroy'])->name('kurikulum.destroy');
+});
+
+// Guru Routes (Dilindungi Auth Middleware)
+Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
+    Route::get('/', [GuruDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/scan-qr', [GuruPenjemputanController::class, 'scanQr'])->name('scan-qr');
+    Route::post('/scan-qr/cek-siswa', [GuruPenjemputanController::class, 'cekSiswa'])->name('scan-qr.cek-siswa');
+    Route::post('/scan-qr/cek-ortu', [GuruPenjemputanController::class, 'cekOrtu'])->name('scan-qr.cek-ortu');
+    Route::post('/scan-qr/simpan', [GuruPenjemputanController::class, 'simpanPenjemputan'])->name('scan-qr.simpan');
 });

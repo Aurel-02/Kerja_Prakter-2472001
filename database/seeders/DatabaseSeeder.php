@@ -17,13 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 0. Akun Pengguna (User Admin)
+        // 0. Akun Pengguna (User Admin & Guru)
         User::updateOrCreate(
             ['username' => 'admin1'],
             [
                 'password' => bcrypt('adminadmin'),
                 'nama' => 'Administrator',
                 'role' => 'admin',
+                'status' => 'aktif',
+            ]
+        );
+
+        User::updateOrCreate(
+            ['username' => 'guru1'],
+            [
+                'password' => bcrypt('guruguru'),
+                'nama' => 'Guru Pengajar',
+                'role' => 'guru',
                 'status' => 'aktif',
             ]
         );

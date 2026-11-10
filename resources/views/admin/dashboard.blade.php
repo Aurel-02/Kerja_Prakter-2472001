@@ -20,9 +20,6 @@
         <span class="stat-value-big">34</span>
         <span class="stat-sub-text">Total Siswa Aktif</span>
       </div>
-      <div class="stat-icon-wrap stat-icon-green">
-        <i class="fa-solid fa-graduation-cap"></i>
-      </div>
     </div>
 
     <!-- Kartu 2: Guru -->
@@ -31,9 +28,6 @@
         <span class="stat-label-title">Guru</span>
         <span class="stat-value-big">{{ $totalGuru }}</span>
         <span class="stat-sub-text">Tenaga Pendidik</span>
-      </div>
-      <div class="stat-icon-wrap stat-icon-green">
-        <i class="fa-solid fa-chalkboard-user"></i>
       </div>
     </div>
 
@@ -44,9 +38,6 @@
         <span class="stat-value-big">{{ $totalGaleri }}</span>
         <span class="stat-sub-text">Dokumentasi Terpasang</span>
       </div>
-      <div class="stat-icon-wrap stat-icon-green">
-        <i class="fa-solid fa-images"></i>
-      </div>
     </div>
 
   </div>
@@ -55,11 +46,11 @@
   <div class="admin-card" style="margin-bottom: 24px; border-left: 4px solid var(--primary);">
     <div class="card-header-flex">
       <div>
-        <h2 class="card-title-main"><i class="fa-solid fa-school text-success mr-2"></i> Profil, Visi &amp; Misi Sekolah</h2>
+        <h2 class="card-title-main">Profil, Visi &amp; Misi Sekolah</h2>
         <div class="card-subtitle-small">Kelola teks visi, misi, pengantar profil, dan kontak yang tampil di website utama</div>
       </div>
       <button type="button" class="btn-brand-primary" data-toggle="modal" data-target="#modalEditVisiMisi">
-        <i class="fa-solid fa-pencil"></i> Ubah Visi &amp; Misi
+        Ubah Visi &amp; Misi
       </button>
     </div>
 
@@ -68,10 +59,10 @@
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; height: 100%;">
           <div class="d-flex align-items-center justify-content-between mb-2">
             <h5 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0;">
-              <i class="fa-solid fa-eye text-primary mr-1"></i> Visi Sekolah
+              Visi Sekolah
             </h5>
             <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalEditVisiMisi" style="font-size: 11px; padding: 2px 8px; border-radius: 6px;">
-              <i class="fa-solid fa-pencil"></i> Edit
+              Edit
             </button>
           </div>
           <p style="font-size: 13px; color: #475569; line-height: 1.6; margin: 0; font-style: italic;">
@@ -84,10 +75,10 @@
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; height: 100%;">
           <div class="d-flex align-items-center justify-content-between mb-2">
             <h5 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0;">
-              <i class="fa-solid fa-bullseye text-success mr-1"></i> Misi Sekolah
+              Misi Sekolah
             </h5>
             <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalEditVisiMisi" style="font-size: 11px; padding: 2px 8px; border-radius: 6px;">
-              <i class="fa-solid fa-pencil"></i> Edit
+              Edit
             </button>
           </div>
           <div style="font-size: 13px; color: #475569; line-height: 1.6; white-space: pre-line;">{{ $sekolah->misi ?? 'Belum ada misi yang ditetapkan.' }}</div>
@@ -105,7 +96,7 @@
           @method('PUT')
           <div class="modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 18px 24px;">
             <h5 class="modal-title" id="modalEditVisiMisiLabel" style="font-weight: 700; color: #1e293b;">
-              <i class="fa-solid fa-pencil text-primary mr-2"></i> Ubah Visi, Misi &amp; Profil Sekolah
+              Ubah Visi, Misi &amp; Profil Sekolah
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none; border: none; font-size: 20px;">
               <span aria-hidden="true">&times;</span>
@@ -158,7 +149,7 @@
           <h2 class="card-title-main">Agenda Terdekat Sekolah</h2>
           <div class="card-subtitle-small">Jadwal kegiatan belajar dan peringatan hari besar</div>
         </div>
-        <a href="{{ route('admin.kalender') }}" class="btn-link-action">Buka Kalender <i class="fa-solid fa-calendar-day"></i></a>
+        <a href="{{ route('admin.kalender') }}" class="btn-link-action">Buka Kalender &rarr;</a>
       </div>
 
       <div class="agenda-list">
@@ -171,7 +162,7 @@
             <div class="agenda-title">Hari Sumpah Pemuda</div>
             <div class="agenda-desc">Libur Nasional — Seluruh KBM ditiadakan</div>
           </div>
-          <span class="badge-pill badge-yellow"><i class="fa-solid fa-flag"></i> Libur</span>
+          <span class="badge-pill badge-yellow">Libur</span>
         </div>
 
         <div class="agenda-item">
@@ -183,7 +174,7 @@
             <div class="agenda-title">Hari Pahlawan</div>
             <div class="agenda-desc">Peringatan Hari Pahlawan di lingkungan sekolah</div>
           </div>
-          <span class="badge-pill badge-yellow"><i class="fa-solid fa-flag"></i> Libur</span>
+          <span class="badge-pill badge-yellow">Libur</span>
         </div>
 
         <div class="agenda-item">
@@ -195,7 +186,7 @@
             <div class="agenda-title">Hari Guru Nasional</div>
             <div class="agenda-desc">Pentas kreativitas dan apresiasi murid untuk dewan guru</div>
           </div>
-          <span class="badge-pill badge-green"><i class="fa-solid fa-cake-candles"></i> Kegiatan</span>
+          <span class="badge-pill badge-green">Kegiatan</span>
         </div>
       </div>
     </div>
@@ -208,7 +199,6 @@
             <h2 class="card-title-main">Distribusi Siswa</h2>
             <div class="card-subtitle-small">Perbandingan jenis kelamin siswa aktif</div>
           </div>
-          <button class="btn-more-icon" title="Opsi"><i class="fa-solid fa-ellipsis-vertical"></i></button>
         </div>
 
         <!-- Wadah Donut dengan label total di tengah -->
