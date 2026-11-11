@@ -1,6 +1,6 @@
-@extends('layouts.guru')
+@extends(auth()->check() && auth()->user()->role === 'admin' ? 'layouts.admin' : 'layouts.guru')
 
-@section('title', 'Scan QR Penjemputan - Portal Guru')
+@section('title', 'Scan QR Penjemputan - ' . (auth()->check() && auth()->user()->role === 'admin' ? 'Portal Admin' : 'Portal Guru'))
 
 @section('content')
 
@@ -79,10 +79,13 @@
           </div>
         </div>
 
-        <!-- Pilihan Ganti Sumber Kamera -->
-        <div id="cameraSelectGroup" class="form-group mt-3 mb-0" style="display: none;">
-          <label style="font-size: 11.5px; font-weight: 600; color: #64748b; margin-bottom: 4px;">Pilih Sumber Kamera:</label>
-          <select id="cameraSelection" class="form-control" style="border-radius: 8px; font-size: 12.5px;"></select>
+        <!-- Pilihan Kamera (Hanya Depan & Belakang) -->
+        <div id="cameraSelectGroup" class="form-group mt-3 mb-0">
+          <label style="font-size: 11.5px; font-weight: 600; color: #64748b; margin-bottom: 4px;">Pilihan Kamera:</label>
+          <select id="cameraSelection" class="form-control" style="border-radius: 8px; font-size: 12.5px;">
+            <option value="environment" selected>Kamera Belakang (Utama)</option>
+            <option value="user">Kamera Depan</option>
+          </select>
         </div>
 
         <!-- Alternatif: Input Manual Kode QR -->
@@ -538,12 +541,17 @@
     }
   }
 
+  // API Routes
+  const routeCekSiswa = "{{ route('guru.scan-qr.cek-siswa') }}";
+  const routeCekOrtu  = "{{ route('guru.scan-qr.cek-ortu') }}";
+  const routeSimpan   = "{{ route('guru.scan-qr.simpan') }}";
+
   // Step 1: Request cek siswa ke backend
   function processStep1Siswa(kode) {
     hideAlert();
     statusBadge.textContent = 'Memeriksa Siswa...';
 
-    fetch("{{ route('guru.scan-qr.cek-siswa') }}", {
+    fetch(routeCekSiswa, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -580,7 +588,7 @@
     hideAlert();
     statusBadge.textContent = 'Memverifikasi Penjemput...';
 
-    fetch("{{ route('guru.scan-qr.cek-ortu') }}", {
+    fetch(routeCekOrtu, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -640,7 +648,7 @@
 
     const formData = new FormData(formSimpanPenjemputan);
 
-    fetch("{{ route('guru.scan-qr.simpan') }}", {
+    fetch(routeSimpan, {
       method: 'POST',
       headers: {
         'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -732,36 +740,30 @@
   document.addEventListener('DOMContentLoaded', function () {
     html5QrCode = new Html5Qrcode("reader");
 
-    Html5Qrcode.getCameras().then(devices => {
-      if (devices && devices.length) {
-        cameraSelectGroup.style.display = 'block';
-        cameraSelection.innerHTML = '';
-        devices.forEach(device => {
-          const option = document.createElement('option');
-          option.value = device.id;
-          option.text = device.label || `Kamera ${cameraSelection.length + 1}`;
-          cameraSelection.appendChild(option);
-        });
-      }
-    }).catch(err => {
-      console.log('Tidak dapat mendeteksi daftar kamera:', err);
-    });
-
     btnStart.addEventListener('click', startScanning);
     btnStop.addEventListener('click', stopScanning);
+
+    // Ganti kamera saat select diubah
+    cameraSelection.addEventListener('change', function () {
+      if (isScanning) {
+        stopScanning().then(() => {
+          startScanning();
+        });
+      }
+    });
 
     setStep1();
   });
 
   function startScanning() {
-    const cameraId = cameraSelection.value;
+    const selectedMode = cameraSelection.value || "environment";
     const config = {
       fps: 10,
       qrbox: { width: 240, height: 240 },
       aspectRatio: 1.0
     };
 
-    const cameraSource = cameraId ? cameraId : { facingMode: "environment" };
+    const cameraSource = { facingMode: selectedMode };
 
     html5QrCode.start(
       cameraSource,
@@ -788,7 +790,7 @@
 
   function stopScanning() {
     if (html5QrCode && isScanning) {
-      html5QrCode.stop().then(() => {
+      return html5QrCode.stop().then(() => {
         isScanning = false;
         btnStart.disabled = false;
         btnStop.disabled = true;
@@ -800,6 +802,7 @@
         console.error('Gagal menghentikan kamera:', err);
       });
     }
+    return Promise.resolve();
   }
 </script>
 @endsection
