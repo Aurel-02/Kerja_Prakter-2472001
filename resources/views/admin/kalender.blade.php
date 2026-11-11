@@ -23,7 +23,7 @@
     </div>
 
     <div class="table-responsive" style="margin: 0 -8px;">
-      <table class="custom-table">
+      <table id="tableKalender" class="custom-table" style="width:100%">
         <thead>
           <tr>
             <th style="width: 50px; text-align: center;">No</th>
@@ -213,6 +213,26 @@
 @section('scripts')
 <script>
   $(document).ready(function() {
+    // Inisialisasi DataTable untuk Kalender Akademik
+    $('#tableKalender').DataTable({
+      language: {
+        search: 'Cari:',
+        lengthMenu: 'Tampilkan _MENU_ data',
+        info: 'Menampilkan _START_–_END_ dari _TOTAL_ data',
+        infoEmpty: 'Tidak ada data',
+        infoFiltered: '(difilter dari _MAX_ total data)',
+        paginate: { first: '«', last: '»', next: '›', previous: '‹' },
+        zeroRecords: 'Tidak ada agenda yang cocok',
+        emptyTable: 'Belum ada agenda kalender.'
+      },
+      columnDefs: [
+        { orderable: false, targets: [0, 6] }  // No dan Aksi tidak bisa diurutkan
+      ],
+      pageLength: 10,
+      order: [[1, 'asc']]
+    });
+
+    // Modal Edit Kalender
     $('.btn-edit-kalender').on('click', function() {
       const id = $(this).data('id');
       const judul = $(this).data('judul');

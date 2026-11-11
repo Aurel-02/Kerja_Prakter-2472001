@@ -17,6 +17,67 @@
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="{{ asset('adward/css/datatables/datatables.min.css') }}" />
+
+  <style>
+    /* DataTables custom overrides agar cocok dengan tema admin */
+    div.dataTables_wrapper div.dataTables_length label,
+    div.dataTables_wrapper div.dataTables_filter label,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
+      font-size: 12.5px;
+      color: #64748b;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 12.5px;
+      outline: none;
+      margin-left: 6px;
+    }
+    div.dataTables_wrapper div.dataTables_length select {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 12.5px;
+      margin: 0 6px;
+    }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+      border-radius: 6px !important;
+      font-size: 12px !important;
+      padding: 4px 10px !important;
+      margin: 0 2px !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button.current,
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button.current:hover {
+      background: #16a34a !important;
+      border-color: #16a34a !important;
+      color: #fff !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button:hover {
+      background: #f0fdf4 !important;
+      border-color: #bbf7d0 !important;
+      color: #16a34a !important;
+    }
+    div.dataTables_wrapper div.dataTables_filter {
+      margin-bottom: 12px;
+    }
+    div.dataTables_wrapper div.dataTables_length {
+      margin-bottom: 12px;
+    }
+    div.dataTables_wrapper div.dataTables_info {
+      padding-top: 10px;
+    }
+    table.dataTable thead th {
+      border-bottom: 2px solid #eef2f6 !important;
+    }
+    table.dataTable.no-footer {
+      border-bottom: none !important;
+    }
+  </style>
+
   <style>
     :root {
       --primary: #16a34a;
@@ -595,12 +656,18 @@
         <span>Dashboard</span>
       </a>
 
-      <div class="nav-group-label" style="margin-top: 10px;">Data Akademik</div>
+      <!-- Scan QR Penjemputan -->
+      <a href="{{ route('admin.scan-qr') }}" class="nav-item-link {{ request()->routeIs('admin.scan-qr*') ? 'active' : '' }}">
+        <i class="fa-solid fa-qrcode"></i>
+        <span>Scan QR Penjemputan</span>
+      </a>
 
-      <!-- Data Guru -->
+      <div class="nav-group-label" style="margin-top: 10px;">Data Sekolah</div>
+
+      <!-- Data Struktur Sekolah (Guru) -->
       <a href="{{ route('admin.guru') }}" class="nav-item-link {{ request()->routeIs('admin.guru') ? 'active' : '' }}">
         <i class="fa-solid fa-chalkboard-user"></i>
-        <span>Data Struktur Sekolah</span>
+        <span>Struktur Sekolah</span>
       </a>
 
       <!-- Data Siswa -->
@@ -609,10 +676,24 @@
         <span>Data Siswa</span>
       </a>
 
+      <!-- Data Orang Tua / Wali -->
+      <a href="{{ route('admin.orang-tua') }}" class="nav-item-link {{ request()->routeIs('admin.orang-tua') ? 'active' : '' }}">
+        <i class="fa-solid fa-people-roof"></i>
+        <span>Data Orang Tua</span>
+      </a>
+
+      <div class="nav-group-label" style="margin-top: 10px;">Akademik</div>
+
       <!-- Kalender Akademik -->
       <a href="{{ route('admin.kalender') }}" class="nav-item-link {{ request()->routeIs('admin.kalender') ? 'active' : '' }}">
         <i class="fa-solid fa-calendar-days"></i>
         <span>Kalender Akademik</span>
+      </a>
+
+      <!-- Kurikulum -->
+      <a href="{{ route('admin.kurikulum') }}" class="nav-item-link {{ request()->routeIs('admin.kurikulum') ? 'active' : '' }}">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Kurikulum</span>
       </a>
 
       <div class="nav-group-label" style="margin-top: 10px;">Media & Konten</div>
@@ -621,12 +702,6 @@
       <a href="{{ route('admin.galeri') }}" class="nav-item-link {{ request()->routeIs('admin.galeri') ? 'active' : '' }}">
         <i class="fa-solid fa-images"></i>
         <span>Galeri Foto</span>
-      </a>
-
-      <!-- Kurikulum -->
-      <a href="{{ route('admin.kurikulum') }}" class="nav-item-link {{ request()->routeIs('admin.kurikulum') ? 'active' : '' }}">
-        <i class="fa-solid fa-book-open"></i>
-        <span>Kurikulum</span>
       </a>
 
       <div class="nav-group-label" style="margin-top: 10px;">Sistem</div>
@@ -645,7 +720,7 @@
       </form>
       <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutFormSidebar').submit();" class="sidebar-footer-link text-danger">
         <i class="fa-solid fa-right-from-bracket"></i>
-        <span>Keluar Sistem</span>
+        <span>Logout</span>
       </a>
     </div>
   </aside>
@@ -734,6 +809,8 @@
   <script src="{{ asset('adward/js/bootstrap.js') }}"></script>
   <!-- Chart.js for beautiful charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- DataTables JS -->
+  <script src="{{ asset('adward/js/datatables/datatables.min.js') }}"></script>
 
   <script>
     // Mobile sidebar toggle handler

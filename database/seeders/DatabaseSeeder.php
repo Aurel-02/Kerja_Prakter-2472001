@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Galeri;
 use App\Models\KalenderAkademik;
 use App\Models\Kurikulum;
+use App\Models\OrangTuaWali;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use App\Models\StrukturSekolah;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -314,5 +316,54 @@ class DatabaseSeeder extends Seeder
         foreach ($kurikulumList as $kuri) {
             Kurikulum::create(array_merge($kuri, ['id_profil' => $sekolah->id_profil]));
         }
+
+        // 6. Data Orang Tua / Wali & Siswa
+        $ortu1 = OrangTuaWali::updateOrCreate(
+            ['qr_code_penjemput' => 'ORTU-TK-001'],
+            ['nama' => 'Bpk. Hendra Kusuma', 'no_telp' => '081234567890']
+        );
+        Siswa::updateOrCreate(
+            ['nis' => 'TK-2401'],
+            [
+                'id_ortu_wali' => $ortu1->id_ortu_wali,
+                'nama' => 'Aisyah Putri Ramadhani',
+                'tahun_ajaran' => '2026/2027',
+                'status' => 'aktif',
+                'jenis_kelamin' => 'Perempuan',
+                'qr_code_siswa' => 'SISWA-TK-001',
+            ]
+        );
+
+        $ortu2 = OrangTuaWali::updateOrCreate(
+            ['qr_code_penjemput' => 'ORTU-TK-002'],
+            ['nama' => 'Ibu Dewi Sartika', 'no_telp' => '081398765432']
+        );
+        Siswa::updateOrCreate(
+            ['nis' => 'TK-2402'],
+            [
+                'id_ortu_wali' => $ortu2->id_ortu_wali,
+                'nama' => 'Muhammad Rizky Pratama',
+                'tahun_ajaran' => '2026/2027',
+                'status' => 'aktif',
+                'jenis_kelamin' => 'Laki-laki',
+                'qr_code_siswa' => 'SISWA-TK-002',
+            ]
+        );
+
+        $ortu3 = OrangTuaWali::updateOrCreate(
+            ['qr_code_penjemput' => 'ORTU-TK-003'],
+            ['nama' => 'Bpk. Fajar Nugraha', 'no_telp' => '085712348765']
+        );
+        Siswa::updateOrCreate(
+            ['nis' => 'TK-2403'],
+            [
+                'id_ortu_wali' => $ortu3->id_ortu_wali,
+                'nama' => 'Bilal Ramadhan',
+                'tahun_ajaran' => '2026/2027',
+                'status' => 'aktif',
+                'jenis_kelamin' => 'Laki-laki',
+                'qr_code_siswa' => 'SISWA-TK-003',
+            ]
+        );
     }
 }

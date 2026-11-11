@@ -23,7 +23,7 @@
     </div>
 
     <div class="table-responsive" style="margin: 0 -8px;">
-      <table class="custom-table">
+      <table id="tableKurikulum" class="custom-table" style="width:100%">
         <thead>
           <tr>
             <th style="width: 50px; text-align: center;">No</th>
@@ -166,6 +166,26 @@
 @section('scripts')
 <script>
   $(document).ready(function() {
+    // Inisialisasi DataTable untuk Kurikulum
+    $('#tableKurikulum').DataTable({
+      language: {
+        search: 'Cari:',
+        lengthMenu: 'Tampilkan _MENU_ data',
+        info: 'Menampilkan _START_–_END_ dari _TOTAL_ data',
+        infoEmpty: 'Tidak ada data',
+        infoFiltered: '(difilter dari _MAX_ total data)',
+        paginate: { first: '«', last: '»', next: '›', previous: '‹' },
+        zeroRecords: 'Tidak ada kurikulum yang cocok',
+        emptyTable: 'Belum ada data kurikulum.'
+      },
+      columnDefs: [
+        { orderable: false, targets: [0, 4] }  // No dan Aksi tidak bisa diurutkan
+      ],
+      pageLength: 10,
+      order: [[1, 'asc']]
+    });
+
+    // Modal Edit Kurikulum
     $('.btn-edit-kurikulum').on('click', function() {
       const id = $(this).data('id');
       const kategori = $(this).data('kategori');

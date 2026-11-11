@@ -310,7 +310,7 @@
       <!-- Submit Button -->
       <button type="submit" class="btn btn-login mb-2">
         <i class="fa-solid fa-arrow-right-to-bracket"></i>
-        <span>Masuk ke Panel Admin</span>
+        <span>Login</span>
       </button>
     </form>
 

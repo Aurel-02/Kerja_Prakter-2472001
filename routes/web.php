@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\KalenderController;
 use App\Http\Controllers\Admin\KurikulumController;
+use App\Http\Controllers\Admin\OrangTuaController;
 use App\Http\Controllers\Admin\SekolahController;
+use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\PenjemputanController as GuruPenjemputanController;
@@ -40,8 +42,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/guru/{nip}', [GuruController::class, 'update'])->name('guru.update');
     Route::delete('/guru/{nip}', [GuruController::class, 'destroy'])->name('guru.destroy');
 
-    // Siswa (Menu statis yang sudah ada)
-    Route::get('/siswa', fn () => view('admin.siswa'))->name('siswa');
+    // CRUD Data Siswa
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
+    Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+    Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+    Route::delete('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+
+    // Data Orang Tua / Wali
+    Route::get('/orang-tua', [OrangTuaController::class, 'index'])->name('orang-tua');
+    Route::post('/orang-tua', [OrangTuaController::class, 'store'])->name('orang-tua.store');
+    Route::put('/orang-tua/{id}', [OrangTuaController::class, 'update'])->name('orang-tua.update');
+    Route::delete('/orang-tua/{id}', [OrangTuaController::class, 'destroy'])->name('orang-tua.destroy');
 
     // CRUD Kalender Akademik
     Route::get('/kalender', [KalenderController::class, 'index'])->name('kalender');
@@ -60,6 +71,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/kurikulum', [KurikulumController::class, 'store'])->name('kurikulum.store');
     Route::put('/kurikulum/{id}', [KurikulumController::class, 'update'])->name('kurikulum.update');
     Route::delete('/kurikulum/{id}', [KurikulumController::class, 'destroy'])->name('kurikulum.destroy');
+
+    // Scan QR Penjemputan (Dapat diakses oleh Admin)
+    Route::get('/scan-qr', [GuruPenjemputanController::class, 'scanQr'])->name('scan-qr');
+    Route::post('/scan-qr/cek-siswa', [GuruPenjemputanController::class, 'cekSiswa'])->name('scan-qr.cek-siswa');
+    Route::post('/scan-qr/cek-ortu', [GuruPenjemputanController::class, 'cekOrtu'])->name('scan-qr.cek-ortu');
+    Route::post('/scan-qr/simpan', [GuruPenjemputanController::class, 'simpanPenjemputan'])->name('scan-qr.simpan');
 });
 
 // Guru Routes (Dilindungi Auth Middleware)

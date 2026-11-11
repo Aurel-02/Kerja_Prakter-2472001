@@ -445,7 +445,7 @@
       </form>
       <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutFormSidebar').submit();" class="sidebar-footer-link text-danger">
         <i class="fa-solid fa-right-from-bracket"></i>
-        <span>Keluar Sistem</span>
+        <span>Logout</span>
       </a>
     </div>
   </aside>

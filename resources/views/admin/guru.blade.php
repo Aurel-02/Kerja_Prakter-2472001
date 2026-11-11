@@ -23,7 +23,7 @@
     </div>
 
     <div class="table-responsive" style="margin: 0 -8px;">
-      <table class="custom-table">
+      <table id="tableGuru" class="custom-table" style="width:100%">
         <thead>
           <tr>
             <th style="width: 50px; text-align: center;">No</th>
@@ -206,6 +206,31 @@
 @section('scripts')
 <script>
   $(document).ready(function() {
+    // Inisialisasi DataTable untuk tabel Guru
+    $('#tableGuru').DataTable({
+      language: {
+        search: 'Cari:',
+        lengthMenu: 'Tampilkan _MENU_ data',
+        info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ data',
+        infoEmpty: 'Tidak ada data yang tersedia',
+        infoFiltered: '(difilter dari _MAX_ total data)',
+        paginate: {
+          first: 'Pertama',
+          last: 'Terakhir',
+          next: 'Berikutnya',
+          previous: 'Sebelumnya'
+        },
+        zeroRecords: 'Tidak ada data yang cocok dengan pencarian',
+        emptyTable: 'Belum ada data guru atau tenaga pengajar.'
+      },
+      columnDefs: [
+        { orderable: false, targets: [1, 6] }  // Kolom Foto dan Aksi tidak bisa diurutkan
+      ],
+      pageLength: 10,
+      order: [[0, 'asc']]
+    });
+
+    // Modal Edit Guru
     $('.btn-edit-guru').on('click', function() {
       const nip = $(this).data('nip');
       const nama = $(this).data('nama');
@@ -217,7 +242,6 @@
       $('#edit_jabatan').val(jabatan);
       $('#edit_pendidikan').val(pendidikan);
 
-      // Set action form
       const updateUrl = "{{ url('/admin/guru') }}/" + encodeURIComponent(nip);
       $('#formEditGuru').attr('action', updateUrl);
     });
