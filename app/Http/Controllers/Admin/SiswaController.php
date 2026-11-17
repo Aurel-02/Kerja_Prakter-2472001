@@ -34,12 +34,13 @@ class SiswaController extends Controller
             'jenis_kelamin' => 'required|string|max:20',
             'tahun_ajaran'  => 'nullable|string|max:50',
             'id_ortu_wali'  => 'nullable|exists:orang_tua_wali,id_ortu_wali',
-            'qr_code_siswa' => 'nullable|string|max:255|unique:siswa,qr_code_siswa',
+            'qr_code_siswa' => 'required|string|max:255|unique:siswa,qr_code_siswa',
         ], [
-            'nama.required' => 'Nama siswa wajib diisi.',
-            'nis.required'  => 'NIS siswa wajib diisi.',
-            'nis.unique'    => 'NIS ini sudah terdaftar.',
-            'qr_code_siswa.unique' => 'Kode QR ini sudah digunakan oleh siswa lain.',
+            'nama.required'          => 'Nama siswa wajib diisi.',
+            'nis.required'           => 'NIS siswa wajib diisi.',
+            'nis.unique'             => 'NIS ini sudah terdaftar.',
+            'qr_code_siswa.required' => 'Kode QR siswa wajib diisi secara manual.',
+            'qr_code_siswa.unique'   => 'Kode QR ini sudah digunakan oleh siswa lain.',
         ]);
 
         Siswa::create([
@@ -49,7 +50,7 @@ class SiswaController extends Controller
             'tahun_ajaran'  => $request->tahun_ajaran ?: '2026/2027',
             'status'        => 'aktif',
             'id_ortu_wali'  => $request->id_ortu_wali,
-            'qr_code_siswa' => $request->qr_code_siswa ?: 'SISWA-' . strtoupper(uniqid()),
+            'qr_code_siswa' => trim($request->qr_code_siswa),
         ]);
 
         return redirect()->route('admin.siswa')
@@ -69,7 +70,13 @@ class SiswaController extends Controller
             'jenis_kelamin' => 'required|string|max:20',
             'tahun_ajaran'  => 'nullable|string|max:50',
             'id_ortu_wali'  => 'nullable|exists:orang_tua_wali,id_ortu_wali',
-            'qr_code_siswa' => 'nullable|string|max:255|unique:siswa,qr_code_siswa,' . $id . ',id_siswa',
+            'qr_code_siswa' => 'required|string|max:255|unique:siswa,qr_code_siswa,' . $id . ',id_siswa',
+        ], [
+            'nama.required'          => 'Nama siswa wajib diisi.',
+            'nis.required'           => 'NIS siswa wajib diisi.',
+            'nis.unique'             => 'NIS ini sudah terdaftar.',
+            'qr_code_siswa.required' => 'Kode QR siswa wajib diisi.',
+            'qr_code_siswa.unique'   => 'Kode QR ini sudah digunakan oleh siswa lain.',
         ]);
 
         $siswa->update([
@@ -78,7 +85,7 @@ class SiswaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'tahun_ajaran'  => $request->tahun_ajaran ?: $siswa->tahun_ajaran,
             'id_ortu_wali'  => $request->id_ortu_wali,
-            'qr_code_siswa' => $request->qr_code_siswa ?: $siswa->qr_code_siswa,
+            'qr_code_siswa' => trim($request->qr_code_siswa),
         ]);
 
         return redirect()->route('admin.siswa')

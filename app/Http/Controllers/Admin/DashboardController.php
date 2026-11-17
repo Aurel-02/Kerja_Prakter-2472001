@@ -7,6 +7,7 @@ use App\Models\Galeri;
 use App\Models\KalenderAkademik;
 use App\Models\Kurikulum;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use App\Models\StrukturSekolah;
 
 class DashboardController extends Controller
@@ -14,6 +15,9 @@ class DashboardController extends Controller
     public function index()
     {
         try {
+            $totalSiswa = Siswa::count();
+            $totalLakiLaki = Siswa::where('jenis_kelamin', 'Laki-laki')->count();
+            $totalPerempuan = Siswa::where('jenis_kelamin', 'Perempuan')->count();
             $totalGuru = StrukturSekolah::count();
             $totalGaleri = Galeri::count();
             $totalKalender = KalenderAkademik::count();
@@ -23,6 +27,9 @@ class DashboardController extends Controller
                 'misi' => 'Belum diatur',
             ]);
         } catch (\Throwable $e) {
+            $totalSiswa = 0;
+            $totalLakiLaki = 0;
+            $totalPerempuan = 0;
             $totalGuru = 0;
             $totalGaleri = 0;
             $totalKalender = 0;
@@ -34,6 +41,9 @@ class DashboardController extends Controller
         }
 
         return view('admin.dashboard', compact(
+            'totalSiswa',
+            'totalLakiLaki',
+            'totalPerempuan',
             'totalGuru',
             'totalGaleri',
             'totalKalender',

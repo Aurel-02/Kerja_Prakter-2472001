@@ -18,11 +18,15 @@ class DashboardController extends Controller
     {
         try {
             $totalSiswa = Siswa::count();
+            $totalLakiLaki = Siswa::where('jenis_kelamin', 'Laki-laki')->count();
+            $totalPerempuan = Siswa::where('jenis_kelamin', 'Perempuan')->count();
             $totalKurikulum = Kurikulum::count();
             $kegiatanTerdekat = KalenderAkademik::orderBy('tanggal_mulai', 'asc')->take(4)->get();
             $totalPenjemputanHariIni = Penjemputan::whereDate('waktu', today())->count();
         } catch (\Throwable $e) {
             $totalSiswa = 0;
+            $totalLakiLaki = 0;
+            $totalPerempuan = 0;
             $totalKurikulum = 0;
             $kegiatanTerdekat = collect();
             $totalPenjemputanHariIni = 0;
@@ -33,10 +37,11 @@ class DashboardController extends Controller
         return view('guru.dashboard', compact(
             'user',
             'totalSiswa',
+            'totalLakiLaki',
+            'totalPerempuan',
             'totalKurikulum',
             'kegiatanTerdekat',
             'totalPenjemputanHariIni'
         ));
     }
 }
-

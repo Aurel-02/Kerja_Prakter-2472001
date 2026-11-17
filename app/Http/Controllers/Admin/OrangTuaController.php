@@ -28,17 +28,18 @@ class OrangTuaController extends Controller
         $request->validate([
             'nama'              => 'required|string|max:255',
             'no_telp'           => 'required|string|max:50',
-            'qr_code_penjemput' => 'nullable|string|max:255|unique:orang_tua_wali,qr_code_penjemput',
+            'qr_code_penjemput' => 'required|string|max:255|unique:orang_tua_wali,qr_code_penjemput',
         ], [
-            'nama.required'     => 'Nama orang tua / wali wajib diisi.',
-            'no_telp.required'  => 'Nomor telepon wajib diisi.',
-            'qr_code_penjemput.unique' => 'Kode QR ini sudah digunakan oleh orang tua / wali lain.',
+            'nama.required'              => 'Nama orang tua / wali wajib diisi.',
+            'no_telp.required'           => 'Nomor telepon wajib diisi.',
+            'qr_code_penjemput.required' => 'Kode QR penjemput wajib diisi secara manual.',
+            'qr_code_penjemput.unique'   => 'Kode QR ini sudah digunakan oleh orang tua / wali lain.',
         ]);
 
         OrangTuaWali::create([
             'nama'              => $request->nama,
             'no_telp'           => $request->no_telp,
-            'qr_code_penjemput' => $request->qr_code_penjemput ?: 'QR-' . strtoupper(uniqid()),
+            'qr_code_penjemput' => trim($request->qr_code_penjemput),
         ]);
 
         return redirect()->route('admin.orang-tua')
@@ -55,13 +56,18 @@ class OrangTuaController extends Controller
         $request->validate([
             'nama'              => 'required|string|max:255',
             'no_telp'           => 'required|string|max:50',
-            'qr_code_penjemput' => 'nullable|string|max:255|unique:orang_tua_wali,qr_code_penjemput,' . $id . ',id_ortu_wali',
+            'qr_code_penjemput' => 'required|string|max:255|unique:orang_tua_wali,qr_code_penjemput,' . $id . ',id_ortu_wali',
+        ], [
+            'nama.required'              => 'Nama orang tua / wali wajib diisi.',
+            'no_telp.required'           => 'Nomor telepon wajib diisi.',
+            'qr_code_penjemput.required' => 'Kode QR penjemput wajib diisi.',
+            'qr_code_penjemput.unique'   => 'Kode QR ini sudah digunakan oleh orang tua / wali lain.',
         ]);
 
         $ortu->update([
             'nama'              => $request->nama,
             'no_telp'           => $request->no_telp,
-            'qr_code_penjemput' => $request->qr_code_penjemput ?: $ortu->qr_code_penjemput,
+            'qr_code_penjemput' => trim($request->qr_code_penjemput),
         ]);
 
         return redirect()->route('admin.orang-tua')
