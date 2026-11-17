@@ -17,7 +17,65 @@
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="{{ asset('adward/css/datatables/datatables.min.css') }}" />
+
   <style>
+    /* DataTables custom overrides agar cocok dengan tema portal guru */
+    div.dataTables_wrapper div.dataTables_length label,
+    div.dataTables_wrapper div.dataTables_filter label,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
+      font-size: 12.5px;
+      color: #64748b;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 12.5px;
+      outline: none;
+      margin-left: 6px;
+    }
+    div.dataTables_wrapper div.dataTables_length select {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 12.5px;
+      margin: 0 6px;
+    }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+      border-radius: 6px !important;
+      font-size: 12px !important;
+      padding: 4px 10px !important;
+      margin: 0 2px !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button.current,
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button.current:hover {
+      background: #16a34a !important;
+      border-color: #16a34a !important;
+      color: #fff !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button:hover {
+      background: #f0fdf4 !important;
+      border-color: #bbf7d0 !important;
+      color: #16a34a !important;
+    }
+    div.dataTables_wrapper div.dataTables_filter {
+      margin-bottom: 12px;
+    }
+    div.dataTables_wrapper div.dataTables_length {
+      margin-bottom: 12px;
+    }
+    div.dataTables_wrapper div.dataTables_info {
+      padding-top: 10px;
+    }
+    table.dataTable thead th {
+      border-bottom: 2px solid #eef2f6 !important;
+    }
+    table.dataTable.no-footer {
+      border-bottom: none !important;
+    }
     :root {
       --primary: #16a34a;
       --primary-dark: #15803d;
@@ -242,21 +300,46 @@
       gap: 14px;
     }
 
+    .action-btn-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      text-decoration: none;
+      position: relative;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .action-btn-circle:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .action-btn-circle .badge-dot {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      width: 7px;
+      height: 7px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 1.5px solid #ffffff;
+    }
+
     .topbar-user-pill {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 6px 12px;
-      border-radius: 9999px;
-      background: #f8fafc;
-      border: 1px solid var(--border-color);
-      cursor: pointer;
+      padding: 2px 4px;
+      cursor: default;
       user-select: none;
-      transition: background 0.15s;
-    }
-
-    .topbar-user-pill:hover {
-      background: #f1f5f9;
     }
 
     .user-info-text {
@@ -409,12 +492,18 @@
         <span>Scan QR Penjemputan</span>
       </a>
 
-      <div class="nav-group-label" style="margin-top: 10px;">Kegiatan & Akademik</div>
+      <div class="nav-group-label" style="margin-top: 10px;">Data Akademik</div>
 
-      <!-- Informasi Siswa -->
-      <a href="{{ route('home') }}" class="nav-item-link" title="Data Siswa Aktif">
+      <!-- Data Siswa -->
+      <a href="{{ route('guru.siswa') }}" class="nav-item-link {{ request()->routeIs('guru.siswa') ? 'active' : '' }}" title="Data Seluruh Siswa">
         <i class="fa-solid fa-graduation-cap"></i>
         <span>Data Siswa</span>
+      </a>
+
+      <!-- Data Orang Tua -->
+      <a href="{{ route('guru.orang-tua') }}" class="nav-item-link {{ request()->routeIs('guru.orang-tua') ? 'active' : '' }}" title="Data Orang Tua / Wali">
+        <i class="fa-solid fa-people-roof"></i>
+        <span>Data Orang Tua</span>
       </a>
 
       <!-- Kalender Akademik -->
@@ -456,34 +545,21 @@
       <button class="btn-mobile-toggle" id="mobileNavToggle" title="Buka Menu">
         <i class="fa-solid fa-bars"></i>
       </button>
-
-      <span class="topbar-badge-role">
-        <i class="fa-solid fa-id-badge"></i> Guru / Pendidik
-      </span>
     </div>
 
     <!-- Right Controls -->
     <div class="topbar-actions">
-      <!-- User Profile Pill -->
-      <div class="dropdown">
-        <div class="topbar-user-pill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-          <div class="user-info-text">
-            <span class="user-name">{{ Auth::user()->nama ?? 'Guru Pengajar' }}</span>
-            <span class="user-role">Guru ({{ Auth::user()->username ?? 'guru1' }})</span>
-          </div>
-          <i class="fa-solid fa-chevron-down user-chevron"></i>
-        </div>
-        <div class="dropdown-menu dropdown-menu-right shadow-sm mt-2" style="border-radius: 12px; border: 1px solid var(--border-color); min-width: 180px; padding: 6px;">
-          <a class="dropdown-item" href="{{ route('home') }}" target="_blank" style="font-size: 13px; padding: 8px 12px; border-radius: 8px;">
-            <i class="fa-solid fa-globe mr-2 text-success"></i> Lihat Website
-          </a>
-          <div class="dropdown-divider"></div>
-          <form action="{{ route('logout') }}" method="POST" class="m-0">
-            @csrf
-            <button type="submit" class="dropdown-item text-danger" style="font-size: 13px; padding: 8px 12px; border-radius: 8px; cursor: pointer; border: none; background: none;">
-              <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
-            </button>
-          </form>
+      <!-- Notification Icon -->
+      <a href="#" class="action-btn-circle" title="Notifikasi">
+        <i class="fa-regular fa-bell"></i>
+        <span class="badge-dot"></span>
+      </a>
+
+      <!-- User Profile Info -->
+      <div class="topbar-user-pill" style="cursor: default;">
+        <div class="user-info-text">
+          <span class="user-name">{{ Auth::user()->nama ?? 'Guru' }}</span>
+          <span class="user-role">Guru</span>
         </div>
       </div>
     </div>
@@ -523,9 +599,10 @@
   <!-- Scripts -->
   <script src="{{ asset('adward/js/jquery-3.4.1.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ asset('adward/js/bootstrap.js') }}"></script>
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- DataTables JS -->
+  <script src="{{ asset('adward/js/datatables/datatables.min.js') }}"></script>
 
   <script>
     // Mobile sidebar toggle handler

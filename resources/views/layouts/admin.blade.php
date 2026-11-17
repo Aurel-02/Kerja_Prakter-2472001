@@ -401,7 +401,7 @@
       align-items: center;
       gap: 10px;
       padding: 2px 4px;
-      cursor: pointer;
+      cursor: default;
       user-select: none;
     }
 
@@ -731,12 +731,6 @@
       <button class="btn-mobile-toggle" id="mobileNavToggle" title="Buka Menu">
         <i class="fa-solid fa-bars"></i>
       </button>
-
-      <!-- Search Bar -->
-      <div class="topbar-search-wrap">
-        <i class="fa-solid fa-magnifying-glass topbar-search-icon"></i>
-        <input type="text" class="topbar-search-input" placeholder="Cari data..." />
-      </div>
     </div>
 
     <!-- Right Controls -->
@@ -747,26 +741,11 @@
         <span class="badge-dot"></span>
       </a>
 
-      <!-- User Profile Pill -->
-      <div class="dropdown">
-        <div class="topbar-user-pill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-          <div class="user-info-text">
-            <span class="user-name">{{ Auth::user()->nama ?? 'Administrator' }}</span>
-            <span class="user-role">{{ ucfirst(Auth::user()->role ?? 'Admin') }} ({{ Auth::user()->username ?? 'admin1' }})</span>
-          </div>
-          <i class="fa-solid fa-chevron-down user-chevron"></i>
-        </div>
-        <div class="dropdown-menu dropdown-menu-right shadow-sm mt-2" style="border-radius: 12px; border: 1px solid var(--border-color); min-width: 180px; padding: 6px;">
-          <a class="dropdown-item" href="{{ route('home') }}" target="_blank" style="font-size: 13px; padding: 8px 12px; border-radius: 8px;">
-            <i class="fa-solid fa-globe mr-2 text-success"></i> Lihat Website
-          </a>
-          <div class="dropdown-divider"></div>
-          <form action="{{ route('logout') }}" method="POST" class="m-0">
-            @csrf
-            <button type="submit" class="dropdown-item text-danger" style="font-size: 13px; padding: 8px 12px; border-radius: 8px; cursor: pointer; border: none; background: none;">
-              <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
-            </button>
-          </form>
+      <!-- User Profile Info -->
+      <div class="topbar-user-pill" style="cursor: default;">
+        <div class="user-info-text">
+          <span class="user-name">{{ Auth::user()->nama ?? 'Administrator' }}</span>
+          <span class="user-role">Admin</span>
         </div>
       </div>
     </div>
@@ -806,7 +785,6 @@
   <!-- Scripts -->
   <script src="{{ asset('adward/js/jquery-3.4.1.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ asset('adward/js/bootstrap.js') }}"></script>
   <!-- Chart.js for beautiful charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- DataTables JS -->

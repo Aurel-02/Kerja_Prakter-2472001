@@ -17,7 +17,7 @@
     <div class="stat-banner-card stat-card-green">
       <div class="stat-text-side">
         <span class="stat-label-title">Siswa</span>
-        <span class="stat-value-big">34</span>
+        <span class="stat-value-big">{{ $totalSiswa }}</span>
         <span class="stat-sub-text">Total Siswa Aktif</span>
       </div>
     </div>
@@ -206,7 +206,7 @@
           <canvas id="studentsDonutChart"></canvas>
           <div class="donut-center-label">
             <div class="donut-sub">Total Siswa</div>
-            <div class="donut-num">42</div>
+            <div class="donut-num">{{ $totalSiswa }}</div>
           </div>
         </div>
       </div>
@@ -215,11 +215,11 @@
       <div class="gender-legend-wrap">
         <span class="gender-item">
           <span class="gender-dot" style="background: #16a34a;"></span>
-          <span class="gender-text">Laki-laki (24)</span>
+          <span class="gender-text">Laki-laki ({{ $totalLakiLaki }})</span>
         </span>
         <span class="gender-item">
           <span class="gender-dot" style="background: #86efac;"></span>
-          <span class="gender-text">Perempuan (18)</span>
+          <span class="gender-text">Perempuan ({{ $totalPerempuan }})</span>
         </span>
       </div>
     </div>
@@ -464,12 +464,16 @@
     // ----------------------------------------------------
     const ctxDonut = document.getElementById('studentsDonutChart');
     if (ctxDonut) {
+      const maleCount = {{ (int) $totalLakiLaki }};
+      const femaleCount = {{ (int) $totalPerempuan }};
+      const hasData = (maleCount + femaleCount) > 0;
+
       new Chart(ctxDonut, {
         type: 'doughnut',
         data: {
           labels: ['Laki-laki', 'Perempuan'],
           datasets: [{
-            data: [24, 18],
+            data: hasData ? [maleCount, femaleCount] : [0, 0],
             backgroundColor: ['#16a34a', '#86efac'],
             borderWidth: 2,
             borderColor: '#ffffff',

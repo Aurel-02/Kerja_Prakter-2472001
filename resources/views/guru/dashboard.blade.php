@@ -10,36 +10,19 @@
     <p class="page-header-sub">Selamat datang kembali! Berikut ringkasan data akademik dan kegiatan belajar di TK Harapan Bunda.</p>
   </div>
 
-  <!-- ================= BARIS 1: 3 KARTU STATISTIK (HIJAU KHAS WEB) ================= -->
-  <div class="dash-grid-top">
-    
-    <!-- Kartu 1: Siswa -->
-    <div class="stat-banner-card stat-card-green">
+  <!-- ================= BARIS 1: KARTU JUMLAH SISWA ================= -->
+  <div style="margin-bottom: 22px; max-width: 320px;">
+    <!-- Kartu: Siswa -->
+    <a href="{{ route('guru.siswa') }}" class="stat-banner-card stat-card-green" style="text-decoration: none; color: inherit; cursor: pointer;">
       <div class="stat-text-side">
         <span class="stat-label-title">Siswa</span>
-        <span class="stat-value-big">34</span>
-        <span class="stat-sub-text">Total Siswa Aktif</span>
+        <span class="stat-value-big">{{ $totalSiswa }}</span>
+        <span class="stat-sub-text">Total Siswa Aktif &rarr;</span>
       </div>
-    </div>
-
-    <!-- Kartu 2: Kurikulum -->
-    <div class="stat-banner-card stat-card-green">
-      <div class="stat-text-side">
-        <span class="stat-label-title">Kurikulum</span>
-        <span class="stat-value-big">{{ $totalKurikulum > 0 ? $totalKurikulum : 6 }}</span>
-        <span class="stat-sub-text">Program &amp; Tema Belajar</span>
+      <div class="stat-icon-wrap stat-icon-green">
+        <i class="fa-solid fa-graduation-cap"></i>
       </div>
-    </div>
-
-    <!-- Kartu 3: Penjemputan -->
-    <div class="stat-banner-card stat-card-green">
-      <div class="stat-text-side">
-        <span class="stat-label-title">Penjemputan Hari Ini</span>
-        <span class="stat-value-big">{{ $totalPenjemputanHariIni }}</span>
-        <span class="stat-sub-text">Siswa Telah Dijemput</span>
-      </div>
-    </div>
-
+    </a>
   </div>
 
   <!-- ================= BARIS 2: AGENDA & DISTRIBUSI SISWA ================= -->
@@ -127,7 +110,7 @@
           <canvas id="studentsDonutChart"></canvas>
           <div class="donut-center-label">
             <div class="donut-sub">Total Siswa</div>
-            <div class="donut-num">{{ $totalSiswa > 0 ? $totalSiswa : 42 }}</div>
+            <div class="donut-num">{{ $totalSiswa }}</div>
           </div>
         </div>
       </div>
@@ -136,11 +119,11 @@
       <div class="gender-legend-wrap">
         <span class="gender-item">
           <span class="gender-dot" style="background: #16a34a;"></span>
-          <span class="gender-text">Laki-laki (24)</span>
+          <span class="gender-text">Laki-laki ({{ $totalLakiLaki }})</span>
         </span>
         <span class="gender-item">
           <span class="gender-dot" style="background: #86efac;"></span>
-          <span class="gender-text">Perempuan (18)</span>
+          <span class="gender-text">Perempuan ({{ $totalPerempuan }})</span>
         </span>
       </div>
     </div>
@@ -224,6 +207,22 @@
     font-size: 11.5px;
     font-weight: 500;
     color: #64748b;
+  }
+
+  .stat-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+  }
+
+  .stat-icon-green {
+    background: #dcfce7;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
   }
 
   /* ===================== DAFTAR AGENDA ===================== */
@@ -383,12 +382,16 @@
     // ----------------------------------------------------
     const ctxDonut = document.getElementById('studentsDonutChart');
     if (ctxDonut) {
+      const maleCount = {{ (int) $totalLakiLaki }};
+      const femaleCount = {{ (int) $totalPerempuan }};
+      const hasData = (maleCount + femaleCount) > 0;
+
       new Chart(ctxDonut, {
         type: 'doughnut',
         data: {
           labels: ['Laki-laki', 'Perempuan'],
           datasets: [{
-            data: [24, 18],
+            data: hasData ? [maleCount, femaleCount] : [0, 0],
             backgroundColor: ['#16a34a', '#86efac'],
             borderWidth: 2,
             borderColor: '#ffffff',

@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Guru\OrangTuaController as GuruOrangTuaController;
 use App\Http\Controllers\Guru\PenjemputanController as GuruPenjemputanController;
+use App\Http\Controllers\Guru\SiswaController as GuruSiswaController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,4 +88,8 @@ Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
     Route::post('/scan-qr/cek-siswa', [GuruPenjemputanController::class, 'cekSiswa'])->name('scan-qr.cek-siswa');
     Route::post('/scan-qr/cek-ortu', [GuruPenjemputanController::class, 'cekOrtu'])->name('scan-qr.cek-ortu');
     Route::post('/scan-qr/simpan', [GuruPenjemputanController::class, 'simpanPenjemputan'])->name('scan-qr.simpan');
+
+    // Data Siswa & Orang Tua untuk Guru
+    Route::get('/siswa', [GuruSiswaController::class, 'index'])->name('siswa');
+    Route::get('/orang-tua', [GuruOrangTuaController::class, 'index'])->name('orang-tua');
 });
