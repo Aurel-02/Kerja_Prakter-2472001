@@ -48,9 +48,6 @@
               <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
                 <a class="nav-link font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
               </li>
-              <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('contact') }}"> Hubungi Kami </a>
-              </li>
               <li class="nav-item d-md-none mt-2">
                 <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
                   <i class="fa fa-sign-in mr-1"></i> Login

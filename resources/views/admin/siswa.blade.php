@@ -38,7 +38,8 @@
           <tr>
             <th style="width: 50px; text-align: center;">No</th>
             <th>Nama Siswa</th>
-            <th style="width: 120px;">NIS</th>
+            <th style="width: 110px;">NIS</th>
+            <th style="width: 120px;">Tahun Ajaran</th>
             <th>Kode QR Siswa</th>
             <th>Jenis Kelamin</th>
             <th>Orang Tua / Wali</th>
@@ -52,17 +53,21 @@
             <td class="text-muted" style="text-align: center;">{{ $index + 1 }}</td>
             <td>
               <div style="font-weight: 700; color: #1e293b; font-size: 13.5px;">{{ $s->nama }}</div>
-              <div style="font-size: 11px; color: #64748b;">Tahun Ajaran: {{ $s->tahun_ajaran ?? '2026/2027' }}</div>
             </td>
             <td>
-              <span style="font-family: monospace; font-size: 12.5px; font-weight: 600; color: #334155; background: #f1f5f9; padding: 3px 8px; border-radius: 6px;">
+              <span style="font-weight: 600; color: #334155; font-size: 13px;">
                 {{ $s->nis }}
+              </span>
+            </td>
+            <td>
+              <span style="font-size: 12.5px; font-weight: 600; color: #475569;">
+                {{ $s->tahun_ajaran ?? '2026/2027' }}
               </span>
             </td>
             <td>
               @if($s->qr_code_siswa)
                 <div>
-                  <div style="font-family: monospace; font-size: 12px; font-weight: 700; color: #166534; background: #dcfce7; padding: 2px 7px; border-radius: 5px; display: inline-block; margin-bottom: 3px;">
+                  <div style="font-family: monospace; font-size: 12.5px; font-weight: 700; color: #0f172a; margin-bottom: 3px;">
                     {{ $s->qr_code_siswa }}
                   </div>
                   <div>
@@ -87,7 +92,6 @@
             <td>
               @if($s->orangTua)
                 <div style="font-weight: 600; color: #1e293b;">{{ $s->orangTua->nama }}</div>
-                <div style="font-size: 11px; color: #64748b;">Telp: {{ $s->orangTua->no_telp ?? '-' }}</div>
               @else
                 <span class="text-muted" style="font-size: 12px;">Belum dihubungkan</span>
               @endif
@@ -106,8 +110,10 @@
                   data-nis="{{ $s->nis }}"
                   data-jk="{{ $s->jenis_kelamin }}"
                   data-ta="{{ $s->tahun_ajaran }}"
-                  data-ortu="{{ $s->id_ortu_wali }}"
                   data-qr="{{ $s->qr_code_siswa }}"
+                  data-nama-ortu="{{ $s->orangTua ? $s->orangTua->nama : '' }}"
+                  data-telp-ortu="{{ $s->orangTua ? $s->orangTua->no_telp : '' }}"
+                  data-qr-ortu="{{ $s->orangTua ? $s->orangTua->qr_code_penjemput : '' }}"
                   data-toggle="modal"
                   data-target="#modalEditSiswa">
                   <i class="fa-solid fa-pencil"></i>
@@ -130,7 +136,7 @@
           </tr>
           @empty
           <tr>
-            <td colspan="8" class="text-center py-4 text-muted">
+            <td colspan="9" class="text-center py-4 text-muted">
               Belum ada data siswa terdaftar. Silakan klik tombol "Tambah Siswa".
             </td>
           </tr>
@@ -140,61 +146,83 @@
     </div>
   </div>
 
-  <!-- Modal Tambah Siswa -->
+  <!-- Modal Tambah Siswa & Data Orang Tua Langsung -->
   <div class="modal fade" id="modalTambahSiswa" tabindex="-1" role="dialog" aria-labelledby="modalTambahSiswaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content" style="border-radius: 16px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
         <form action="{{ route('admin.siswa.store') }}" method="POST">
           @csrf
           <div class="modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 18px 24px;">
             <h5 class="modal-title" id="modalTambahSiswaLabel" style="font-weight: 700; color: #1e293b;">
-              <i class="fa-solid fa-user-plus text-success mr-2"></i> Tambah Siswa Baru
+              <i class="fa-solid fa-user-plus text-success mr-2"></i> Tambah Siswa &amp; Data Orang Tua
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none; border: none; font-size: 20px;">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" style="padding: 20px 24px;">
+          <div class="modal-body" style="padding: 22px 24px;">
 
-            <div class="form-group mb-3">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Lengkap Siswa <span class="text-danger">*</span></label>
-              <input type="text" name="nama" class="form-control" placeholder="Contoh: Aisyah Putri Ramadhani" required style="border-radius: 8px;">
-            </div>
+            <!-- Bagian 1: Data Siswa -->
+            <div style="margin-bottom: 6px;">
+              <div style="font-size: 13.5px; font-weight: 700; color: #16a34a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-graduation-cap"></i> Data Peserta Didik (Siswa)
+              </div>
 
-            <div class="row">
-              <div class="col-md-6 form-group mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">NIS <span class="text-danger">*</span></label>
-                <input type="text" name="nis" class="form-control" placeholder="Contoh: TK-2401" required style="border-radius: 8px;">
+              <div class="form-group mb-3">
+                <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Lengkap Siswa <span class="text-danger">*</span></label>
+                <input type="text" name="nama" class="form-control" placeholder="Contoh: Aisyah Putri Ramadhani" required style="border-radius: 8px;">
               </div>
-              <div class="col-md-6 form-group mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">Jenis Kelamin <span class="text-danger">*</span></label>
-                <select name="jenis_kelamin" class="form-control" required style="border-radius: 8px;">
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-                </select>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6 form-group mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">Tahun Ajaran</label>
-                <input type="text" name="tahun_ajaran" class="form-control" value="2026/2027" style="border-radius: 8px;">
+              <div class="row">
+                <div class="col-md-4 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">NIS <span class="text-danger">*</span></label>
+                  <input type="text" name="nis" class="form-control" placeholder="Contoh: TK-2401" required style="border-radius: 8px;">
+                </div>
+                <div class="col-md-4 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Jenis Kelamin <span class="text-danger">*</span></label>
+                  <select name="jenis_kelamin" class="form-control" required style="border-radius: 8px;">
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
+                </div>
+                <div class="col-md-4 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Tahun Ajaran</label>
+                  <input type="text" name="tahun_ajaran" class="form-control" value="2026/2027" style="border-radius: 8px;">
+                </div>
               </div>
-              <div class="col-md-6 form-group mb-3">
+
+              <div class="form-group mb-0">
                 <label style="font-weight: 600; color: #475569; font-size: 13px;">Kode QR Siswa <span class="text-danger">*</span></label>
                 <input type="text" name="qr_code_siswa" class="form-control" placeholder="Contoh: SISWA-TK-004" required style="border-radius: 8px; font-family: monospace;">
                 <small class="text-muted">Ketik manual kode unik QR untuk siswa ini.</small>
               </div>
             </div>
 
-            <div class="form-group mb-0">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Orang Tua / Wali Terdaftar</label>
-              <select name="id_ortu_wali" class="form-control" style="border-radius: 8px;">
-                <option value="">-- Pilih Orang Tua / Wali --</option>
-                @foreach($orangTuaList as $ortu)
-                  <option value="{{ $ortu->id_ortu_wali }}">{{ $ortu->nama }} (Telp: {{ $ortu->no_telp }})</option>
-                @endforeach
-              </select>
+            <!-- Pemisah Garis -->
+            <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 20px 0;">
+
+            <!-- Bagian 2: Data Orang Tua / Wali Langsung -->
+            <div>
+              <div style="font-size: 13.5px; font-weight: 700; color: #16a34a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-people-roof"></i> Data Orang Tua / Wali
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Orang Tua / Wali <span class="text-danger">*</span></label>
+                  <input type="text" name="nama_ortu" class="form-control" placeholder="Contoh: Bpk. Hendra Kusuma" required style="border-radius: 8px;">
+                </div>
+                <div class="col-md-6 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Nomor Telepon / WhatsApp <span class="text-danger">*</span></label>
+                  <input type="text" name="no_telp_ortu" class="form-control" placeholder="Contoh: 081234567890" required style="border-radius: 8px;">
+                </div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label style="font-weight: 600; color: #475569; font-size: 13px;">Kode QR Orang Tua / Penjemput <span class="text-danger">*</span></label>
+                <input type="text" name="qr_code_penjemput" class="form-control" placeholder="Contoh: ORTU-TK-004" required style="border-radius: 8px; font-family: monospace;">
+                <small class="text-muted">Ketik manual kode unik QR penjemput untuk orang tua ini.</small>
+              </div>
             </div>
 
           </div>
@@ -207,61 +235,82 @@
     </div>
   </div>
 
-  <!-- Modal Edit Siswa -->
+  <!-- Modal Edit Siswa & Data Orang Tua -->
   <div class="modal fade" id="modalEditSiswa" tabindex="-1" role="dialog" aria-labelledby="modalEditSiswaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content" style="border-radius: 16px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
         <form id="formEditSiswa" action="" method="POST">
           @csrf
           @method('PUT')
           <div class="modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 18px 24px;">
             <h5 class="modal-title" id="modalEditSiswaLabel" style="font-weight: 700; color: #1e293b;">
-              <i class="fa-solid fa-pencil text-primary mr-2"></i> Ubah Data Siswa
+              <i class="fa-solid fa-pencil text-primary mr-2"></i> Ubah Data Siswa &amp; Orang Tua
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none; border: none; font-size: 20px;">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" style="padding: 20px 24px;">
+          <div class="modal-body" style="padding: 22px 24px;">
 
-            <div class="form-group mb-3">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Lengkap Siswa <span class="text-danger">*</span></label>
-              <input type="text" id="edit_siswa_nama" name="nama" class="form-control" required style="border-radius: 8px;">
-            </div>
+            <!-- Bagian 1: Data Siswa -->
+            <div style="margin-bottom: 6px;">
+              <div style="font-size: 13.5px; font-weight: 700; color: #16a34a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-graduation-cap"></i> Data Peserta Didik (Siswa)
+              </div>
 
-            <div class="row">
-              <div class="col-md-6 form-group mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">NIS <span class="text-danger">*</span></label>
-                <input type="text" id="edit_siswa_nis" name="nis" class="form-control" required style="border-radius: 8px;">
+              <div class="form-group mb-3">
+                <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Lengkap Siswa <span class="text-danger">*</span></label>
+                <input type="text" id="edit_siswa_nama" name="nama" class="form-control" required style="border-radius: 8px;">
               </div>
-              <div class="col-md-6 form-group mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">Jenis Kelamin <span class="text-danger">*</span></label>
-                <select id="edit_siswa_jk" name="jenis_kelamin" class="form-control" required style="border-radius: 8px;">
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-                </select>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6 form-group mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">Tahun Ajaran</label>
-                <input type="text" id="edit_siswa_ta" name="tahun_ajaran" class="form-control" style="border-radius: 8px;">
+              <div class="row">
+                <div class="col-md-4 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">NIS <span class="text-danger">*</span></label>
+                  <input type="text" id="edit_siswa_nis" name="nis" class="form-control" required style="border-radius: 8px;">
+                </div>
+                <div class="col-md-4 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Jenis Kelamin <span class="text-danger">*</span></label>
+                  <select id="edit_siswa_jk" name="jenis_kelamin" class="form-control" required style="border-radius: 8px;">
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
+                </div>
+                <div class="col-md-4 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Tahun Ajaran</label>
+                  <input type="text" id="edit_siswa_ta" name="tahun_ajaran" class="form-control" style="border-radius: 8px;">
+                </div>
               </div>
-              <div class="col-md-6 form-group mb-3">
+
+              <div class="form-group mb-0">
                 <label style="font-weight: 600; color: #475569; font-size: 13px;">Kode QR Siswa <span class="text-danger">*</span></label>
                 <input type="text" id="edit_siswa_qr" name="qr_code_siswa" class="form-control" required style="border-radius: 8px; font-family: monospace;">
               </div>
             </div>
 
-            <div class="form-group mb-0">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Orang Tua / Wali Terdaftar</label>
-              <select id="edit_siswa_ortu" name="id_ortu_wali" class="form-control" style="border-radius: 8px;">
-                <option value="">-- Tidak Terhubung --</option>
-                @foreach($orangTuaList as $ortu)
-                  <option value="{{ $ortu->id_ortu_wali }}">{{ $ortu->nama }} (Telp: {{ $ortu->no_telp }})</option>
-                @endforeach
-              </select>
+            <!-- Pemisah Garis -->
+            <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 20px 0;">
+
+            <!-- Bagian 2: Data Orang Tua / Wali Langsung -->
+            <div>
+              <div style="font-size: 13.5px; font-weight: 700; color: #16a34a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-people-roof"></i> Data Orang Tua / Wali (Penjemput)
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Orang Tua / Wali <span class="text-danger">*</span></label>
+                  <input type="text" id="edit_siswa_nama_ortu" name="nama_ortu" class="form-control" required style="border-radius: 8px;">
+                </div>
+                <div class="col-md-6 form-group mb-3">
+                  <label style="font-weight: 600; color: #475569; font-size: 13px;">Nomor Telepon / WhatsApp <span class="text-danger">*</span></label>
+                  <input type="text" id="edit_siswa_telp_ortu" name="no_telp_ortu" class="form-control" required style="border-radius: 8px;">
+                </div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label style="font-weight: 600; color: #475569; font-size: 13px;">Kode QR Orang Tua / Penjemput <span class="text-danger">*</span></label>
+                <input type="text" id="edit_siswa_qr_penjemput" name="qr_code_penjemput" class="form-control" required style="border-radius: 8px; font-family: monospace;">
+              </div>
             </div>
 
           </div>
@@ -386,7 +435,7 @@
         emptyTable: 'Belum ada data siswa.'
       },
       columnDefs: [
-        { orderable: false, targets: [0, 3, 7] }
+        { orderable: false, targets: [0, 4, 8] }
       ],
       pageLength: 10,
       order: [[1, 'asc']]
@@ -427,21 +476,25 @@
     });
 
     // Modal Edit Siswa
-    $('.btn-edit-siswa').on('click', function() {
-      const id   = $(this).data('id');
-      const nama = $(this).data('nama');
-      const nis  = $(this).data('nis');
-      const jk   = $(this).data('jk');
-      const ta   = $(this).data('ta');
-      const ortu = $(this).data('ortu');
-      const qr   = $(this).data('qr');
+    $(document).on('click', '.btn-edit-siswa', function() {
+      const id       = $(this).data('id');
+      const nama     = $(this).data('nama');
+      const nis      = $(this).data('nis');
+      const jk       = $(this).data('jk');
+      const ta       = $(this).data('ta');
+      const qr       = $(this).data('qr');
+      const namaOrtu = $(this).data('nama-ortu');
+      const telpOrtu = $(this).data('telp-ortu');
+      const qrOrtu   = $(this).data('qr-ortu');
 
       $('#edit_siswa_nama').val(nama);
       $('#edit_siswa_nis').val(nis);
       $('#edit_siswa_jk').val(jk);
       $('#edit_siswa_ta').val(ta);
-      $('#edit_siswa_ortu').val(ortu || '');
       $('#edit_siswa_qr').val(qr);
+      $('#edit_siswa_nama_ortu').val(namaOrtu || '');
+      $('#edit_siswa_telp_ortu').val(telpOrtu || '');
+      $('#edit_siswa_qr_penjemput').val(qrOrtu || '');
 
       const updateUrl = "{{ url('/admin/siswa') }}/" + id;
       $('#formEditSiswa').attr('action', updateUrl);

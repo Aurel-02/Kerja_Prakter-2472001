@@ -49,7 +49,7 @@
               @endif
             </td>
             <td>
-              <span style="font-family: monospace; font-size: 13px; font-weight: 600; color: #334155; background: #f1f5f9; padding: 3px 8px; border-radius: 6px;">
+              <span style="font-weight: 600; color: #334155; font-size: 13px;">
                 {{ $guru->nip }}
               </span>
             </td>

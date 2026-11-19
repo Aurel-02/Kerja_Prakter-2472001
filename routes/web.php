@@ -27,8 +27,7 @@ Route::get('/about', [PublicController::class, 'about'])->name('about');
 Route::get('/kurikulum', [PublicController::class, 'kurikulum'])->name('kurikulum');
 Route::get('/teacher', [PublicController::class, 'teacher'])->name('teacher');
 Route::get('/vehicle', [PublicController::class, 'vehicle'])->name('vehicle');
-Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
-Route::post('/contact', [PublicController::class, 'sendContact'])->name('contact.send');
+Route::redirect('/contact', '/')->name('contact');
 Route::get('/kalender', [PublicController::class, 'kalender'])->name('kalender');
 Route::get('/galeri', [PublicController::class, 'galeri'])->name('galeri');
 

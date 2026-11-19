@@ -66,14 +66,6 @@
         </div>
       </div>
 
-      {{-- CTA --}}
-      <div class="d-flex justify-content-center mt-5">
-        <a href="{{ route('contact') }}" class="call_to-btn">
-          <span>Hubungi Kami</span>
-          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="Panah">
-        </a>
-      </div>
-
     </div>
   </section>
 

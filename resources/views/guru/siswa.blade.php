@@ -25,7 +25,8 @@
           <tr>
             <th style="width: 50px; text-align: center;">No</th>
             <th>Nama Siswa</th>
-            <th style="width: 120px;">NIS</th>
+            <th style="width: 110px;">NIS</th>
+            <th style="width: 120px;">Tahun Ajaran</th>
             <th>Kode QR Siswa</th>
             <th>Jenis Kelamin</th>
             <th>Orang Tua / Wali</th>
@@ -39,17 +40,21 @@
             <td class="text-muted" style="text-align: center;">{{ $index + 1 }}</td>
             <td>
               <div style="font-weight: 700; color: #1e293b; font-size: 13.5px;">{{ $s->nama }}</div>
-              <div style="font-size: 11px; color: #64748b;">Tahun Ajaran: {{ $s->tahun_ajaran ?? '2026/2027' }}</div>
             </td>
             <td>
-              <span style="font-family: monospace; font-size: 12.5px; font-weight: 600; color: #334155; background: #f1f5f9; padding: 3px 8px; border-radius: 6px;">
+              <span style="font-weight: 600; color: #334155; font-size: 13px;">
                 {{ $s->nis }}
+              </span>
+            </td>
+            <td>
+              <span style="font-size: 12.5px; font-weight: 600; color: #475569;">
+                {{ $s->tahun_ajaran ?? '2026/2027' }}
               </span>
             </td>
             <td>
               @if($s->qr_code_siswa)
                 <div>
-                  <div style="font-family: monospace; font-size: 12px; font-weight: 700; color: #166534; background: #dcfce7; padding: 2px 7px; border-radius: 5px; display: inline-block; margin-bottom: 3px;">
+                  <div style="font-family: monospace; font-size: 12.5px; font-weight: 700; color: #0f172a; margin-bottom: 3px;">
                     {{ $s->qr_code_siswa }}
                   </div>
                   <div>
@@ -93,7 +98,7 @@
           </tr>
           @empty
           <tr>
-            <td colspan="8" class="text-center py-4 text-muted">
+            <td colspan="9" class="text-center py-4 text-muted">
               Belum ada data siswa terdaftar di database.
             </td>
           </tr>
@@ -215,7 +220,7 @@
         emptyTable: 'Belum ada data siswa.'
       },
       columnDefs: [
-        { orderable: false, targets: [0, 3, 7] }
+        { orderable: false, targets: [0, 4, 8] }
       ],
       pageLength: 10,
       order: [[1, 'asc']]

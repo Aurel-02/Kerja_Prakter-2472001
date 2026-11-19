@@ -51,9 +51,6 @@
                 <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
                   <a class="nav-link font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('contact') }}"> Hubungi Kami </a>
-                </li>
                 <li class="nav-item d-md-none mt-2">
                   <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
                     <i class="fa fa-sign-in mr-1"></i> Login
@@ -83,8 +80,8 @@
                 Pendidikan anak usia dini yang berkualitas, menyenangkan, dan membangun karakter buah hati Anda.
               </p>
               <div class="hero_btn-continer">
-                <a href="{{ route('contact') }}" class="btn btn-warning btn-lg font-weight-bold px-4 py-3 shadow-lg rounded-pill call-btn-style">
-                  <span>Hubungi Kami</span>
+                <a href="{{ route('about') }}" class="btn btn-warning btn-lg font-weight-bold px-4 py-3 shadow-lg rounded-pill call-btn-style">
+                  <span>Tentang Kami</span>
                   <i class="fa fa-arrow-right ml-2"></i>
                 </a>
               </div>

@@ -63,14 +63,6 @@
         <p class="text-muted" style="font-size: 1.1rem;">Belum ada foto untuk kategori ini.</p>
       </div>
 
-      {{-- CTA --}}
-      <div class="d-flex justify-content-center mt-5">
-        <a href="{{ route('contact') }}" class="call_to-btn">
-          <span>Hubungi Kami</span>
-          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
-        </a>
-      </div>
-
     </div>
   </section>
 
