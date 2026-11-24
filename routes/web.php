@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\KurikulumController;
 use App\Http\Controllers\Admin\OrangTuaController;
 use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\OrangTuaController as GuruOrangTuaController;
@@ -31,11 +32,17 @@ Route::redirect('/contact', '/')->name('contact');
 Route::get('/kalender', [PublicController::class, 'kalender'])->name('kalender');
 Route::get('/galeri', [PublicController::class, 'galeri'])->name('galeri');
 
-// Admin Routes (Dilindungi Auth Middleware)
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+// Admin Routes (Dilindungi Auth & Admin Role Middleware - Hanya Admin)
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard & Profil Sekolah
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('/sekolah', [SekolahController::class, 'update'])->name('sekolah.update');
+
+    // Kelola Akun Pengguna (Hanya Admin)
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
     // CRUD Struktur Sekolah / Guru
     Route::get('/guru', [GuruController::class, 'index'])->name('guru');

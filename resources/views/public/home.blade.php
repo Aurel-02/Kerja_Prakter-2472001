@@ -79,12 +79,7 @@
               <p class="lead text-white mb-4 hero-desc-p" style="font-size: 1.25rem; text-shadow: 0 2px 8px rgba(0,0,0,0.6); max-width: 600px;">
                 Pendidikan anak usia dini yang berkualitas, menyenangkan, dan membangun karakter buah hati Anda.
               </p>
-              <div class="hero_btn-continer">
-                <a href="{{ route('about') }}" class="btn btn-warning btn-lg font-weight-bold px-4 py-3 shadow-lg rounded-pill call-btn-style">
-                  <span>Tentang Kami</span>
-                  <i class="fa fa-arrow-right ml-2"></i>
-                </a>
-              </div>
+
             </div>
           </div>
         </div>
