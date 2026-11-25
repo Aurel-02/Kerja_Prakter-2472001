@@ -118,6 +118,7 @@
                   data-id="{{ $u->id_user }}"
                   data-nama="{{ $u->nama }}"
                   data-username="{{ $u->username }}"
+                  data-password="{{ $u->readable_password ?? '' }}"
                   data-role="{{ $u->role }}"
                   data-status="{{ $u->status }}"
                   data-is-self="{{ Auth::id() == $u->id_user ? '1' : '0' }}"
@@ -175,37 +176,22 @@
           <div class="modal-body" style="padding: 20px 24px;">
             
             <div class="form-group mb-3">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Lengkap <span class="text-danger">*</span></label>
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Nama Pengguna <span class="text-danger">*</span></label>
               <input type="text" name="nama" class="form-control" placeholder="Contoh: Budi Santoso, S.Pd" required style="border-radius: 8px;">
-            </div>
-
-            <div class="form-group mb-3">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Username <span class="text-danger">*</span></label>
-              <input type="text" name="username" class="form-control" placeholder="Contoh: budi_guru" required style="border-radius: 8px; font-family: monospace;">
-              <small class="text-muted">Gunakan huruf kecil, angka, atau underscore tanpa spasi.</small>
+              <small class="text-muted">Username login akan dibuat otomatis dari nama ini dan akun langsung berstatus Aktif.</small>
             </div>
 
             <div class="form-group mb-3">
               <label style="font-weight: 600; color: #475569; font-size: 13px;">Password <span class="text-danger">*</span></label>
-              <input type="password" name="password" class="form-control" placeholder="Minimal 6 karakter" required minlength="6" style="border-radius: 8px;">
+              <input type="text" name="password" class="form-control" placeholder="Minimal 6 karakter" required minlength="6" style="border-radius: 8px; font-family: monospace;">
             </div>
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">Role Akses <span class="text-danger">*</span></label>
-                <select name="role" class="form-control" required style="border-radius: 8px;">
-                  <option value="guru" selected>Guru / Pendidik</option>
-                  <option value="admin">Administrator</option>
-                </select>
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label style="font-weight: 600; color: #475569; font-size: 13px;">Status Akun <span class="text-danger">*</span></label>
-                <select name="status" class="form-control" required style="border-radius: 8px;">
-                  <option value="aktif" selected>Aktif (Dapat Login)</option>
-                  <option value="nonaktif">Nonaktif (Diblokir)</option>
-                </select>
-              </div>
+            <div class="form-group mb-0">
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Role Akses <span class="text-danger">*</span></label>
+              <select name="role" class="form-control" required style="border-radius: 8px;">
+                <option value="guru" selected>Guru / Pendidik</option>
+                <option value="admin">Administrator</option>
+              </select>
             </div>
 
           </div>
@@ -248,9 +234,15 @@
             </div>
 
             <div class="form-group mb-3">
-              <label style="font-weight: 600; color: #475569; font-size: 13px;">Password Baru</label>
-              <input type="password" name="password" class="form-control" placeholder="Kosongkan jika tidak ingin mengubah password" minlength="6" style="border-radius: 8px;">
-              <small class="text-muted">Biarkan kosong bila pengguna tetap menggunakan password lama.</small>
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Password Saat Ini</label>
+              <input type="text" id="edit_current_password" class="form-control" readonly placeholder="Belum tersimpan — isi password baru di bawah untuk mengatur ulang" style="border-radius: 8px; background: #f8fafc; font-family: monospace; font-weight: 700; color: #0f172a;">
+              <small class="text-muted">Password aktif pengguna saat ini (dapat dicek jika pengguna lupa sandi).</small>
+            </div>
+
+            <div class="form-group mb-3">
+              <label style="font-weight: 600; color: #475569; font-size: 13px;">Password Baru (Opsional)</label>
+              <input type="text" name="password" class="form-control" placeholder="Kosongkan jika tidak ingin mengubah password" minlength="6" style="border-radius: 8px; font-family: monospace;">
+              <small class="text-muted">Biarkan kosong bila pengguna tetap menggunakan password di atas.</small>
             </div>
 
             <div class="row">
@@ -323,12 +315,14 @@
       const id       = $(this).data('id');
       const nama     = $(this).data('nama');
       const username = $(this).data('username');
+      const password = $(this).data('password');
       const role     = $(this).data('role');
       const status   = $(this).data('status');
       const isSelf   = $(this).data('is-self') == '1';
 
       $('#edit_nama').val(nama);
       $('#edit_username').val(username);
+      $('#edit_current_password').val(password || '');
       $('#edit_role').val(role);
       $('#edit_status').val(status);
 

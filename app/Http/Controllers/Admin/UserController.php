@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -56,20 +57,16 @@ class UserController extends Controller
         }
 
         User::create([
-            'nama'     => trim($validated['nama']),
-            'username' => $username,
-            'password' => Hash::make($validated['password']),
-            'role'     => $validated['role'],
-            'status'   => 'aktif', // Akun baru otomatis aktif
+            'nama'           => trim($validated['nama']),
+            'username'       => $username,
+            'password'       => Hash::make($validated['password']),
+            'plain_password' => Crypt::encryptString($validated['password']),
+            'role'           => $validated['role'],
+            'status'         => 'aktif', // Akun baru otomatis aktif
         ]);
 
         return redirect()->route('admin.users')
-            ->with('created_account', [
-                'nama'     => trim($validated['nama']),
-                'username' => $username,
-                'password' => $validated['password'],
-                'role'     => $validated['role'],
-            ]);
+            ->with('success', 'Akun pengguna "' . trim($validated['nama']) . '" (username: ' . $username . ') berhasil dibuat.');
     }
 
     /**
@@ -111,7 +108,8 @@ class UserController extends Controller
         $user->status   = $validated['status'];
 
         if (!empty($validated['password'])) {
-            $user->password = Hash::make($validated['password']);
+            $user->password       = Hash::make($validated['password']);
+            $user->plain_password = Crypt::encryptString($validated['password']);
         }
 
         $user->save();

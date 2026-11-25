@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
+        'plain_password',
         'nama',
         'role',
         'status',
@@ -39,8 +41,24 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'plain_password',
         'remember_token',
     ];
+
+    /**
+     * Mengambil password yang dapat dibaca admin (hasil dekripsi)
+     */
+    public function getReadablePasswordAttribute(): ?string
+    {
+        if (empty($this->plain_password)) {
+            return null;
+        }
+        try {
+            return Crypt::decryptString($this->plain_password);
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 
     /**
      * Tipe data casting
