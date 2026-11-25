@@ -25,13 +25,6 @@
   @endif
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Daftar Orang Tua &amp; Wali Siswa</h2>
-        <div class="card-subtitle-small">Total {{ $orangTuaList->count() }} orang tua / wali terdaftar</div>
-      </div>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableOrangTua" class="custom-table" style="width:100%">
         <thead>

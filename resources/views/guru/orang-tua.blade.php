@@ -5,20 +5,15 @@
 @section('content')
 
   <!-- Judul Halaman -->
-  <div style="margin-bottom: 22px;">
-    <h1 class="page-header-title">Data Orang Tua / Wali</h1>
-    <p class="page-header-sub">Daftar kontak orang tua dan wali murid untuk keperluan komunikasi sekolah dan verifikasi penjemputan.</p>
+  <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 22px; gap: 12px;">
+    <div>
+      <h1 class="page-header-title">Data Orang Tua / Wali</h1>
+      <p class="page-header-sub mb-0">Daftar kontak orang tua dan wali murid untuk keperluan komunikasi sekolah dan verifikasi penjemputan.</p>
+    </div>
+    <span class="badge-pill badge-green" style="font-size: 12px; padding: 6px 14px;">{{ $orangTuaList->count() }} Terdaftar</span>
   </div>
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Daftar Orang Tua &amp; Wali</h2>
-        <div class="card-subtitle-small">Total {{ $orangTuaList->count() }} orang tua / wali terdaftar</div>
-      </div>
-      <span class="badge-pill badge-green" style="font-size: 11.5px; padding: 5px 12px;">{{ $orangTuaList->count() }} Terdaftar</span>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableGuruOrangTua" class="custom-table" style="width:100%">
         <thead>

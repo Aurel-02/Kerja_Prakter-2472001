@@ -15,13 +15,6 @@
   </div>
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Jadwal Agenda &amp; Kegiatan Sekolah</h2>
-        <div class="card-subtitle-small">Total {{ $kalenderList->count() }} agenda terdaftar</div>
-      </div>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableKalender" class="custom-table" style="width:100%">
         <thead>

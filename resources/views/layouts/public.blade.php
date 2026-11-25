@@ -24,6 +24,7 @@
   <link href="{{ asset('adward/css/style.css') }}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{ asset('adward/css/responsive.css') }}" rel="stylesheet" />
+  @yield('styles')
 </head>
 
 <body>

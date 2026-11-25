@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Guru\AbsensiController as GuruAbsensiController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\OrangTuaController as GuruOrangTuaController;
 use App\Http\Controllers\Guru\PenjemputanController as GuruPenjemputanController;
@@ -83,8 +84,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Scan QR Penjemputan (Dapat diakses oleh Admin)
     Route::get('/scan-qr', [GuruPenjemputanController::class, 'scanQr'])->name('scan-qr');
     Route::post('/scan-qr/cek-siswa', [GuruPenjemputanController::class, 'cekSiswa'])->name('scan-qr.cek-siswa');
+    Route::post('/scan-qr/absen-siswa', [GuruPenjemputanController::class, 'absenPulangSiswa'])->name('scan-qr.absen-siswa');
     Route::post('/scan-qr/cek-ortu', [GuruPenjemputanController::class, 'cekOrtu'])->name('scan-qr.cek-ortu');
     Route::post('/scan-qr/simpan', [GuruPenjemputanController::class, 'simpanPenjemputan'])->name('scan-qr.simpan');
+
+    // Absensi Siswa QR (Dapat diakses oleh Admin)
+    Route::get('/absensi', [GuruAbsensiController::class, 'index'])->name('absensi');
+    Route::post('/absensi/scan', [GuruAbsensiController::class, 'scanQr'])->name('absensi.scan');
+    Route::post('/absensi/status', [GuruAbsensiController::class, 'updateStatus'])->name('absensi.status');
 });
 
 // Guru Routes (Dilindungi Auth Middleware)
@@ -92,8 +99,14 @@ Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
     Route::get('/', [GuruDashboardController::class, 'index'])->name('dashboard');
     Route::get('/scan-qr', [GuruPenjemputanController::class, 'scanQr'])->name('scan-qr');
     Route::post('/scan-qr/cek-siswa', [GuruPenjemputanController::class, 'cekSiswa'])->name('scan-qr.cek-siswa');
+    Route::post('/scan-qr/absen-siswa', [GuruPenjemputanController::class, 'absenPulangSiswa'])->name('scan-qr.absen-siswa');
     Route::post('/scan-qr/cek-ortu', [GuruPenjemputanController::class, 'cekOrtu'])->name('scan-qr.cek-ortu');
     Route::post('/scan-qr/simpan', [GuruPenjemputanController::class, 'simpanPenjemputan'])->name('scan-qr.simpan');
+
+    // Absensi Siswa QR untuk Guru
+    Route::get('/absensi', [GuruAbsensiController::class, 'index'])->name('absensi');
+    Route::post('/absensi/scan', [GuruAbsensiController::class, 'scanQr'])->name('absensi.scan');
+    Route::post('/absensi/status', [GuruAbsensiController::class, 'updateStatus'])->name('absensi.status');
 
     // Data Siswa & Orang Tua untuk Guru
     Route::get('/siswa', [GuruSiswaController::class, 'index'])->name('siswa');

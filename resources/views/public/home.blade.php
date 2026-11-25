@@ -2,10 +2,26 @@
 
 @section('title', 'TK Harapan Bunda - Beranda')
 
+@section('styles')
+<style>
+  .home-scroll-navbar {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .home-scroll-navbar.is-scrolled {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+@endsection
+
 @section('top_container')
   <div class="top_container home_wallpaper_hero">
     <!-- header section starts -->
-    <header class="header_section">
+    <header class="header_section home-scroll-navbar" id="homeNavbar">
       <div class="container">
         <nav class="navbar custom_nav-container">
           <!-- Nama Sekolah / Brand -->
@@ -231,4 +247,27 @@
     </div>
   </section>
 
+@endsection
+
+@section('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.getElementById('homeNavbar');
+    const navCollapse = document.getElementById('navbarSupportedContent');
+
+    function toggleHomeNavbar() {
+      if (window.scrollY > 80) {
+        navbar.classList.add('is-scrolled');
+      } else {
+        navbar.classList.remove('is-scrolled');
+        if (navCollapse && navCollapse.classList.contains('show')) {
+          $(navCollapse).collapse('hide');
+        }
+      }
+    }
+
+    toggleHomeNavbar();
+    window.addEventListener('scroll', toggleHomeNavbar, { passive: true });
+  });
+</script>
 @endsection

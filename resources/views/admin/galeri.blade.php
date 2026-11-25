@@ -15,13 +15,6 @@
   </div>
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Dokumentasi Fasilitas &amp; Kegiatan</h2>
-        <div class="card-subtitle-small">Total {{ $galeriList->count() }} foto dokumentasi terpasang</div>
-      </div>
-    </div>
-
     <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:20px;">
       @forelse($galeriList as $item)
       <div style="background:#ffffff; border:1px solid #edf2f7; border-radius:14px; overflow:hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.02); display: flex; flex-direction: column;">

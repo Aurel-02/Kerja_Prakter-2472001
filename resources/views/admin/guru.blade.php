@@ -15,13 +15,6 @@
   </div>
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Struktur Organisasi &amp; Tenaga Pengajar</h2>
-        <div class="card-subtitle-small">Total {{ $guruList->count() }} tenaga pengajar & staf terdaftar</div>
-      </div>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableGuru" class="custom-table" style="width:100%">
         <thead>

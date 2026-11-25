@@ -15,13 +15,6 @@
   </div>
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Daftar Nilai &amp; Pilar Kurikulum</h2>
-        <div class="card-subtitle-small">Total {{ $kurikulumList->count() }} pilar kurikulum terdaftar</div>
-      </div>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableKurikulum" class="custom-table" style="width:100%">
         <thead>

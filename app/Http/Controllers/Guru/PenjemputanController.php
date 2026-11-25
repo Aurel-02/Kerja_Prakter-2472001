@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OrangTuaWali;
 use App\Models\Penjemputan;
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,13 +17,27 @@ class PenjemputanController extends Controller
      */
     public function scanQr()
     {
-        $riwayatHariIni = Penjemputan::with(['siswa', 'orangTua'])
+        $menungguPenjemputan = Penjemputan::with(['siswa', 'orangTua'])
             ->whereDate('waktu', today())
+            ->where('status', 'menunggu')
             ->orderBy('waktu', 'desc')
-            ->take(10)
             ->get();
 
-        return view('guru.scan', compact('riwayatHariIni'));
+        $riwayatHariIni = Penjemputan::with(['siswa', 'orangTua'])
+            ->whereDate('waktu', today())
+            ->where('status', 'selesai')
+            ->orderBy('waktu', 'desc')
+            ->take(25)
+            ->get();
+
+        $bulanIndo = [
+            1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+        $now = Carbon::now();
+        $tanggalHariIni = $now->format('d') . ' ' . $bulanIndo[(int) $now->format('n')] . ' ' . $now->format('Y');
+
+        return view('guru.scan', compact('menungguPenjemputan', 'riwayatHariIni', 'tanggalHariIni'));
     }
 
     /**
@@ -52,7 +67,14 @@ class PenjemputanController extends Controller
             ], 404);
         }
 
-        // Cek apakah siswa sudah dijemput hari ini
+        // Cek apakah siswa sudah absen pulang (menunggu jemputan) hari ini
+        $sedangMenunggu = Penjemputan::where('id_siswa', $siswa->id_siswa)
+            ->whereDate('waktu', today())
+            ->where('status', 'menunggu')
+            ->latest('waktu')
+            ->first();
+
+        // Cek apakah siswa sudah selesai dijemput hari ini
         $sudahDijemput = Penjemputan::where('id_siswa', $siswa->id_siswa)
             ->whereDate('waktu', today())
             ->where('status', 'selesai')
@@ -61,7 +83,7 @@ class PenjemputanController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Data siswa berhasil ditemukan.',
+            'message' => 'Berhasil di-scan! Nama Siswa: ' . $siswa->nama,
             'siswa' => [
                 'id_siswa' => $siswa->id_siswa,
                 'nama' => $siswa->nama,
@@ -73,10 +95,86 @@ class PenjemputanController extends Controller
                 'nama_ortu' => $siswa->orangTua ? $siswa->orangTua->nama : 'Belum dihubungkan',
                 'no_telp_ortu' => $siswa->orangTua ? $siswa->orangTua->no_telp : '-',
             ],
+            'sedang_menunggu' => $sedangMenunggu ? [
+                'id_penjemputan' => $sedangMenunggu->id_penjemputan,
+                'waktu' => $sedangMenunggu->waktu->format('H:i') . ' WIB',
+            ] : null,
             'sudah_dijemput' => $sudahDijemput ? [
                 'waktu' => $sudahDijemput->waktu->format('H:i') . ' WIB',
                 'keterangan' => $sudahDijemput->keterangan,
             ] : null,
+        ]);
+    }
+
+    /**
+     * Simpan status Absen Pulang Siswa Dulu (Status: menunggu penjemput)
+     */
+    public function absenPulangSiswa(Request $request)
+    {
+        $request->validate([
+            'id_siswa' => 'required|exists:siswa,id_siswa',
+        ]);
+
+        $siswa = Siswa::with('orangTua')->findOrFail($request->id_siswa);
+
+        if (!$siswa->id_ortu_wali) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Siswa "' . $siswa->nama . '" belum memiliki data Orang Tua / Wali yang terhubung.'
+            ], 422);
+        }
+
+        // Cek apakah sudah ada dalam daftar tunggu hari ini
+        $existing = Penjemputan::where('id_siswa', $siswa->id_siswa)
+            ->whereDate('waktu', today())
+            ->where('status', 'menunggu')
+            ->first();
+
+        if ($existing) {
+            return response()->json([
+                'success' => true,
+                'already_exists' => true,
+                'message' => 'Siswa "' . $siswa->nama . '" sudah tercatat di daftar absen pulang.',
+                'data' => [
+                    'id_penjemputan' => $existing->id_penjemputan,
+                    'id_siswa' => $siswa->id_siswa,
+                    'nama' => $siswa->nama,
+                    'nis' => $siswa->nis ?? '-',
+                    'jenis_kelamin' => $siswa->jenis_kelamin ?? '-',
+                    'tahun_ajaran' => $siswa->tahun_ajaran ?? '-',
+                    'id_ortu_wali' => $siswa->id_ortu_wali,
+                    'nama_ortu' => $siswa->orangTua ? $siswa->orangTua->nama : '-',
+                    'no_telp_ortu' => $siswa->orangTua ? $siswa->orangTua->no_telp : '-',
+                    'waktu' => $existing->waktu->format('H:i') . ' WIB',
+                ]
+            ]);
+        }
+
+        $penjemputan = Penjemputan::create([
+            'id_user' => Auth::id() ?? 1,
+            'id_siswa' => $siswa->id_siswa,
+            'id_ortu_wali' => $siswa->id_ortu_wali,
+            'waktu' => now(),
+            'keterangan' => 'Siswa sudah absen pulang, menunggu penjemput',
+            'status' => 'menunggu',
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'already_exists' => false,
+            'message' => 'Absen pulang siswa "' . $siswa->nama . '" berhasil dicatat!',
+            'data' => [
+                'id_penjemputan' => $penjemputan->id_penjemputan,
+                'id_siswa' => $siswa->id_siswa,
+                'nama' => $siswa->nama,
+                'nis' => $siswa->nis ?? '-',
+                'jenis_kelamin' => $siswa->jenis_kelamin ?? '-',
+                'tahun_ajaran' => $siswa->tahun_ajaran ?? '-',
+                'id_ortu_wali' => $siswa->id_ortu_wali,
+                'nama_ortu' => $siswa->orangTua ? $siswa->orangTua->nama : '-',
+                'no_telp_ortu' => $siswa->orangTua ? $siswa->orangTua->no_telp : '-',
+                'waktu' => $penjemputan->waktu->format('H:i') . ' WIB',
+            ]
         ]);
     }
 
@@ -167,14 +265,32 @@ class PenjemputanController extends Controller
             'keterangan' => 'nullable|string|max:500',
         ]);
 
-        $penjemputan = Penjemputan::create([
-            'id_user' => Auth::id() ?? 1,
-            'id_siswa' => $request->id_siswa,
-            'id_ortu_wali' => $request->id_ortu_wali,
-            'waktu' => now(),
-            'keterangan' => $request->keterangan ?: 'Dijemput oleh orang tua/wali',
-            'status' => 'selesai',
-        ]);
+        // Cek apakah siswa sudah ada dalam daftar tunggu hari ini
+        $penjemputan = Penjemputan::where('id_siswa', $request->id_siswa)
+            ->whereDate('waktu', today())
+            ->where('status', 'menunggu')
+            ->first();
+
+        if ($penjemputan) {
+            // Update data yang sudah absen pulang menjadi selesai
+            $penjemputan->update([
+                'id_user' => Auth::id() ?? 1,
+                'id_ortu_wali' => $request->id_ortu_wali,
+                'waktu' => now(),
+                'keterangan' => $request->keterangan ?: 'Dijemput oleh orang tua/wali',
+                'status' => 'selesai',
+            ]);
+        } else {
+            // Buat data baru langsung selesai
+            $penjemputan = Penjemputan::create([
+                'id_user' => Auth::id() ?? 1,
+                'id_siswa' => $request->id_siswa,
+                'id_ortu_wali' => $request->id_ortu_wali,
+                'waktu' => now(),
+                'keterangan' => $request->keterangan ?: 'Dijemput oleh orang tua/wali',
+                'status' => 'selesai',
+            ]);
+        }
 
         $penjemputan->load(['siswa', 'orangTua']);
 
@@ -183,6 +299,7 @@ class PenjemputanController extends Controller
             'message' => 'Penjemputan ' . ($penjemputan->siswa->nama ?? 'Siswa') . ' berhasil dicatat!',
             'data' => [
                 'id_penjemputan' => $penjemputan->id_penjemputan,
+                'id_siswa' => $penjemputan->id_siswa,
                 'nama_siswa' => $penjemputan->siswa->nama ?? 'Siswa',
                 'nama_ortu' => $penjemputan->orangTua->nama ?? 'Orang Tua / Wali',
                 'waktu' => $penjemputan->waktu->format('H:i') . ' WIB',

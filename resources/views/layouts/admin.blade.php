@@ -54,6 +54,12 @@
         <span>Scan QR Penjemputan</span>
       </a>
 
+      <!-- Absensi Siswa QR -->
+      <a href="{{ route('admin.absensi') }}" class="nav-item-link {{ request()->routeIs('admin.absensi*') ? 'active' : '' }}">
+        <i class="fa-solid fa-user-check"></i>
+        <span>Absensi Siswa</span>
+      </a>
+
       <div class="nav-group-label" style="margin-top: 10px;">Data Sekolah</div>
 
       <!-- Data Struktur Sekolah (Guru) -->

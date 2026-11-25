@@ -50,13 +50,6 @@
 
   <!-- Tabel Akun Pengguna -->
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Daftar Akun Pengguna</h2>
-        <div class="card-subtitle-small">Total {{ $users->count() }} akun terdaftar ({{ $totalAdmin }} Administrator, {{ $totalGuru }} Guru)</div>
-      </div>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableUsers" class="custom-table" style="width:100%">
         <thead>

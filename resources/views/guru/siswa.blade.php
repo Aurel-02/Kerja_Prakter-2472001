@@ -5,20 +5,15 @@
 @section('content')
 
   <!-- Judul Halaman -->
-  <div style="margin-bottom: 22px;">
-    <h1 class="page-header-title">Data Siswa-Siswi</h1>
-    <p class="page-header-sub">Daftar seluruh murid / peserta didik aktif di TK Harapan Bunda beserta informasi orang tua/wali dan kode QR siswa.</p>
+  <div class="d-flex justify-content-between align-items-center flex-wrap" style="margin-bottom: 22px; gap: 12px;">
+    <div>
+      <h1 class="page-header-title">Data Siswa-Siswi</h1>
+      <p class="page-header-sub mb-0">Daftar seluruh murid / peserta didik aktif di TK Harapan Bunda beserta informasi orang tua/wali dan kode QR siswa.</p>
+    </div>
+    <span class="badge-pill badge-green" style="font-size: 12px; padding: 6px 14px;">{{ $siswaList->count() }} Siswa Aktif</span>
   </div>
 
   <div class="admin-card">
-    <div class="card-header-flex">
-      <div>
-        <h2 class="card-title-main">Daftar Peserta Didik</h2>
-        <div class="card-subtitle-small">Total {{ $siswaList->count() }} siswa terdaftar di database</div>
-      </div>
-      <span class="badge-pill badge-green" style="font-size: 11.5px; padding: 5px 12px;">{{ $siswaList->count() }} Siswa Aktif</span>
-    </div>
-
     <div class="table-responsive" style="margin: 0 -8px;">
       <table id="tableGuruSiswa" class="custom-table" style="width:100%">
         <thead>

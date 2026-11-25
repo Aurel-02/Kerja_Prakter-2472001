@@ -25,7 +25,7 @@
     }
 
     body {
-      background-color: #25d366;
+      background-color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -36,11 +36,12 @@
     /* Kartu Login dengan Spacing yang Lega & Rapi */
     .login-card {
       width: 100%;
-      max-width: 440px;
+      max-width: 430px;
       background: #ffffff;
-      border-radius: 24px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
-      padding: 44px 38px;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+      padding: 40px 36px;
       position: relative;
       animation: fadeInUp 0.45s ease-out;
     }
@@ -106,13 +107,13 @@
 
     .form-control-custom:focus {
       background-color: #ffffff;
-      border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
       outline: none;
     }
 
     .form-control-custom:focus ~ .input-icon-left {
-      color: #10b981;
+      color: #16a34a;
     }
 
     /* Eye toggle password */
@@ -131,7 +132,7 @@
     }
 
     .toggle-password-btn:hover {
-      color: #10b981;
+      color: #16a34a;
     }
 
     /* Lupa Password Link */
@@ -144,42 +145,38 @@
     }
 
     .forgot-password-link:hover {
-      color: #059669;
+      color: #15803d;
       text-decoration: underline;
     }
 
-    /* Tombol Submit */
+    /* Tombol Submit (Menyamai Warna Tema Portal #16a34a) */
     .btn-login {
       width: 100%;
-      height: 50px;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      height: 48px;
+      background: #16a34a;
       color: #ffffff;
       border: none;
-      border-radius: 12px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      box-shadow: 0 8px 18px rgba(16, 185, 129, 0.32);
+      border-radius: 10px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: all 0.25s ease;
+      transition: background 0.15s ease, transform 0.15s ease;
       margin-top: 4px;
     }
 
     .btn-login:hover {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(16, 185, 129, 0.38);
+      background: #15803d;
       color: #ffffff;
       text-decoration: none;
     }
 
     .btn-login:active {
-      transform: translateY(0);
-      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+      transform: scale(0.99);
     }
 
     /* Kembali ke Beranda */
@@ -202,7 +199,7 @@
     }
 
     .back-home-link:hover {
-      color: #10b981;
+      color: #16a34a;
       text-decoration: none;
     }
 
@@ -224,8 +221,9 @@
   <div class="login-card">
 
     <!-- Header Judul -->
-    <div class="text-center">
-      <h1 class="login-title">Login</h1>
+    <div class="text-center" style="margin-bottom: 26px;">
+      <h1 class="login-title" style="margin-bottom: 6px;">Login</h1>
+      <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Masuk ke Portal TK Harapan Bunda</p>
     </div>
 
     <!-- Alert Notifikasi Flash -->

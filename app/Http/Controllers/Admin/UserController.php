@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -33,31 +34,42 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'nama'     => 'required|string|max:255',
-            'username' => 'required|string|max:100|alpha_dash|unique:user,username',
             'password' => 'required|string|min:6',
             'role'     => 'required|in:admin,guru',
-            'status'   => 'required|in:aktif,nonaktif',
         ], [
-            'nama.required'     => 'Nama lengkap wajib diisi.',
-            'username.required' => 'Username wajib diisi.',
-            'username.unique'   => 'Username ini sudah digunakan.',
-            'username.alpha_dash' => 'Username hanya boleh berisi huruf, angka, tanda strip, dan underscore.',
+            'nama.required'     => 'Nama pengguna wajib diisi.',
             'password.required' => 'Password wajib diisi.',
             'password.min'      => 'Password minimal harus 6 karakter.',
             'role.required'     => 'Role pengguna wajib dipilih.',
-            'status.required'   => 'Status pengguna wajib dipilih.',
         ]);
+
+        // Buat username otomatis dari nama (huruf kecil, spasi jadi underscore, pastikan unik)
+        $baseUsername = Str::slug(trim($validated['nama']), '_');
+        if (empty($baseUsername)) {
+            $baseUsername = 'user';
+        }
+        $username = $baseUsername;
+        $counter = 1;
+        while (User::where('username', $username)->exists()) {
+            $username = $baseUsername . $counter;
+            $counter++;
+        }
 
         User::create([
             'nama'     => trim($validated['nama']),
-            'username' => strtolower(trim($validated['username'])),
+            'username' => $username,
             'password' => Hash::make($validated['password']),
             'role'     => $validated['role'],
-            'status'   => $validated['status'],
+            'status'   => 'aktif', // Akun baru otomatis aktif
         ]);
 
         return redirect()->route('admin.users')
-            ->with('success', 'Akun pengguna "' . $validated['nama'] . '" berhasil dibuat.');
+            ->with('created_account', [
+                'nama'     => trim($validated['nama']),
+                'username' => $username,
+                'password' => $validated['password'],
+                'role'     => $validated['role'],
+            ]);
     }
 
     /**

@@ -4,44 +4,14 @@
 
 @section('content')
 
+  @php
+    $routePrefix = request()->routeIs('admin.*') ? 'admin' : 'guru';
+  @endphp
+
   <!-- Judul Halaman -->
   <div style="margin-bottom: 22px;">
     <h1 class="page-header-title">Scan QR Penjemputan Siswa</h1>
-    <p class="page-header-sub">Sistem verifikasi dua tahap: pindai QR Code Siswa terlebih dahulu, kemudian pindai QR Code Orang Tua / Wali penjemput.</p>
-  </div>
-
-  <!-- Indikator 2 Tahap Verifikasi -->
-  <div class="admin-card mb-4" style="padding: 16px 20px;">
-    <div class="row align-items-center">
-      
-      <!-- Langkah 1 -->
-      <div class="col-md-5 mb-2 mb-md-0">
-        <div id="stepIndicator1" class="step-card active">
-          <div class="step-badge">1</div>
-          <div class="step-info">
-            <div class="step-title">Langkah 1: Scan QR Siswa</div>
-            <div id="stepSub1" class="step-sub">Pindai kode QR / NIS siswa</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Arrow separator -->
-      <div class="col-md-2 text-center d-none d-md-block text-muted" style="font-size: 18px; font-weight: 700;">
-        &rarr;
-      </div>
-
-      <!-- Langkah 2 -->
-      <div class="col-md-5">
-        <div id="stepIndicator2" class="step-card disabled">
-          <div class="step-badge">2</div>
-          <div class="step-info">
-            <div class="step-title">Langkah 2: Scan QR Orang Tua</div>
-            <div id="stepSub2" class="step-sub">Menunggu kode siswa terverifikasi</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <p class="page-header-sub">Siswa yang sudah absen hadir otomatis masuk daftar siap dijemput. Klik tombol <strong>Absen Pulang</strong> lalu pindai QR Orang Tua untuk verifikasi penjemputan.</p>
   </div>
 
   <div class="row">
@@ -106,7 +76,7 @@
       </div>
     </div>
 
-    <!-- Kolom Kanan: Hasil Verifikasi & Riwayat -->
+    <!-- Kolom Kanan: Hasil Verifikasi, Daftar Absen Pulang & Rekap -->
     <div class="col-lg-6 mb-4">
       
       <!-- Kartu Status Proses Verifikasi -->
@@ -122,7 +92,7 @@
         </div>
 
         <!-- Area Pesan Alert Dinamis -->
-        <div id="alertFeedback" style="display: none; margin-bottom: 14px; padding: 12px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600;"></div>
+        <div id="alertFeedback" style="display: none; margin-bottom: 14px; padding: 12px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;"></div>
 
         <!-- State 0: Belum ada scan -->
         <div id="stateInitial" style="text-align: center; padding: 36px 16px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px;">
@@ -135,9 +105,9 @@
         <!-- State 1: Siswa Terdeteksi -->
         <div id="stateSiswaFound" style="display: none;">
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 14px; margin-bottom: 14px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span class="badge-pill badge-green">Langkah 1 Selesai: Data Siswa Ditemukan</span>
-              <span id="badgeAlreadyPickedUp" class="badge-pill badge-yellow" style="display: none;">Sudah Dijemput Hari Ini</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+              <span class="badge-pill badge-green" id="badgeStep1Done">Siswa Berhasil Di-scan</span>
+              <span id="badgeAlreadyPickedUp" class="badge-pill badge-yellow" style="display: none;">Sudah Dijemput ({{ $tanggalHariIni }})</span>
             </div>
 
             <div class="row" style="font-size: 12.5px; color: #334155;">
@@ -152,8 +122,8 @@
             </div>
           </div>
 
-          <!-- Prompt untuk Langkah 2 -->
-          <div id="promptScanOrtu" style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 10px; padding: 14px; text-align: center;">
+          <!-- Prompt untuk Langkah 2 (Scan Orang Tua) -->
+          <div id="promptScanOrtu" style="display: none; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 10px; padding: 14px; text-align: center;">
             <div style="font-size: 13.5px; font-weight: 700; color: #b45309; margin-bottom: 4px;">
               Sekarang Silakan Pindai QR Code Orang Tua / Penjemput
             </div>
@@ -189,7 +159,7 @@
               </div>
 
               <button type="submit" id="btnKonfirmasiPenjemputan" class="btn btn-success btn-block py-2 font-weight-bold" style="border-radius: 8px; font-size: 13.5px;">
-                Konfirmasi & Simpan Penjemputan
+                Konfirmasi &amp; Simpan Penjemputan
               </button>
             </form>
           </div>
@@ -219,12 +189,56 @@
 
       </div>
 
-      <!-- Riwayat Terakhir Hari Ini -->
+      <!-- Daftar Siswa Hadir / Siap Absen Pulang -->
+      <div class="admin-card mb-4" id="waitingListCard">
+        <div class="card-header-flex">
+          <div>
+            <h2 class="card-title-main">Siswa Hadir / Siap Dijemput</h2>
+            <div class="card-subtitle-small">Klik tombol Absen Pulang lalu scan QR Orang Tua ({{ $tanggalHariIni }})</div>
+          </div>
+          <span class="badge-pill badge-yellow" id="waitingCountBadge">{{ isset($menungguPenjemputan) ? $menungguPenjemputan->count() : 0 }} Menunggu</span>
+        </div>
+
+        <div id="waitingListContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto;">
+          @if(isset($menungguPenjemputan) && $menungguPenjemputan->count() > 0)
+            @foreach($menungguPenjemputan as $w)
+              <div class="waiting-item" data-id-siswa="{{ $w->id_siswa }}" style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: #1e293b;">{{ $w->siswa->nama ?? 'Siswa' }}</div>
+                  <div style="font-size: 11px; color: #64748b;">
+                    NIS: {{ $w->siswa->nis ?? '-' }} &bull; Ortu: {{ $w->orangTua->nama ?? '-' }} &bull; Absen: {{ \Carbon\Carbon::parse($w->waktu)->format('H:i') }} WIB
+                  </div>
+                </div>
+                <div style="flex-shrink: 0;">
+                  <button type="button" class="btn btn-sm btn-success font-weight-bold btn-scan-ortu-waiting"
+                    style="border-radius: 7px; font-size: 11.5px; padding: 5px 12px;"
+                    data-id="{{ $w->id_siswa }}"
+                    data-nama="{{ $w->siswa->nama ?? 'Siswa' }}"
+                    data-nis="{{ $w->siswa->nis ?? '-' }}"
+                    data-jk="{{ $w->siswa->jenis_kelamin ?? '-' }}"
+                    data-ta="{{ $w->siswa->tahun_ajaran ?? '-' }}"
+                    data-id-ortu="{{ $w->id_ortu_wali }}"
+                    data-nama-ortu="{{ $w->orangTua->nama ?? '-' }}"
+                    data-telp-ortu="{{ $w->orangTua->no_telp ?? '-' }}">
+                    <i class="fa-solid fa-qrcode mr-1"></i> Absen Pulang
+                  </button>
+                </div>
+              </div>
+            @endforeach
+          @else
+            <div id="emptyWaitingMessage" style="text-align: center; padding: 20px 10px; color: #94a3b8; font-size: 12px;">
+              Belum ada siswa yang menunggu penjemput pada {{ $tanggalHariIni }}.
+            </div>
+          @endif
+        </div>
+      </div>
+
+      <!-- Rekap Penjemputan (Tanggal Bulan Tahun) -->
       <div class="admin-card">
         <div class="card-header-flex">
           <div>
-            <h2 class="card-title-main">Riwayat Penjemputan Hari Ini</h2>
-            <div class="card-subtitle-small">Daftar siswa yang telah berhasil dijemput</div>
+            <h2 class="card-title-main">Rekap Penjemputan ({{ $tanggalHariIni }})</h2>
+            <div class="card-subtitle-small">Daftar siswa yang telah selesai dijemput pada {{ $tanggalHariIni }}</div>
           </div>
           <span class="badge-pill badge-green" id="todayCountBadge">{{ isset($riwayatHariIni) ? $riwayatHariIni->count() : 0 }} Tercatat</span>
         </div>
@@ -244,7 +258,7 @@
             @endforeach
           @else
             <div id="emptyRiwayatMessage" style="text-align: center; padding: 24px 10px; color: #94a3b8; font-size: 12px;">
-              Belum ada data penjemputan yang tercatat hari ini.
+              Belum ada data penjemputan yang tercatat pada {{ $tanggalHariIni }}.
             </div>
           @endif
         </div>
@@ -252,6 +266,47 @@
 
     </div>
 
+  </div>
+
+  <!-- Popup Berhasil Scan QR Siswa -->
+  <div class="modal fade" id="modalScanSiswaBerhasil" tabindex="-1" role="dialog" aria-labelledby="modalScanSiswaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 16px; border: none; box-shadow: 0 12px 32px rgba(0,0,0,0.16); overflow: hidden;">
+        <div class="modal-header" style="background: #16a34a; color: #ffffff; padding: 14px 20px; border: none;">
+          <h5 class="modal-title" id="modalScanSiswaLabel" style="font-weight: 700; font-size: 15.5px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-check"></i> Berhasil Scan QR Siswa
+          </h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="opacity: 0.95; outline: none; background: none; border: none; font-size: 22px; cursor: pointer;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center" style="padding: 24px 22px 18px;">
+          <div style="width: 58px; height: 58px; border-radius: 50%; background: #dcfce7; color: #16a34a; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 12px;">
+            <i class="fa-solid fa-check"></i>
+          </div>
+
+          <h4 id="popupSiswaNama" style="font-weight: 800; color: #0f172a; margin-bottom: 4px; font-size: 19px;">-</h4>
+          <div style="font-size: 12.5px; color: #64748b; margin-bottom: 14px;">
+            NIS: <strong id="popupSiswaNis" style="color: #334155;">-</strong> &bull; Orang Tua: <strong id="popupSiswaOrtu" style="color: #166534;">-</strong>
+          </div>
+
+          <div id="popupStatusMsg" style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 10px 14px; font-size: 12.5px; color: #166534; font-weight: 600;">
+            Data siswa telah dicatat ke daftar <strong>Siswa Sudah Absen Pulang</strong>.
+          </div>
+
+          <div id="popupAlreadyNote" style="display: none; margin-top: 10px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 8px 12px; font-size: 11.5px; color: #92400e; font-weight: 600;">
+          </div>
+        </div>
+        <div class="modal-footer" style="background: #f8fafc; border-top: 1px solid #f1f5f9; padding: 12px 20px; display: flex; justify-content: space-between; gap: 8px;">
+          <button type="button" class="btn btn-outline-secondary font-weight-bold" data-dismiss="modal" style="border-radius: 8px; font-size: 12.5px; padding: 7px 16px;">
+            Tutup
+          </button>
+          <button type="button" id="btnPopupScanOrtu" class="btn btn-success font-weight-bold" style="border-radius: 8px; font-size: 12.5px; padding: 7px 16px; background: #16a34a;">
+            <i class="fa-solid fa-qrcode mr-1"></i> Scan Orang Tua Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
 @endsection
@@ -299,10 +354,9 @@
   }
 
   .step-title {
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 700;
     color: #1e293b;
-    line-height: 1.2;
   }
 
   .step-sub {
@@ -310,15 +364,15 @@
     color: #64748b;
   }
 
-  /* Badge Pill */
+  /* Badges */
   .badge-pill {
-    padding: 3px 9px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
     border-radius: 9999px;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-    display: inline-block;
   }
 
   .badge-yellow {
@@ -336,66 +390,63 @@
     color: #b91c1c;
   }
 
-  /* Laser line effect */
+  /* Laser Scanner Animation */
   .scan-laser {
     position: absolute;
-    top: 20%;
     left: 10%;
-    width: 80%;
-    height: 3px;
+    right: 10%;
+    height: 2px;
     background: #22c55e;
-    box-shadow: 0 0 12px 3px rgba(34, 197, 94, 0.7);
-    animation: scanningLaser 2.2s infinite ease-in-out alternate;
+    box-shadow: 0 0 10px #22c55e, 0 0 20px #22c55e;
+    animation: scanMove 2.2s infinite ease-in-out;
     pointer-events: none;
     z-index: 10;
   }
 
-  @keyframes scanningLaser {
-    0% {
-      top: 20%;
-    }
-    100% {
-      top: 80%;
-    }
+  @keyframes scanMove {
+    0% { top: 20%; }
+    50% { top: 80%; }
+    100% { top: 20%; }
   }
 
+  /* Clean override on html5-qrcode library DOM */
+  #reader__scan_region {
+    min-height: 260px !important;
+  }
   #reader video {
     border-radius: 10px !important;
-    object-fit: cover;
+    object-fit: cover !important;
   }
-
-  #reader__scan_region {
-    background: transparent !important;
-  }
-
-  #reader__dashboard {
+  #reader__dashboard_section_csr,
+  #reader__dashboard_section_swaplink {
     display: none !important;
+  }
+  #reader__dashboard {
+    padding: 0 !important;
+    background: transparent !important;
   }
 </style>
 @endsection
 
 @section('scripts')
-<!-- Library Pemindai QR Code HTML5 -->
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<!-- Library html5-qrcode dari CDN terpercaya -->
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
 <script>
-  // State Machine
-  // step: 1 (Scan Siswa), 2 (Scan Ortu), 3 (Matched & Ready to Submit)
-  let currentStep = 1;
-  let activeSiswa = null;
-  let activeOrtu = null;
-
+  // State Aplikasi
   let html5QrCode = null;
   let isScanning = false;
+  let currentStep = 1; // 1 = Scan Siswa, 'choice' = Pilih Absen Dulu / Langsung Ortu, 2 = Scan Ortu
+  let activeSiswa = null;
+  let activeOrtu = null;
   let scanCooldown = false;
 
-  // Elements
+  // Elemen DOM
+  const statusBadge = document.getElementById('scannerStatusBadge');
   const btnStart = document.getElementById('btnStartScan');
   const btnStop = document.getElementById('btnStopScan');
-  const statusBadge = document.getElementById('scannerStatusBadge');
-  const laserLine = document.getElementById('scanLaserLine');
-  const cameraSelectGroup = document.getElementById('cameraSelectGroup');
   const cameraSelection = document.getElementById('cameraSelection');
+  const laserLine = document.getElementById('scanLaserLine');
 
   const scannerStepTitle = document.getElementById('scannerStepTitle');
   const scannerStepHint = document.getElementById('scannerStepHint');
@@ -404,17 +455,19 @@
   const btnManual = document.getElementById('btnSubmitManual');
   const btnResetAll = document.getElementById('btnResetAll');
 
-  const stepIndicator1 = document.getElementById('stepIndicator1');
-  const stepIndicator2 = document.getElementById('stepIndicator2');
-  const stepSub1 = document.getElementById('stepSub1');
-  const stepSub2 = document.getElementById('stepSub2');
-
   const alertFeedback = document.getElementById('alertFeedback');
   const stateInitial = document.getElementById('stateInitial');
   const stateSiswaFound = document.getElementById('stateSiswaFound');
   const promptScanOrtu = document.getElementById('promptScanOrtu');
   const stateOrtuMatched = document.getElementById('stateOrtuMatched');
   const stateOrtuMismatch = document.getElementById('stateOrtuMismatch');
+
+  const popupSiswaNama = document.getElementById('popupSiswaNama');
+  const popupSiswaNis = document.getElementById('popupSiswaNis');
+  const popupSiswaOrtu = document.getElementById('popupSiswaOrtu');
+  const popupAlreadyNote = document.getElementById('popupAlreadyNote');
+  const btnPopupScanOrtu = document.getElementById('btnPopupScanOrtu');
+  let lastScannedSiswa = null;
 
   const viewSiswaNama = document.getElementById('viewSiswaNama');
   const viewSiswaNis = document.getElementById('viewSiswaNis');
@@ -435,14 +488,20 @@
   const btnCancelToStart = document.getElementById('btnCancelToStart');
   const mismatchMessage = document.getElementById('mismatchMessage');
 
+  const waitingListContainer = document.getElementById('waitingListContainer');
+  const emptyWaitingMessage = document.getElementById('emptyWaitingMessage');
+  const waitingCountBadge = document.getElementById('waitingCountBadge');
+
   const riwayatListContainer = document.getElementById('riwayatListContainer');
   const emptyRiwayatMessage = document.getElementById('emptyRiwayatMessage');
   const todayCountBadge = document.getElementById('todayCountBadge');
 
+  const tanggalHariIni = "{{ $tanggalHariIni }}";
+
   // Helper Alert
   function showAlert(message, type = 'error') {
     alertFeedback.style.display = 'block';
-    alertFeedback.textContent = message;
+    alertFeedback.innerHTML = message;
     if (type === 'error') {
       alertFeedback.style.background = '#fef2f2';
       alertFeedback.style.border = '1px solid #fecaca';
@@ -463,16 +522,10 @@
   }
 
   // Set Step 1: Scan Siswa
-  function setStep1() {
+  function setStep1(keepAlert = false) {
     currentStep = 1;
     activeSiswa = null;
     activeOrtu = null;
-
-    stepIndicator1.className = 'step-card active';
-    stepSub1.textContent = 'Pindai kode QR / NIS siswa';
-
-    stepIndicator2.className = 'step-card disabled';
-    stepSub2.textContent = 'Menunggu kode siswa terverifikasi';
 
     scannerStepTitle.textContent = 'Kamera Pemindai (Siswa)';
     scannerStepHint.textContent = 'Arahkan kamera ke QR Code milik Siswa';
@@ -481,10 +534,13 @@
 
     stateInitial.style.display = 'block';
     stateSiswaFound.style.display = 'none';
+    promptScanOrtu.style.display = 'none';
     stateOrtuMatched.style.display = 'none';
     stateOrtuMismatch.style.display = 'none';
     btnResetAll.style.display = 'none';
-    hideAlert();
+    if (!keepAlert) {
+      hideAlert();
+    }
 
     statusBadge.textContent = isScanning ? 'Memindai Siswa...' : 'Kamera Siap';
     statusBadge.className = isScanning ? 'badge-pill badge-green' : 'badge-pill badge-yellow';
@@ -495,12 +551,6 @@
     currentStep = 2;
     activeSiswa = siswa;
     activeOrtu = null;
-
-    stepIndicator1.className = 'step-card';
-    stepSub1.textContent = 'Siswa: ' + siswa.nama;
-
-    stepIndicator2.className = 'step-card active';
-    stepSub2.textContent = 'Pindai QR Orang Tua / Penjemput';
 
     scannerStepTitle.textContent = 'Kamera Pemindai (Orang Tua)';
     scannerStepHint.textContent = 'Arahkan kamera ke QR Code Penjemput untuk verifikasi ' + siswa.nama;
@@ -521,7 +571,7 @@
     viewSiswaOrtu.textContent = siswa.nama_ortu;
     viewSiswaOrtuTelp.textContent = siswa.no_telp_ortu ? '(' + siswa.no_telp_ortu + ')' : '';
 
-    statusBadge.textContent = isScanning ? 'Memindai Ortu...' : 'Kamera Siap';
+    statusBadge.textContent = isScanning ? 'Memindai Ortu...' : 'Siap Scan Ortu';
     statusBadge.className = isScanning ? 'badge-pill badge-green' : 'badge-pill badge-yellow';
   }
 
@@ -542,11 +592,12 @@
   }
 
   // API Routes
-  const routeCekSiswa = "{{ route('guru.scan-qr.cek-siswa') }}";
-  const routeCekOrtu  = "{{ route('guru.scan-qr.cek-ortu') }}";
-  const routeSimpan   = "{{ route('guru.scan-qr.simpan') }}";
+  const routeCekSiswa   = "{{ route($routePrefix . '.scan-qr.cek-siswa') }}";
+  const routeAbsenSiswa = "{{ route($routePrefix . '.scan-qr.absen-siswa') }}";
+  const routeCekOrtu    = "{{ route($routePrefix . '.scan-qr.cek-ortu') }}";
+  const routeSimpan     = "{{ route($routePrefix . '.scan-qr.simpan') }}";
 
-  // Step 1: Request cek siswa ke backend
+  // Step 1: Request cek siswa ke backend & otomatis catat ke daftar absen pulang
   function processStep1Siswa(kode) {
     hideAlert();
     statusBadge.textContent = 'Memeriksa Siswa...';
@@ -563,13 +614,43 @@
     .then(res => res.json())
     .then(data => {
       if (data.success && data.siswa) {
-        setStep2(data.siswa);
+        lastScannedSiswa = data.siswa;
+
+        // Langsung catat ke daftar "Siswa Sudah Absen Pulang" agar tampil di halaman
+        fetch(routeAbsenSiswa, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ id_siswa: data.siswa.id_siswa })
+        })
+        .then(r => r.json())
+        .then(resAbsen => {
+          if (resAbsen.success && resAbsen.data && !resAbsen.already_exists) {
+            addWaitingItemToDom(resAbsen.data);
+          }
+        })
+        .catch(err => console.error('Gagal mencatat absen pulang:', err));
+
+        // Tampilkan data pada Popup Modal Berhasil Scan
+        popupSiswaNama.textContent = data.siswa.nama;
+        popupSiswaNis.textContent = data.siswa.nis || '-';
+        popupSiswaOrtu.textContent = data.siswa.nama_ortu || '-';
+
         if (data.sudah_dijemput) {
-          badgeAlreadyPickedUp.style.display = 'inline-block';
-          showAlert('Perhatian: Siswa ini sudah pernah dijemput hari ini pada pukul ' + data.sudah_dijemput.waktu, 'warning');
+          popupAlreadyNote.style.display = 'block';
+          popupAlreadyNote.innerHTML = 'Catatan: Siswa ini sudah selesai dijemput sebelumnya pada pukul ' + data.sudah_dijemput.waktu + '.';
         } else {
-          badgeAlreadyPickedUp.style.display = 'none';
+          popupAlreadyNote.style.display = 'none';
         }
+
+        // Buka Popup Modal
+        $('#modalScanSiswaBerhasil').modal('show');
+
+        // Halaman tetap siap di Step 1 agar saat popup di-close (x) langsung lihat daftar absen pulang
+        setStep1(false);
       } else {
         showAlert(data.message || 'Data siswa tidak ditemukan. Silakan scan ulang.', 'error');
         statusBadge.textContent = 'Siswa Tidak Ditemukan';
@@ -581,6 +662,36 @@
       showAlert('Gagal menghubungi server untuk verifikasi siswa.', 'error');
     });
   }
+
+  // Tombol "Scan Orang Tua Sekarang" di dalam Popup
+  btnPopupScanOrtu.addEventListener('click', function () {
+    if (!lastScannedSiswa) return;
+    $('#modalScanSiswaBerhasil').modal('hide');
+    badgeAlreadyPickedUp.style.display = 'none';
+    setStep2(lastScannedSiswa);
+    showAlert('Siap memindai QR Orang Tua untuk menjemput <strong>' + lastScannedSiswa.nama + '</strong>.', 'success');
+  });
+
+  // Klik tombol "Scan Orang Tua" dari Daftar Siswa Sudah Absen Pulang
+  $(document).on('click', '.btn-scan-ortu-waiting', function () {
+    const siswaObj = {
+      id_siswa: $(this).data('id'),
+      nama: $(this).data('nama'),
+      nis: $(this).data('nis'),
+      jenis_kelamin: $(this).data('jk'),
+      tahun_ajaran: $(this).data('ta'),
+      id_ortu_wali: $(this).data('id-ortu'),
+      nama_ortu: $(this).data('nama-ortu'),
+      no_telp_ortu: $(this).data('telp-ortu')
+    };
+
+    badgeAlreadyPickedUp.style.display = 'none';
+    setStep2(siswaObj);
+    showAlert('Siap memindai QR Orang Tua untuk menjemput <strong>' + siswaObj.nama + '</strong>.', 'success');
+
+    // Scroll ke bagian atas agar langsung terlihat kamera & panel proses
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   // Step 2: Request cek ortu ke backend
   function processStep2Ortu(kodeOrtu) {
@@ -662,15 +773,18 @@
       btnSubmit.textContent = 'Konfirmasi & Simpan Penjemputan';
 
       if (data.success && data.data) {
-        showAlert(data.message, 'success');
+        showAlert('<i class="fa-solid fa-circle-check mr-1"></i> ' + data.message, 'success');
 
-        // Tambahkan ke riwayat tampilan secara instan
+        // Hapus dari daftar tunggu jika ada
+        removeWaitingItemFromDom(data.data.id_siswa);
+
+        // Tambahkan ke rekap penjemputan secara instan
         addRiwayatItemToDom(data.data);
 
-        // Reset ke Step 1 setelah 2.5 detik agar siap menyambut siswa berikutnya
+        // Reset ke Step 1 setelah 2 detik agar siap menyambut siswa berikutnya
         setTimeout(() => {
           setStep1();
-        }, 2500);
+        }, 2000);
       } else {
         showAlert(data.message || 'Gagal menyimpan penjemputan.', 'error');
       }
@@ -683,7 +797,62 @@
     });
   });
 
-  // Tambahkan item riwayat baru ke daftar DOM
+  // Tambahkan siswa ke daftar Siswa Sudah Absen Pulang
+  function addWaitingItemToDom(item) {
+    if (emptyWaitingMessage) {
+      emptyWaitingMessage.style.display = 'none';
+    }
+    const existingEl = waitingListContainer.querySelector(`.waiting-item[data-id-siswa="${item.id_siswa}"]`);
+    if (existingEl) return;
+
+    const div = document.createElement('div');
+    div.className = 'waiting-item';
+    div.setAttribute('data-id-siswa', item.id_siswa);
+    div.style.cssText = 'background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;';
+    div.innerHTML = `
+      <div>
+        <div style="font-size: 13px; font-weight: 700; color: #1e293b;">${item.nama}</div>
+        <div style="font-size: 11px; color: #64748b;">
+          NIS: ${item.nis || '-'} &bull; Ortu: ${item.nama_ortu || '-'} &bull; Absen: ${item.waktu}
+        </div>
+      </div>
+      <div style="flex-shrink: 0;">
+        <button type="button" class="btn btn-sm btn-success font-weight-bold btn-scan-ortu-waiting"
+          style="border-radius: 7px; font-size: 11.5px; padding: 5px 12px;"
+          data-id="${item.id_siswa}"
+          data-nama="${item.nama}"
+          data-nis="${item.nis || '-'}"
+          data-jk="${item.jenis_kelamin || '-'}"
+          data-ta="${item.tahun_ajaran || '-'}"
+          data-id-ortu="${item.id_ortu_wali}"
+          data-nama-ortu="${item.nama_ortu || '-'}"
+          data-telp-ortu="${item.no_telp_ortu || '-'}">
+          <i class="fa-solid fa-qrcode mr-1"></i> Absen Pulang
+        </button>
+      </div>
+    `;
+
+    waitingListContainer.prepend(div);
+
+    const currentCount = parseInt(waitingCountBadge.textContent) || 0;
+    waitingCountBadge.textContent = (currentCount + 1) + ' Menunggu';
+  }
+
+  // Hapus siswa dari daftar Siswa Sudah Absen Pulang setelah dijemput
+  function removeWaitingItemFromDom(idSiswa) {
+    const el = waitingListContainer.querySelector(`.waiting-item[data-id-siswa="${idSiswa}"]`);
+    if (el) {
+      el.remove();
+      const currentCount = Math.max(0, (parseInt(waitingCountBadge.textContent) || 1) - 1);
+      waitingCountBadge.textContent = currentCount + ' Menunggu';
+
+      if (currentCount === 0 && emptyWaitingMessage) {
+        emptyWaitingMessage.style.display = 'block';
+      }
+    }
+  }
+
+  // Tambahkan item riwayat baru ke daftar Rekap Penjemputan DOM
   function addRiwayatItemToDom(item) {
     if (emptyRiwayatMessage) {
       emptyRiwayatMessage.style.display = 'none';
@@ -718,8 +887,8 @@
   });
 
   // Tombol Batal & Ulangi Dari Awal
-  btnResetAll.addEventListener('click', setStep1);
-  btnCancelToStart.addEventListener('click', setStep1);
+  btnResetAll.addEventListener('click', () => setStep1(false));
+  btnCancelToStart.addEventListener('click', () => setStep1(false));
 
   // Input Manual Submission
   btnManual.addEventListener('click', function () {
@@ -778,7 +947,7 @@
       btnStop.disabled = false;
       laserLine.style.display = 'block';
 
-      statusBadge.textContent = (currentStep === 1) ? 'Memindai Siswa...' : 'Memindai Ortu...';
+      statusBadge.textContent = (currentStep === 1) ? 'Memindai Siswa...' : (currentStep === 2 ? 'Memindai Ortu...' : 'Menunggu Pilihan');
       statusBadge.className = 'badge-pill badge-green';
     }).catch((err) => {
       console.error('Gagal membuka kamera:', err);
