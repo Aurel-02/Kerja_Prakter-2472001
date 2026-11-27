@@ -47,6 +47,10 @@
             "dest": "/public/adward/$1"
         },
         {
+            "src": "/sb-admin-2/(.*)",
+            "dest": "/public/sb-admin-2/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }

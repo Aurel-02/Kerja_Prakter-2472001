@@ -72,7 +72,7 @@
           </tr>
         </thead>
         <tbody>
-          @forelse($riwayatList as $index => $item)
+          @foreach($riwayatList as $index => $item)
             @php
               $tglKey = $item->id_siswa . '_' . \Carbon\Carbon::parse($item->tanggal)->toDateString();
               $jemput = $penjemputanMap->get($tglKey);
@@ -125,11 +125,7 @@
                 {{ $item->user->nama ?? '-' }}
               </td>
             </tr>
-          @empty
-            <tr>
-              <td colspan="8" class="text-center py-4 text-muted">Belum ada catatan riwayat presensi pada rentang tanggal ini.</td>
-            </tr>
-          @endforelse
+          @endforeach
         </tbody>
       </table>
     </div>
@@ -154,7 +150,7 @@
           previous: 'Sebelumnya'
         },
         zeroRecords: 'Tidak ada catatan presensi yang cocok',
-        emptyTable: 'Belum ada catatan presensi.'
+        emptyTable: 'Belum ada catatan riwayat presensi pada rentang tanggal ini.'
       },
       pageLength: 15,
       order: [[0, 'asc']]
