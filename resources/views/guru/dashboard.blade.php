@@ -35,7 +35,7 @@
           <h2 class="card-title-main">Agenda Terdekat Sekolah</h2>
           <div class="card-subtitle-small">Jadwal kegiatan belajar dan peringatan hari besar</div>
         </div>
-        <a href="{{ route('kalender') }}" target="_blank" class="btn-link-action">Buka Kalender &rarr;</a>
+        <a href="{{ route('guru.kalender') }}" class="btn-link-action">Buka Kalender &rarr;</a>
       </div>
 
       <div class="agenda-list">

@@ -54,6 +54,12 @@
         <span>Catat Presensi</span>
       </a>
 
+      <!-- Riwayat Presensi & Penjemputan -->
+      <a href="{{ route('admin.riwayat-presensi') }}" class="nav-item-link {{ request()->routeIs('admin.riwayat-presensi*') ? 'active' : '' }}">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Riwayat Presensi</span>
+      </a>
+
       <div class="nav-group-label" style="margin-top: 10px;">Data Sekolah</div>
 
       <!-- Profil Sekolah -->
@@ -138,14 +144,6 @@
         <i class="fa-regular fa-bell"></i>
         <span class="badge-dot"></span>
       </a>
-
-      <!-- User Profile Info -->
-      <div class="topbar-user-pill" style="cursor: default;">
-        <div class="user-info-text">
-          <span class="user-name">{{ Auth::user()->nama ?? 'Administrator' }}</span>
-          <span class="user-role">Admin</span>
-        </div>
-      </div>
     </div>
   </header>
 

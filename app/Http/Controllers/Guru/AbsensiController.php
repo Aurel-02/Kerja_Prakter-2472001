@@ -253,4 +253,61 @@ class AbsensiController extends Controller
 
         return back()->with('success', 'Status absensi siswa berhasil diperbarui.');
     }
+
+    /**
+     * Tampilkan halaman Riwayat Presensi & Penjemputan Siswa
+     */
+    public function riwayat(Request $request)
+    {
+        $tanggalMulai   = $request->input('tanggal_mulai', today()->startOfMonth()->toDateString());
+        $tanggalSelesai = $request->input('tanggal_selesai', today()->toDateString());
+        $statusFilter   = $request->input('status', 'all');
+
+        try {
+            $tanggalMulai   = Carbon::parse($tanggalMulai)->toDateString();
+            $tanggalSelesai = Carbon::parse($tanggalSelesai)->toDateString();
+        } catch (\Exception $e) {
+            $tanggalMulai   = today()->startOfMonth()->toDateString();
+            $tanggalSelesai = today()->toDateString();
+        }
+
+        $query = Absensi::with(['siswa.orangTua', 'user'])
+            ->whereDate('tanggal', '>=', $tanggalMulai)
+            ->whereDate('tanggal', '<=', $tanggalSelesai);
+
+        if ($statusFilter && $statusFilter !== 'all') {
+            $query->where('status', $statusFilter);
+        }
+
+        $riwayatList = $query->orderBy('tanggal', 'desc')
+            ->orderBy('waktu_masuk', 'desc')
+            ->get();
+
+        // Ambil data penjemputan pada rentang tanggal yang sama
+        $penjemputanMap = Penjemputan::with('orangTua')
+            ->whereDate('waktu', '>=', $tanggalMulai)
+            ->whereDate('waktu', '<=', $tanggalSelesai)
+            ->orderBy('waktu', 'desc')
+            ->get()
+            ->keyBy(function ($item) {
+                return $item->id_siswa . '_' . Carbon::parse($item->waktu)->toDateString();
+            });
+
+        $totalHadir = $riwayatList->where('status', 'hadir')->count();
+        $totalIzin  = $riwayatList->where('status', 'izin')->count();
+        $totalSakit = $riwayatList->where('status', 'sakit')->count();
+        $totalAlpha = $riwayatList->where('status', 'alpha')->count();
+
+        return view('guru.riwayat-presensi', compact(
+            'riwayatList',
+            'penjemputanMap',
+            'tanggalMulai',
+            'tanggalSelesai',
+            'statusFilter',
+            'totalHadir',
+            'totalIzin',
+            'totalSakit',
+            'totalAlpha'
+        ));
+    }
 }

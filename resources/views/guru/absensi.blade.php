@@ -59,7 +59,7 @@
 
       <div class="row">
         <!-- Kolom Kiri: Kamera Scanner Absensi -->
-        <div class="col-lg-5 mb-4">
+        <div class="col-lg-4 mb-4">
           <div class="admin-card">
             <div class="card-header-flex">
               <div>
@@ -71,8 +71,8 @@
 
             <div id="absenAlertFeedback" style="display: none; margin-bottom: 14px; padding: 12px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600;"></div>
 
-            <div style="position: relative; background: #0f172a; border-radius: 12px; overflow: hidden; min-height: 270px; display: flex; align-items: center; justify-content: center;">
-              <div id="readerAbsen" style="width: 100%; max-width: 400px; margin: 0 auto;"></div>
+            <div style="position: relative; background: #0f172a; border-radius: 12px; overflow: hidden; min-height: 220px; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+              <div id="readerAbsen" style="width: 100%; max-width: 280px; margin: 0 auto;"></div>
               <div id="absenLaserLine" class="scan-laser" style="display: none;"></div>
             </div>
 
@@ -114,7 +114,7 @@
         </div>
 
         <!-- Kolom Kanan: Rekap Daftar Absensi -->
-        <div class="col-lg-7 mb-4">
+        <div class="col-lg-8 mb-4">
           <div class="admin-card">
             <div class="card-header-flex flex-wrap" style="gap: 10px;">
               <div>
@@ -201,7 +201,7 @@
 
       <div class="row">
         <!-- Kolom Kiri: Kamera Pemindai Penjemputan -->
-        <div class="col-lg-5 mb-4">
+        <div class="col-lg-4 mb-4">
           <div class="admin-card">
             <div class="card-header-flex">
               <div>
@@ -211,8 +211,8 @@
               <span id="jemputStatusBadge" class="badge-pill badge-yellow">Kamera Siap</span>
             </div>
 
-            <div style="position: relative; background: #0f172a; border-radius: 12px; overflow: hidden; min-height: 270px; display: flex; align-items: center; justify-content: center;">
-              <div id="readerJemput" style="width: 100%; max-width: 400px; margin: 0 auto;"></div>
+            <div style="position: relative; background: #0f172a; border-radius: 12px; overflow: hidden; min-height: 220px; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+              <div id="readerJemput" style="width: 100%; max-width: 280px; margin: 0 auto;"></div>
               <div id="jemputLaserLine" class="scan-laser" style="display: none;"></div>
             </div>
 
@@ -254,7 +254,7 @@
         </div>
 
         <!-- Kolom Kanan: Verifikasi, Siswa Siap Dijemput & Rekap Pulang -->
-        <div class="col-lg-7 mb-4">
+        <div class="col-lg-8 mb-4">
 
           <!-- Proses Verifikasi Penjemputan -->
           <div class="admin-card mb-4">

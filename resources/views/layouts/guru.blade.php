@@ -53,6 +53,12 @@
         <span>Catat Presensi</span>
       </a>
 
+      <!-- Riwayat Presensi & Penjemputan -->
+      <a href="{{ route('guru.riwayat-presensi') }}" class="nav-item-link {{ request()->routeIs('guru.riwayat-presensi*') ? 'active' : '' }}">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Riwayat Presensi</span>
+      </a>
+
       <div class="nav-group-label" style="margin-top: 10px;">Data Akademik</div>
 
       <!-- Data Siswa -->
@@ -68,23 +74,15 @@
       </a>
 
       <!-- Kalender Akademik -->
-      <a href="{{ route('kalender') }}" target="_blank" class="nav-item-link">
+      <a href="{{ route('guru.kalender') }}" class="nav-item-link {{ request()->routeIs('guru.kalender*') ? 'active' : '' }}" title="Kalender Akademik">
         <i class="fa-solid fa-calendar-days"></i>
         <span>Kalender Akademik</span>
       </a>
 
       <!-- Kurikulum -->
-      <a href="{{ route('kurikulum') }}" target="_blank" class="nav-item-link">
+      <a href="{{ route('guru.kurikulum') }}" class="nav-item-link {{ request()->routeIs('guru.kurikulum*') ? 'active' : '' }}" title="Kurikulum Belajar">
         <i class="fa-solid fa-book-open"></i>
         <span>Kurikulum Belajar</span>
-      </a>
-
-      <div class="nav-group-label" style="margin-top: 10px;">Sistem</div>
-
-      <!-- Website Utama -->
-      <a href="{{ route('home') }}" target="_blank" class="nav-item-link">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        <span>Lihat Website</span>
       </a>
     </div>
 

@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Guru\AbsensiController as GuruAbsensiController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Guru\KalenderController as GuruKalenderController;
+use App\Http\Controllers\Guru\KurikulumController as GuruKurikulumController;
 use App\Http\Controllers\Guru\OrangTuaController as GuruOrangTuaController;
 use App\Http\Controllers\Guru\PenjemputanController as GuruPenjemputanController;
 use App\Http\Controllers\Guru\SiswaController as GuruSiswaController;
@@ -93,6 +95,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/absensi', [GuruAbsensiController::class, 'index'])->name('absensi');
     Route::post('/absensi/scan', [GuruAbsensiController::class, 'scanQr'])->name('absensi.scan');
     Route::post('/absensi/status', [GuruAbsensiController::class, 'updateStatus'])->name('absensi.status');
+    Route::get('/riwayat-presensi', [GuruAbsensiController::class, 'riwayat'])->name('riwayat-presensi');
 });
 
 // Guru Routes (Dilindungi Auth Middleware)
@@ -108,8 +111,11 @@ Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
     Route::get('/absensi', [GuruAbsensiController::class, 'index'])->name('absensi');
     Route::post('/absensi/scan', [GuruAbsensiController::class, 'scanQr'])->name('absensi.scan');
     Route::post('/absensi/status', [GuruAbsensiController::class, 'updateStatus'])->name('absensi.status');
+    Route::get('/riwayat-presensi', [GuruAbsensiController::class, 'riwayat'])->name('riwayat-presensi');
 
-    // Data Siswa & Orang Tua untuk Guru
+    // Data Siswa, Orang Tua, Kalender & Kurikulum untuk Guru (Hanya Lihat)
     Route::get('/siswa', [GuruSiswaController::class, 'index'])->name('siswa');
     Route::get('/orang-tua', [GuruOrangTuaController::class, 'index'])->name('orang-tua');
+    Route::get('/kalender', [GuruKalenderController::class, 'index'])->name('kalender');
+    Route::get('/kurikulum', [GuruKurikulumController::class, 'index'])->name('kurikulum');
 });
