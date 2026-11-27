@@ -47,16 +47,10 @@
         <span>Dashboard</span>
       </a>
 
-      <!-- Scan QR Penjemputan -->
-      <a href="{{ route('guru.scan-qr') }}" class="nav-item-link {{ request()->routeIs('guru.scan-qr') ? 'active' : '' }}">
+      <!-- Catat Presensi (Absensi & Penjemputan QR) -->
+      <a href="{{ route('guru.absensi') }}" class="nav-item-link {{ request()->routeIs('guru.absensi*', 'guru.scan-qr*') ? 'active' : '' }}">
         <i class="fa-solid fa-qrcode"></i>
-        <span>Scan QR Penjemputan</span>
-      </a>
-
-      <!-- Absensi Siswa QR -->
-      <a href="{{ route('guru.absensi') }}" class="nav-item-link {{ request()->routeIs('guru.absensi*') ? 'active' : '' }}">
-        <i class="fa-solid fa-user-check"></i>
-        <span>Absensi Siswa</span>
+        <span>Catat Presensi</span>
       </a>
 
       <div class="nav-group-label" style="margin-top: 10px;">Data Akademik</div>

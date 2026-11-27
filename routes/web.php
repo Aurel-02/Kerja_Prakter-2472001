@@ -37,6 +37,7 @@ Route::get('/galeri', [PublicController::class, 'galeri'])->name('galeri');
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard & Profil Sekolah
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah');
     Route::put('/sekolah', [SekolahController::class, 'update'])->name('sekolah.update');
 
     // Kelola Akun Pengguna (Hanya Admin)

@@ -169,6 +169,29 @@ nav.navbar {
   border-bottom: 3px solid #fec913;
 }
 
+.custom_nav-container .dropdown-menu {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  margin-top: 6px;
+}
+
+.custom_nav-container .dropdown-item {
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  padding: 8px 14px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.custom_nav-container .dropdown-item:hover,
+.custom_nav-container .dropdown-item.active {
+  background-color: #eaf8f0;
+  color: #16a34a;
+}
+
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -368,16 +391,16 @@ nav.navbar {
 .fasilitas-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(37, 211, 102, 0.82) 0%, transparent 55%);
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.82) 0%, rgba(22, 163, 74, 0.22) 40%, transparent 65%);
   display: flex;
   align-items: flex-end;
   padding: 16px;
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  opacity: 1;
+  transition: background 0.3s ease;
 }
 
 .fasilitas-item:hover .fasilitas-overlay {
-  opacity: 1;
+  background: linear-gradient(to top, rgba(22, 163, 74, 0.88) 0%, rgba(22, 163, 74, 0.25) 45%, transparent 70%);
 }
 
 .fasilitas-overlay span {

@@ -13,31 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class PenjemputanController extends Controller
 {
     /**
-     * Tampilkan halaman Scan QR Penjemputan
+     * Arahkan ke halaman terpadu Absensi & Penjemputan QR (Tab Penjemputan)
      */
     public function scanQr()
     {
-        $menungguPenjemputan = Penjemputan::with(['siswa', 'orangTua'])
-            ->whereDate('waktu', today())
-            ->where('status', 'menunggu')
-            ->orderBy('waktu', 'desc')
-            ->get();
-
-        $riwayatHariIni = Penjemputan::with(['siswa', 'orangTua'])
-            ->whereDate('waktu', today())
-            ->where('status', 'selesai')
-            ->orderBy('waktu', 'desc')
-            ->take(25)
-            ->get();
-
-        $bulanIndo = [
-            1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-        ];
-        $now = Carbon::now();
-        $tanggalHariIni = $now->format('d') . ' ' . $bulanIndo[(int) $now->format('n')] . ' ' . $now->format('Y');
-
-        return view('guru.scan', compact('menungguPenjemputan', 'riwayatHariIni', 'tanggalHariIni'));
+        $prefix = request()->routeIs('admin.*') ? 'admin' : 'guru';
+        return redirect()->route($prefix . '.absensi', ['tab' => 'penjemputan']);
     }
 
     /**

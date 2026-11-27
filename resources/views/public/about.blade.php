@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'TK Harapan Bunda - Tentang Kami')
+@section('title', 'TK Harapan Bunda - Profil Sekolah')
 
 @section('top_container')
   @include('public.navbar.navbar')
@@ -12,7 +12,7 @@
   <section class="about_section layout_padding bg-white">
     <div class="container">
       <h2 class="main-heading text-center mb-4">
-        Tentang TK Harapan Bunda
+        Profil Sekolah
       </h2>
 
       <div class="about-content text-dark mx-auto" style="font-size: 1.05rem; line-height: 1.8; max-width: 900px;">
@@ -20,10 +20,10 @@
           {!! nl2br(e($sekolah->deskripsi_profil)) !!}
         @else
           <p>
-            <strong>TK Harapan Bunda</strong> melayani pendidikan anak usia dini dalam rentang usia 4–6 tahun. Jumlah peserta didik pada tahun ajaran ini sebanyak 34 anak. Anak-anak berasal dari latar belakang keluarga dengan kondisi sosial ekonomi dan budaya yang beragam, mencerminkan karakter masyarakat kota Bandung.
+            Berlokasi di Babakan Ciparay, Kota Bandung, TK Harapan Bunda merupakan sekolah taman kanak-kanak di bawah naungan Yayasan Pendidikan Cahaya Pelita yang melayani pendidikan anak usia 4–6 tahun (Kelompok A dan B).
           </p>
           <p class="mb-0">
-            Sebagian besar orang tua peserta didik bekerja di sektor formal dan informal, sehingga waktu pendampingan di rumah tidak merata. Hal ini menyebabkan variasi dalam kemampuan awal peserta didik saat memasuki sekolah, baik dari aspek kognitif, sosial emosional, maupun kesiapan literasi dan motorik.
+            Kami menghadirkan lingkungan belajar yang aman, inklusif, dan menyenangkan bagi anak-anak dari berbagai latar belakang. Melalui metode belajar berbasis bermain dan eksplorasi aktif, kami menumbuhkan rasa ingin tahu alami anak sekaligus mengasah 6 aspek fondasi perkembangannya mulai dari budi pekerti, motorik, kognitif, literasi dasar, kemandirian sosial serta emosional, hingga kreativitas seni. Didukung kemitraan erat dengan orang tua, TK Harapan Bunda siap menjadi rumah kedua terbaik untuk langkah awal pendidikan buah hati Anda.
           </p>
         @endif
       </div>

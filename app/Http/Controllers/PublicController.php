@@ -14,7 +14,7 @@ class PublicController extends Controller
     {
         try {
             $sekolah = Sekolah::first();
-            $guruList = StrukturSekolah::take(2)->get();
+            $guruList = StrukturSekolah::all();
             $fasilitas = Galeri::where('kategori', 'like', '%Fasilitas%')->take(6)->get();
         } catch (\Throwable $e) {
             $sekolah = null;

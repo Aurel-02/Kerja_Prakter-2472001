@@ -51,17 +51,38 @@ class AbsensiController extends Controller
         $totalAlpha      = $absensiMap->where('status', 'alpha')->count();
         $totalBelumAbsen = max(0, $totalSiswa - $absensiMap->count());
 
+        // Data Penjemputan Hari Ini untuk Tab Penjemputan
+        $menungguPenjemputan = Penjemputan::with(['siswa', 'orangTua'])
+            ->whereDate('waktu', today())
+            ->where('status', 'menunggu')
+            ->orderBy('waktu', 'desc')
+            ->get();
+
+        $riwayatHariIni = Penjemputan::with(['siswa', 'orangTua'])
+            ->whereDate('waktu', today())
+            ->where('status', 'selesai')
+            ->orderBy('waktu', 'desc')
+            ->take(25)
+            ->get();
+
+        $tanggalTodayFormatted = $this->formatTanggalIndo(today()->toDateString());
+        $activeTab = $request->input('tab', 'absensi');
+
         return view('guru.absensi', compact(
             'siswaList',
             'absensiMap',
             'tanggal',
             'tanggalFormatted',
+            'tanggalTodayFormatted',
             'totalSiswa',
             'totalHadir',
             'totalIzin',
             'totalSakit',
             'totalAlpha',
-            'totalBelumAbsen'
+            'totalBelumAbsen',
+            'menungguPenjemputan',
+            'riwayatHariIni',
+            'activeTab'
         ));
     }
 
@@ -80,7 +101,8 @@ class AbsensiController extends Controller
             ], 400);
         }
 
-        $siswa = Siswa::where('qr_code_siswa', $kode)
+        $siswa = Siswa::with('orangTua')
+            ->where('qr_code_siswa', $kode)
             ->orWhere('nis', $kode)
             ->orWhere('id_siswa', $kode)
             ->first();
@@ -157,6 +179,10 @@ class AbsensiController extends Controller
                 'nama'          => $siswa->nama,
                 'nis'           => $siswa->nis ?? '-',
                 'jenis_kelamin' => $siswa->jenis_kelamin ?? '-',
+                'tahun_ajaran'  => $siswa->tahun_ajaran ?? '-',
+                'id_ortu_wali'  => $siswa->id_ortu_wali,
+                'nama_ortu'     => $siswa->orangTua ? $siswa->orangTua->nama : '-',
+                'no_telp_ortu'  => $siswa->orangTua ? $siswa->orangTua->no_telp : '-',
                 'waktu_masuk'   => Carbon::parse($waktuSekarang)->format('H:i') . ' WIB',
                 'status'        => 'hadir',
                 'keterangan'    => $absensi->keterangan,

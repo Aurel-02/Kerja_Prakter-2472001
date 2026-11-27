@@ -3,57 +3,49 @@
   <!-- header section starts -->
   <header class="header_section">
     <div class="container">
-      <nav class="navbar custom_nav-container">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
 
         <!-- Nama Sekolah / Brand -->
         <a class="navbar-brand text-white font-weight-bold" href="{{ route('home') }}">
           TK Harapan Bunda
         </a>
 
-        <!-- Tombol Login & Hamburger -->
-        <div class="ml-auto d-flex align-items-center">
-          <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
-            <i class="fa fa-sign-in mr-1"></i> Login
-          </a>
+        <!-- Tombol Toggler Hamburger (Mobile) -->
+        <button class="navbar-toggler text-white ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <!-- Tombol Toggler Hamburger -->
-          <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-
-        <!-- Menu Navbar (Dropdown Vertikal) -->
+        <!-- Menu Navbar Horizontal -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="d-flex mx-auto flex-column align-items-center w-100">
-            <ul class="navbar-nav w-100 justify-content-center">
-              <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('home') }}"> Beranda </a>
-              </li>
-              <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('about') }}"> Tentang Kami </a>
-              </li>
-              <li class="nav-item {{ request()->routeIs('kurikulum') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('kurikulum') }}"> Kurikulum </a>
-              </li>
-              <li class="nav-item {{ request()->routeIs('teacher') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('teacher') }}"> Struktur </a>
-              </li>
-              <li class="nav-item {{ request()->routeIs('vehicle') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>
-              </li>
-              <li class="nav-item {{ request()->routeIs('kalender') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('kalender') }}"> Kalender Akademik </a>
-              </li>
-              <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
-                <a class="nav-link font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
-              </li>
-              <li class="nav-item d-md-none mt-2">
-                <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
-                  <i class="fa fa-sign-in mr-1"></i> Login
-                </a>
-              </li>
-            </ul>
+          <ul class="navbar-nav mx-auto align-items-lg-center">
+            <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+              <a class="nav-link font-weight-bold" href="{{ route('home') }}">Beranda</a>
+            </li>
+            <li class="nav-item dropdown {{ request()->routeIs('about', 'kurikulum', 'teacher', 'vehicle') ? 'active' : '' }}">
+              <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="profilDropdownSub" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profil Kami
+              </a>
+              <div class="dropdown-menu" aria-labelledby="profilDropdownSub">
+                <a class="dropdown-item {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Profil Sekolah</a>
+                <a class="dropdown-item {{ request()->routeIs('kurikulum') ? 'active' : '' }}" href="{{ route('kurikulum') }}">Kurikulum</a>
+                <a class="dropdown-item {{ request()->routeIs('teacher') ? 'active' : '' }}" href="{{ route('teacher') }}">Struktur</a>
+                <a class="dropdown-item {{ request()->routeIs('vehicle') ? 'active' : '' }}" href="{{ route('vehicle') }}">Fasilitas</a>
+              </div>
+            </li>
+            <li class="nav-item {{ request()->routeIs('kalender') ? 'active' : '' }}">
+              <a class="nav-link font-weight-bold" href="{{ route('kalender') }}">Kalender Akademik</a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
+              <a class="nav-link font-weight-bold" href="{{ route('galeri') }}">Galeri</a>
+            </li>
+          </ul>
+
+          <!-- Tombol Login -->
+          <div class="mt-2 mt-lg-0">
+            <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 text-dark shadow-sm">
+              <i class="fa fa-sign-in mr-1"></i> Portal Staf
+            </a>
           </div>
         </div>
       </nav>

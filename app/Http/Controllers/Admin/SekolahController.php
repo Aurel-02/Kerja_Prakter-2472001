@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class SekolahController extends Controller
 {
+    public function index()
+    {
+        $sekolah = Sekolah::first();
+        return view('admin.sekolah', compact('sekolah'));
+    }
+
     public function update(Request $request)
     {
         $validated = $request->validate([

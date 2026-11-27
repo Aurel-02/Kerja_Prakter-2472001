@@ -2,77 +2,53 @@
 
 @section('title', 'TK Harapan Bunda - Beranda')
 
-@section('styles')
-<style>
-  .home-scroll-navbar {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.35s ease, opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  .home-scroll-navbar.is-scrolled {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-</style>
-@endsection
-
 @section('top_container')
   <div class="top_container home_wallpaper_hero">
     <!-- header section starts -->
-    <header class="header_section home-scroll-navbar" id="homeNavbar">
+    <header class="header_section">
       <div class="container">
-        <nav class="navbar custom_nav-container">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
           <!-- Nama Sekolah / Brand -->
           <a class="navbar-brand text-white font-weight-bold" href="{{ route('home') }}">
             TK Harapan Bunda
           </a>
 
-          <!-- Tombol Login & Hamburger -->
-          <div class="ml-auto d-flex align-items-center">
-            <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 mr-2 text-dark shadow-sm">
-              <i class="fa fa-sign-in mr-1"></i> Login
-            </a>
+          <!-- Tombol Toggler Hamburger (Mobile) -->
+          <button class="navbar-toggler text-white ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <!-- Tombol Toggler Hamburger -->
-            <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-
-          <!-- Menu Navbar (Dropdown Vertikal) -->
+          <!-- Menu Navbar Horizontal -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex mx-auto flex-column align-items-center w-100">
-              <ul class="navbar-nav w-100 justify-content-center">
-                <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('home') }}"> Beranda </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('about') }}"> Tentang Kami </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('kurikulum') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('kurikulum') }}"> Kurikulum </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('teacher') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('teacher') }}"> Struktur </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('vehicle') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('vehicle') }}"> Fasilitas </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('kalender') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('kalender') }}"> Kalender Akademik </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
-                  <a class="nav-link font-weight-bold" href="{{ route('galeri') }}"> Galeri </a>
-                </li>
-                <li class="nav-item d-md-none mt-2">
-                  <a class="nav-link font-weight-bold text-warning" href="{{ route('login') }}">
-                    <i class="fa fa-sign-in mr-1"></i> Login
-                  </a>
-                </li>
-              </ul>
+            <ul class="navbar-nav mx-auto align-items-lg-center">
+              <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                <a class="nav-link font-weight-bold" href="{{ route('home') }}">Beranda</a>
+              </li>
+              <li class="nav-item dropdown {{ request()->routeIs('about', 'kurikulum', 'teacher', 'vehicle') ? 'active' : '' }}">
+                <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="profilDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Profil Kami
+                </a>
+                <div class="dropdown-menu" aria-labelledby="profilDropdown">
+                  <a class="dropdown-item {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Profil Sekolah</a>
+                  <a class="dropdown-item {{ request()->routeIs('kurikulum') ? 'active' : '' }}" href="{{ route('kurikulum') }}">Kurikulum</a>
+                  <a class="dropdown-item {{ request()->routeIs('teacher') ? 'active' : '' }}" href="{{ route('teacher') }}">Struktur</a>
+                  <a class="dropdown-item {{ request()->routeIs('vehicle') ? 'active' : '' }}" href="{{ route('vehicle') }}">Fasilitas</a>
+                </div>
+              </li>
+              <li class="nav-item {{ request()->routeIs('kalender') ? 'active' : '' }}">
+                <a class="nav-link font-weight-bold" href="{{ route('kalender') }}">Kalender Akademik</a>
+              </li>
+              <li class="nav-item {{ request()->routeIs('galeri') ? 'active' : '' }}">
+                <a class="nav-link font-weight-bold" href="{{ route('galeri') }}">Galeri</a>
+              </li>
+            </ul>
+
+            <!-- Tombol Login -->
+            <div class="mt-2 mt-lg-0">
+              <a href="{{ route('login') }}" class="btn btn-warning btn-sm font-weight-bold rounded-pill px-3 py-1 text-dark shadow-sm">
+                <i class="fa fa-sign-in mr-1"></i> Portal Staf
+              </a>
             </div>
           </div>
         </nav>
@@ -84,18 +60,26 @@
     <section class="hero_section">
       <div class="container py-4 py-md-5">
         <div class="row align-items-center" style="min-height: 50vh;">
-          <div class="col-lg-8 col-md-10">
+          <div class="col-lg-9 col-md-10">
             <div class="hero_detail-box text-white">
               <h3 class="text-warning font-weight-bold mb-2 hero-sub-title" style="font-size: 1.5rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">
                 Selamat Datang di
               </h3>
-              <h1 class="display-4 font-weight-bold text-white mb-3 hero-main-title" style="text-shadow: 0 4px 12px rgba(0,0,0,0.6);">
+              <h1 class="font-weight-bold text-white mb-3 hero-main-title" style="font-size: clamp(2.5rem, 5.5vw, 4.2rem); line-height: 1.15; text-shadow: 0 4px 14px rgba(0,0,0,0.6);">
                 TK Harapan Bunda
               </h1>
-              <p class="lead text-white mb-4 hero-desc-p" style="font-size: 1.25rem; text-shadow: 0 2px 8px rgba(0,0,0,0.6); max-width: 600px;">
-                Pendidikan anak usia dini yang berkualitas, menyenangkan, dan membangun karakter buah hati Anda.
+              <p class="lead text-white mb-0 hero-desc-p" style="font-size: 1.12rem; line-height: 1.65; text-shadow: 0 2px 8px rgba(0,0,0,0.65); max-width: 720px;">
+                @php
+                  $ringkasanProfil = 'Sekolah taman kanak-kanak di Babakan Ciparay, Kota Bandung di bawah naungan Yayasan Pendidikan Cahaya Pelita yang melayani anak usia 4–6 tahun dengan lingkungan belajar aman, inklusif, dan berbasis bermain.';
+                  if (!empty($sekolah?->deskripsi_profil)) {
+                    $paragraf = preg_split('/\r\n|\r|\n/', trim($sekolah->deskripsi_profil));
+                    if (!empty($paragraf[0])) {
+                      $ringkasanProfil = $paragraf[0];
+                    }
+                  }
+                @endphp
+                {{ $ringkasanProfil }}
               </p>
-
             </div>
           </div>
         </div>
@@ -107,71 +91,8 @@
 
 @section('content')
 
-  <!-- about section -->
-  <section class="about_section layout_padding">
-    <div class="container">
-      <h2 class="main-heading">
-        Tentang TK Harapan Bunda
-      </h2>
-      <p class="text-center mx-auto" style="max-width: 850px; font-size: 1.05rem;">
-        TK Harapan Bunda melayani pendidikan anak usia dini (4–6 tahun) di kota Bandung dengan pembelajaran kontekstual, menyenangkan, dan berbasis bermain, serta berkomitmen membangun 6 pondasi perkembangan anak secara holistik.
-      </p>
-      <div class="d-flex justify-content-center mt-4">
-        <a href="{{ route('about') }}" class="call_to-btn">
-          <span>
-            Selengkapnya
-          </span>
-          <img src="{{ asset('adward/images/right-arrow.png') }}" alt="">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- visi misi section -->
-  <section class="visi_misi_section layout_padding bg-light">
-    <div class="container">
-      <h2 class="main-heading">
-        Visi &amp; Misi
-      </h2>
-      <p class="text-center mb-5">
-        TK Harapan Bunda bertekad memberikan pendidikan anak usia dini yang berkualitas dan berkarakter.
-      </p>
-      <div class="row">
-        <!-- Visi -->
-        <div class="col-md-6 mb-4 mb-md-0">
-          <div class="vm-card">
-            <h3 class="vm-card-title">Visi</h3>
-            <p class="vm-visi-text">
-              {{ $sekolah->visi ?? 'Terwujudnya murid yang membentuk anak yang berahlak mulia, cerdas, kreatif, mandiri, sehat dan kuat.' }}
-            </p>
-          </div>
-        </div>
-        <!-- Misi -->
-        <div class="col-md-6">
-          <div class="vm-card">
-            <h3 class="vm-card-title">Misi</h3>
-            <ul class="vm-misi-list">
-              @php
-                $misiText = $sekolah->misi ?? "1. Menanamkan nilai-nilai keimanan dan ketaqwaan sejak dini.\n2. Mengembangkan kreatifitas dalam setiap kegiatan pembelajaran dan mengembangkan bakat dan minat anak.\n3. Membiasakan sikap mandiri pada anak.\n4. Membiasakan hidup sehat.";
-                $misiLines = preg_split('/\r\n|\r|\n/', trim($misiText));
-              @endphp
-              @foreach($misiLines as $index => $line)
-                @if(!empty(trim($line)))
-                  <li class="vm-misi-item">
-                    <span class="vm-misi-num">{{ preg_match('/^\d+\.?\s*/', $line) ? '' : ($index + 1).'.' }}</span>
-                    <p class="vm-misi-text">{{ preg_replace('/^\d+\.?\s*/', '', $line) }}</p>
-                  </li>
-                @endif
-              @endforeach
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- teacher section -->
-  <section class="teacher_section layout_padding-bottom">
+  <section class="teacher_section layout_padding">
     <div class="container">
       <h2 class="main-heading">
         Pengajar Kami
@@ -236,7 +157,7 @@
     </div>
     <div class="container-fluid p-0">
       <iframe
-        src="https://maps.google.com/maps?q=Jl.+Babakan+Ciparay+No.251,+Sukahaji,+Kec.+Babakan+Ciparay,+Kota+Bandung,+Jawa+Barat+40242&output=embed"
+        src="{{ (!empty($sekolah?->link_maps) && str_contains($sekolah->link_maps, 'output=embed')) ? $sekolah->link_maps : 'https://maps.google.com/maps?q=Jl.+Babakan+Ciparay+No.251,+Sukahaji,+Kec.+Babakan+Ciparay,+Kota+Bandung,+Jawa+Barat+40242&output=embed' }}"
         width="100%"
         height="450"
         style="border:0;"
@@ -247,27 +168,4 @@
     </div>
   </section>
 
-@endsection
-
-@section('scripts')
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const navbar = document.getElementById('homeNavbar');
-    const navCollapse = document.getElementById('navbarSupportedContent');
-
-    function toggleHomeNavbar() {
-      if (window.scrollY > 80) {
-        navbar.classList.add('is-scrolled');
-      } else {
-        navbar.classList.remove('is-scrolled');
-        if (navCollapse && navCollapse.classList.contains('show')) {
-          $(navCollapse).collapse('hide');
-        }
-      }
-    }
-
-    toggleHomeNavbar();
-    window.addEventListener('scroll', toggleHomeNavbar, { passive: true });
-  });
-</script>
 @endsection

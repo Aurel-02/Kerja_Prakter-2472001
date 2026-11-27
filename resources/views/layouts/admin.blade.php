@@ -48,19 +48,19 @@
         <span>Dashboard</span>
       </a>
 
-      <!-- Scan QR Penjemputan -->
-      <a href="{{ route('admin.scan-qr') }}" class="nav-item-link {{ request()->routeIs('admin.scan-qr*') ? 'active' : '' }}">
+      <!-- Catat Presensi (Absensi & Penjemputan QR) -->
+      <a href="{{ route('admin.absensi') }}" class="nav-item-link {{ request()->routeIs('admin.absensi*', 'admin.scan-qr*') ? 'active' : '' }}">
         <i class="fa-solid fa-qrcode"></i>
-        <span>Scan QR Penjemputan</span>
-      </a>
-
-      <!-- Absensi Siswa QR -->
-      <a href="{{ route('admin.absensi') }}" class="nav-item-link {{ request()->routeIs('admin.absensi*') ? 'active' : '' }}">
-        <i class="fa-solid fa-user-check"></i>
-        <span>Absensi Siswa</span>
+        <span>Catat Presensi</span>
       </a>
 
       <div class="nav-group-label" style="margin-top: 10px;">Data Sekolah</div>
+
+      <!-- Profil Sekolah -->
+      <a href="{{ route('admin.sekolah') }}" class="nav-item-link {{ request()->routeIs('admin.sekolah*') ? 'active' : '' }}">
+        <i class="fa-solid fa-school"></i>
+        <span>Profil Sekolah</span>
+      </a>
 
       <!-- Data Struktur Sekolah (Guru) -->
       <a href="{{ route('admin.guru') }}" class="nav-item-link {{ request()->routeIs('admin.guru') ? 'active' : '' }}">
@@ -108,12 +108,6 @@
       <a href="{{ route('admin.users') }}" class="nav-item-link {{ request()->routeIs('admin.users*') ? 'active' : '' }}">
         <i class="fa-solid fa-users-gear"></i>
         <span>Kelola Pengguna</span>
-      </a>
-
-      <!-- Website Utama -->
-      <a href="{{ route('home') }}" target="_blank" class="nav-item-link">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        <span>Lihat Website</span>
       </a>
     </div>
 
